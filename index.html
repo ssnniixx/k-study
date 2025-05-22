@@ -1,72 +1,266 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>K-Study Stories</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;700&display=swap"
+    rel="stylesheet">
   <style>
-    body {
-      background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 50%, #7c3aed 100%);
-      min-height: 100vh;
-      margin: 0;
-      padding: 0;
+    :root {
+      --primary: #7c3aed;
+      --primary-light: #a78bfa;
+      --primary-dark: #5b21b6;
+      --secondary: #f97316;
+      --secondary-light: #fb923c;
+      --secondary-dark: #ea580c;
+      --text-dark: #1f2937;
+      --text-light: #6b7280;
+      --bg-gradient: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 50%, #7c3aed 100%);
     }
 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
+      background: var(--bg-gradient);
+      min-height: 100vh;
+      color: var(--text-dark);
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Текстурный фон */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('data:image/svg+xml;utf8,<svg opacity="0.03" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%23000"><circle cx="25" cy="25" r="1"/><circle cx="75" cy="75" r="1"/></svg>');
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Header */
     header {
-      background: linear-gradient(135deg, #4169e1 0%, #1e40af 50%, #1e3a8a 100%);
+      background: rgba(65, 105, 225, 0.9);
+      backdrop-filter: blur(10px);
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       z-index: 1000;
-      transition: transform 0.3s ease;
-      box-shadow: 0 4px 12px rgba(65, 105, 225, 0.2);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     header.hidden {
       transform: translateY(-100%);
     }
 
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo span {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .logo:hover span {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+
+    /* Main content */
     main {
       margin-top: 80px;
       position: relative;
     }
 
-    main::before {
-      content: '';
-      position: absolute;
-      top: -50px;
-      left: 0;
-      right: 0;
-      height: 50px;
-      background: linear-gradient(to bottom, #1e40af, #a78bfa);
-      pointer-events: none;
+    section {
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
-    footer {
-      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #4169e1 100%);
-      margin-top: 0;
-      padding: 2rem 0;
+    /* Hero section */
+    .hero {
+      text-align: center;
+      padding: 8rem 2rem;
       position: relative;
     }
 
-    footer::before {
-      content: '';
-      position: absolute;
-      top: -50px;
-      left: 0;
-      right: 0;
-      height: 50px;
-      background: linear-gradient(to bottom, #7c3aed, #1e40af);
-      pointer-events: none;
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
-    .cta-btn, .read-btn {
-      background: linear-gradient(135deg, #f97316 0%, #ea580c 50%, #c2410c 100%);
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      color: white;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    /* Stories section */
+    .stories-section h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: white;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .stories-section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--secondary);
+      border-radius: 3px;
+    }
+
+    .stories-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    /* Story card */
+    .story-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 8px 32px rgba(124, 58, 237, 0.15);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .story-card:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .story-card:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .story-card:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    .story-card:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+
+    .story-card:nth-child(5) {
+      animation-delay: 0.5s;
+    }
+
+    .story-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--secondary), var(--primary));
+    }
+
+    .story-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(124, 58, 237, 0.25);
+    }
+
+    .story-card h3 {
+      color: var(--primary);
+      margin: 1.5rem 0 1rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .story-card p {
+      color: var(--text-light);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .story-icon {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .story-icon svg {
+      width: 80px;
+      height: 80px;
+      transition: transform 0.3s ease;
+    }
+
+    .story-card:hover .story-icon svg {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    /* Buttons */
+    .cta-btn,
+    .read-btn {
+      background: linear-gradient(135deg, var(--secondary-light) 0%, var(--secondary-dark) 100%);
       color: white;
       padding: 0.8rem 1.5rem;
       border-radius: 8px;
@@ -76,72 +270,129 @@
       border: none;
       cursor: pointer;
       box-shadow: 0 4px 12px rgba(249, 115, 22, 0.2);
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
     }
 
-    .cta-btn:hover, .read-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(249, 115, 22, 0.3);
-      background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+    .cta-btn::after,
+    .read-btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--secondary-dark) 0%, var(--secondary) 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
+    .cta-btn:hover::after,
+    .read-btn:hover::after {
+      opacity: 1;
+    }
+
+    .cta-btn span,
+    .read-btn span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-btn:hover,
+    .read-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(249, 115, 22, 0.3);
+    }
+
+    .cta-btn:active,
+    .read-btn:active {
+      transform: translateY(1px);
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(30, 58, 138, 0.9);
+      backdrop-filter: blur(10px);
+      padding: 3rem 2rem;
+      position: relative;
+      color: white;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-links {
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--secondary-light);
+    }
+
+    /* Scroll to top button */
     .scroll-to-top {
-      background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
-      color: #fff;
-      border: none;
+      background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+      color: white;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      font-size: 24px;
-      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       position: fixed;
-      bottom: 30px;
-      right: 30px;
-      display: none;
-      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 999;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
       transition: all 0.3s ease;
-      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
+      border: none;
+      font-size: 1.5rem;
+    }
+
+    .scroll-to-top.visible {
+      opacity: 1;
+      visibility: visible;
     }
 
     .scroll-to-top:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 16px rgba(249, 115, 22, 0.4);
-      background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
     }
 
-    .story-card {
-      background: white;
-      border-radius: 12px;
-      padding: 1.5rem;
-      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.1);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(124, 58, 237, 0.1);
-    }
-
-    .story-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 24px rgba(124, 58, 237, 0.15);
-    }
-
-    .story-card h3 {
-      color: #7c3aed;
-      margin: 1rem 0;
-      font-size: 1.25rem;
-    }
-
-    .story-card p {
-      color: #4b5563;
-      margin-bottom: 1.5rem;
-      line-height: 1.5;
+    /* Decorative elements */
+    .asia-gradient {
+      background: linear-gradient(135deg, var(--secondary-light) 0%, var(--secondary-dark) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 800;
     }
 
     .frog-asia-corner {
       position: absolute;
-      width: 20px;
-      height: 20px;
-      border: 2px solid #7c3aed;
-      opacity: 0.3;
+      width: 24px;
+      height: 24px;
+      border: 2px solid var(--primary);
+      opacity: 0.5;
+      transition: all 0.3s ease;
+    }
+
+    .story-card:hover .frog-asia-corner {
+      opacity: 0.8;
     }
 
     .frog-asia-corner-tl {
@@ -172,223 +423,301 @@
       border-top: none;
     }
 
-    .asia-gradient {
-      background: linear-gradient(135deg, #f97316 0%, #ea580c 50%, #c2410c 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      font-weight: 800;
-      text-shadow: 0 2px 4px rgba(249, 115, 22, 0.2);
+    /* Background decorative elements */
+    .bg-element {
+      position: absolute;
+      z-index: 0;
+      opacity: 0.6;
     }
 
-    /* Скрытие скроллбара */
-    ::-webkit-scrollbar {
-      display: none;
+    .bg-element-1 {
+      top: 10%;
+      left: 5%;
+      width: 200px;
+      animation: float 6s ease-in-out infinite;
     }
 
-    /* Для Firefox */
-    * {
-      scrollbar-width: none;
+    .bg-element-2 {
+      bottom: 15%;
+      right: 5%;
+      width: 150px;
+      animation: float 8s ease-in-out infinite;
     }
 
-    /* Для IE и Edge */
-    body {
-      -ms-overflow-style: none;
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .stories-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .navbar {
+        padding: 1rem;
+      }
     }
   </style>
 </head>
+
 <body>
-  <svg class="frog-main-bg-spot spot1" viewBox="0 0 320 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="160" cy="60" rx="160" ry="60" fill="#b7e994"/>
+  <!-- Background decorative elements -->
+  <svg class="bg-element bg-element-1" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <path fill="#FBBF77" d="M40,100 Q100,40 160,100 Q100,160 40,100 Z" />
   </svg>
-  <svg class="frog-main-bg-spot spot2" viewBox="0 0 220 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="110" cy="40" rx="110" ry="40" fill="#fbbf77"/>
+
+  <svg class="bg-element bg-element-2" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="100" cy="100" r="80" fill="#B7E994" opacity="0.8" />
   </svg>
-  <svg class="frog-main-bg-spot spot3" viewBox="0 0 180 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="90" cy="30" rx="90" ry="30" fill="#eafec1"/>
-  </svg>
-  <!-- Asian cloud -->
-  <svg class="frog-asia-cloud" viewBox="0 0 180 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="60" cy="30" rx="60" ry="18" fill="#fff6e6"/>
-    <ellipse cx="120" cy="36" rx="40" ry="12" fill="#ffe0b2"/>
-    <ellipse cx="150" cy="28" rx="18" ry="8" fill="#fff6e6"/>
-  </svg>
-  <!-- Asian fan -->
-  <svg class="frog-asia-fan" viewBox="0 0 80 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M40 38 Q20 10 60 10 Q70 24 40 38 Z" fill="#e76f51"/>
-    <path d="M40 38 Q30 18 50 18 Q55 28 40 38 Z" fill="#fbbf77"/>
-    <rect x="38" y="36" width="4" height="8" rx="2" fill="#b71c1c"/>
-  </svg>
+
   <header>
     <nav class="navbar">
       <div class="logo">
-        <span style="font-weight:bold;vertical-align:middle;">K-Study</span>
+        <span>K-Study</span>
       </div>
       <ul class="nav-links">
-        <li><a href="#stories-section" class="cta-btn">Читать</a></li>
+        <li><a href="#stories-section" class="cta-btn"><span>Читать</span></a></li>
       </ul>
     </nav>
   </header>
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Добро пожаловать в <br><span class="asia-gradient">K-Study Stories</span></h1>
-      <p>K-Study — это место, где вы можете читать корейские сказки, изучать язык и получать удовольствие от обучения!</p>
-    </div>
-  </section>
-  <section class="stories-section" id="stories-section">
-    <h2>Избранные сказки</h2>
-    <div class="stories-cards">
-      <div class="story-card">
-        <div class="frog-asia-corner frog-asia-corner-tl"></div>
-        <div class="frog-asia-corner frog-asia-corner-tr"></div>
-        <div class="frog-asia-corner frog-asia-corner-bl"></div>
-        <div class="frog-asia-corner frog-asia-corner-br"></div>
-        <div style="text-align:center;margin-bottom:0.7em;">
-          <!-- Tiger SVG -->
-          <svg width="60" height="48" viewBox="0 0 60 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="30" cy="36" rx="22" ry="10" fill="#f7b267"/>
-            <ellipse cx="20" cy="24" rx="10" ry="12" fill="#f7b267"/>
-            <ellipse cx="40" cy="24" rx="10" ry="12" fill="#f7b267"/>
-            <ellipse cx="20" cy="20" rx="3" ry="3" fill="#fff"/>
-            <ellipse cx="40" cy="20" rx="3" ry="3" fill="#fff"/>
-            <ellipse cx="20" cy="20" rx="1.5" ry="1.5" fill="#2d1a05"/>
-            <ellipse cx="40" cy="20" rx="1.5" ry="1.5" fill="#2d1a05"/>
-            <ellipse cx="30" cy="30" rx="7" ry="4" fill="#f4845f"/>
-            <rect x="13" y="10" width="2" height="6" rx="1" fill="#2d1a05"/>
-            <rect x="45" y="10" width="2" height="6" rx="1" fill="#2d1a05"/>
-          </svg>
-        </div>
-        <h3>Тигр и хурма</h3>
-        <p>Классическая корейская сказка о хитрой матери и голодном тигре.</p>
-        <a href="#" class="read-btn">Читать</a>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Добро пожаловать в <br><span class="asia-gradient">K-Study Stories</span></h1>
+        <p>K-Study — это место, где вы можете читать корейские сказки, изучать язык и получать удовольствие от обучения!
+        </p>
       </div>
-      <div class="story-card">
-        <div class="frog-asia-corner frog-asia-corner-tl"></div>
-        <div class="frog-asia-corner frog-asia-corner-tr"></div>
-        <div class="frog-asia-corner frog-asia-corner-bl"></div>
-        <div class="frog-asia-corner frog-asia-corner-br"></div>
-        <div style="text-align:center;margin-bottom:0.7em;">
-          <!-- Frog SVG -->
-          <svg width="60" height="48" viewBox="0 0 60 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="30" cy="36" rx="22" ry="10" fill="#7ed957"/>
-            <ellipse cx="20" cy="24" rx="10" ry="12" fill="#7ed957"/>
-            <ellipse cx="40" cy="24" rx="10" ry="12" fill="#7ed957"/>
-            <ellipse cx="20" cy="20" rx="3" ry="3" fill="#fff"/>
-            <ellipse cx="40" cy="20" rx="3" ry="3" fill="#fff"/>
-            <ellipse cx="20" cy="20" rx="1.5" ry="1.5" fill="#2d1a05"/>
-            <ellipse cx="40" cy="20" rx="1.5" ry="1.5" fill="#2d1a05"/>
-            <ellipse cx="30" cy="30" rx="7" ry="4" fill="#4eae4a"/>
-            <ellipse cx="10" cy="10" rx="2" ry="2" fill="#7ed957"/>
-            <ellipse cx="50" cy="10" rx="2" ry="2" fill="#7ed957"/>
-          </svg>
+    </section>
+
+    <section class="stories-section" id="stories-section">
+      <h2>Избранные сказки</h2>
+      <div class="stories-cards">
+        <div class="story-card">
+          <div class="frog-asia-corner frog-asia-corner-tl"></div>
+          <div class="frog-asia-corner frog-asia-corner-tr"></div>
+          <div class="frog-asia-corner frog-asia-corner-bl"></div>
+          <div class="frog-asia-corner frog-asia-corner-br"></div>
+          <div class="story-icon">
+            <!-- Tiger SVG -->
+            <svg viewBox="0 0 60 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="30" cy="36" rx="22" ry="10" fill="#f7b267" />
+              <ellipse cx="20" cy="24" rx="10" ry="12" fill="#f7b267" />
+              <ellipse cx="40" cy="24" rx="10" ry="12" fill="#f7b267" />
+              <ellipse cx="20" cy="20" rx="3" ry="3" fill="#fff" />
+              <ellipse cx="40" cy="20" rx="3" ry="3" fill="#fff" />
+              <ellipse cx="20" cy="20" rx="1.5" ry="1.5" fill="#2d1a05" />
+              <ellipse cx="40" cy="20" rx="1.5" ry="1.5" fill="#2d1a05" />
+              <ellipse cx="30" cy="30" rx="7" ry="4" fill="#f4845f" />
+              <rect x="13" y="10" width="2" height="6" rx="1" fill="#2d1a05" />
+              <rect x="45" y="10" width="2" height="6" rx="1" fill="#2d1a05" />
+            </svg>
+          </div>
+          <h3>Тигр и хурма</h3>
+          <p>Классическая корейская сказка о хитрой матери и голодном тигре.</p>
+          <a href="#" class="read-btn"><span>Читать</span></a>
         </div>
-        <h3>Зелёный лягушонок</h3>
-        <p>Корейская народная сказка о непослушном лягушонке и его матери.</p>
-        <a href="frog.html" class="read-btn">Читать</a>
-      </div>
-      <div class="story-card">
-        <div class="frog-asia-corner frog-asia-corner-tl"></div>
-        <div class="frog-asia-corner frog-asia-corner-tr"></div>
-        <div class="frog-asia-corner frog-asia-corner-bl"></div>
-        <div class="frog-asia-corner frog-asia-corner-br"></div>
-        <div style="text-align:center;margin-bottom:0.7em;">
-          <!-- Brothers SVG -->
-          <svg width="60" height="48" viewBox="0 0 60 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="20" cy="36" rx="10" ry="10" fill="#f7c873"/>
-            <ellipse cx="40" cy="36" rx="10" ry="10" fill="#f4845f"/>
-            <ellipse cx="20" cy="30" rx="4" ry="4" fill="#fff"/>
-            <ellipse cx="40" cy="30" rx="4" ry="4" fill="#fff"/>
-            <ellipse cx="20" cy="30" rx="2" ry="2" fill="#2d1a05"/>
-            <ellipse cx="40" cy="30" rx="2" ry="2" fill="#2d1a05"/>
-            <ellipse cx="30" cy="20" rx="8" ry="4" fill="#f7b267"/>
-          </svg>
+
+        <div class="story-card">
+          <div class="frog-asia-corner frog-asia-corner-tl"></div>
+          <div class="frog-asia-corner frog-asia-corner-tr"></div>
+          <div class="frog-asia-corner frog-asia-corner-bl"></div>
+          <div class="frog-asia-corner frog-asia-corner-br"></div>
+          <div class="story-icon">
+            <!-- Frog SVG -->
+            <svg viewBox="0 0 60 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="30" cy="36" rx="22" ry="10" fill="#7ed957" />
+              <ellipse cx="20" cy="24" rx="10" ry="12" fill="#7ed957" />
+              <ellipse cx="40" cy="24" rx="10" ry="12" fill="#7ed957" />
+              <ellipse cx="20" cy="20" rx="3" ry="3" fill="#fff" />
+              <ellipse cx="40" cy="20" rx="3" ry="3" fill="#fff" />
+              <ellipse cx="20" cy="20" rx="1.5" ry="1.5" fill="#2d1a05" />
+              <ellipse cx="40" cy="20" rx="1.5" ry="1.5" fill="#2d1a05" />
+              <ellipse cx="30" cy="30" rx="7" ry="4" fill="#4eae4a" />
+              <ellipse cx="10" cy="10" rx="2" ry="2" fill="#7ed957" />
+              <ellipse cx="50" cy="10" rx="2" ry="2" fill="#7ed957" />
+            </svg>
+          </div>
+          <h3>Зелёный лягушонок</h3>
+          <p>Корейская народная сказка о непослушном лягушонке и его матери.</p>
+          <a href="frog.html" class="read-btn"><span>Читать</span></a>
         </div>
-        <h3>Хынбу и Нольбу</h3>
-        <p>Сказка о двух братьях и награде за доброту.</p>
-        <a href="#" class="read-btn">Читать</a>
-      </div>
-      <div class="story-card">
-        <div class="frog-asia-corner frog-asia-corner-tl"></div>
-        <div class="frog-asia-corner frog-asia-corner-tr"></div>
-        <div class="frog-asia-corner frog-asia-corner-bl"></div>
-        <div class="frog-asia-corner frog-asia-corner-br"></div>
-        <div style="text-align:center;margin-bottom:0.7em;">
-          <!-- Peach Boy SVG -->
-          <svg width="60" height="48" viewBox="0 0 60 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="30" cy="36" rx="15" ry="8" fill="#fbbf77"/>
-            <ellipse cx="30" cy="24" rx="12" ry="14" fill="#fbbf77"/>
-            <ellipse cx="24" cy="20" rx="3" ry="3" fill="#fff"/>
-            <ellipse cx="36" cy="20" rx="3" ry="3" fill="#fff"/>
-            <ellipse cx="24" cy="20" rx="1.5" ry="1.5" fill="#2d1a05"/>
-            <ellipse cx="36" cy="20" rx="1.5" ry="1.5" fill="#2d1a05"/>
-            <ellipse cx="30" cy="28" rx="5" ry="3" fill="#f4845f"/>
-          </svg>
+
+        <div class="story-card">
+          <div class="frog-asia-corner frog-asia-corner-tl"></div>
+          <div class="frog-asia-corner frog-asia-corner-tr"></div>
+          <div class="frog-asia-corner frog-asia-corner-bl"></div>
+          <div class="frog-asia-corner frog-asia-corner-br"></div>
+          <div class="story-icon">
+            <!-- Brothers SVG -->
+            <svg viewBox="0 0 60 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="20" cy="36" rx="10" ry="10" fill="#f7c873" />
+              <ellipse cx="40" cy="36" rx="10" ry="10" fill="#f4845f" />
+              <ellipse cx="20" cy="30" rx="4" ry="4" fill="#fff" />
+              <ellipse cx="40" cy="30" rx="4" ry="4" fill="#fff" />
+              <ellipse cx="20" cy="30" rx="2" ry="2" fill="#2d1a05" />
+              <ellipse cx="40" cy="30" rx="2" ry="2" fill="#2d1a05" />
+              <ellipse cx="30" cy="20" rx="8" ry="4" fill="#f7b267" />
+            </svg>
+          </div>
+          <h3>Хынбу и Нольбу</h3>
+          <p>Сказка о двух братьях и награде за доброту.</p>
+          <a href="#" class="read-btn"><span>Читать</span></a>
         </div>
-        <h3>Хонгильдон</h3>
-        <p>История о мальчике, который родился из персика и стал героем.</p>
-        <a href="#" class="read-btn">Читать</a>
-      </div>
-      <div class="story-card">
-        <div class="frog-asia-corner frog-asia-corner-tl"></div>
-        <div class="frog-asia-corner frog-asia-corner-tr"></div>
-        <div class="frog-asia-corner frog-asia-corner-bl"></div>
-        <div class="frog-asia-corner frog-asia-corner-br"></div>
-        <div style="text-align:center;margin-bottom:0.7em;">
-          <!-- Simcheong SVG -->
-          <svg width="60" height="48" viewBox="0 0 60 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="30" cy="36" rx="12" ry="8" fill="#fbbf77"/>
-            <ellipse cx="30" cy="24" rx="10" ry="12" fill="#fbbf77"/>
-            <ellipse cx="25" cy="20" rx="3" ry="3" fill="#fff"/>
-            <ellipse cx="35" cy="20" rx="3" ry="3" fill="#fff"/>
-            <ellipse cx="25" cy="20" rx="1.5" ry="1.5" fill="#2d1a05"/>
-            <ellipse cx="35" cy="20" rx="1.5" ry="1.5" fill="#2d1a05"/>
-            <ellipse cx="30" cy="28" rx="4" ry="2" fill="#f4845f"/>
-          </svg>
+
+        <div class="story-card">
+          <div class="frog-asia-corner frog-asia-corner-tl"></div>
+          <div class="frog-asia-corner frog-asia-corner-tr"></div>
+          <div class="frog-asia-corner frog-asia-corner-bl"></div>
+          <div class="frog-asia-corner frog-asia-corner-br"></div>
+          <div class="story-icon">
+            <!-- Peach Boy SVG -->
+            <svg viewBox="0 0 60 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="30" cy="36" rx="15" ry="8" fill="#fbbf77" />
+              <ellipse cx="30" cy="24" rx="12" ry="14" fill="#fbbf77" />
+              <ellipse cx="24" cy="20" rx="3" ry="3" fill="#fff" />
+              <ellipse cx="36" cy="20" rx="3" ry="3" fill="#fff" />
+              <ellipse cx="24" cy="20" rx="1.5" ry="1.5" fill="#2d1a05" />
+              <ellipse cx="36" cy="20" rx="1.5" ry="1.5" fill="#2d1a05" />
+              <ellipse cx="30" cy="28" rx="5" ry="3" fill="#f4845f" />
+            </svg>
+          </div>
+          <h3>Хонгильдон</h3>
+          <p>История о мальчике, который родился из персика и стал героем.</p>
+          <a href="#" class="read-btn"><span>Читать</span></a>
         </div>
-        <h3>Симчхон</h3>
-        <p>Трогательная история о дочери, которая пожертвовала собой ради отца.</p>
-        <a href="#" class="read-btn">Читать</a>
+
+        <div class="story-card">
+          <div class="frog-asia-corner frog-asia-corner-tl"></div>
+          <div class="frog-asia-corner frog-asia-corner-tr"></div>
+          <div class="frog-asia-corner frog-asia-corner-bl"></div>
+          <div class="frog-asia-corner frog-asia-corner-br"></div>
+          <div class="story-icon">
+            <!-- Simcheong SVG -->
+            <svg viewBox="0 0 60 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="30" cy="36" rx="12" ry="8" fill="#fbbf77" />
+              <ellipse cx="30" cy="24" rx="10" ry="12" fill="#fbbf77" />
+              <ellipse cx="25" cy="20" rx="3" ry="3" fill="#fff" />
+              <ellipse cx="35" cy="20" rx="3" ry="3" fill="#fff" />
+              <ellipse cx="25" cy="20" rx="1.5" ry="1.5" fill="#2d1a05" />
+              <ellipse cx="35" cy="20" rx="1.5" ry="1.5" fill="#2d1a05" />
+              <ellipse cx="30" cy="28" rx="4" ry="2" fill="#f4845f" />
+            </svg>
+          </div>
+          <h3>Симчхон</h3>
+          <p>Трогательная история о дочери, которая пожертвовала собой ради отца.</p>
+          <a href="#" class="read-btn"><span>Читать</span></a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
+
   <footer>
     <div class="footer-content">
       <div class="footer-links">
         <a href="#">О нас</a>
+        <a href="#">Контакты</a>
+        <a href="#">Помощь</a>
       </div>
       <p>&copy; 2024 K-Study Stories. Все права защищены.</p>
     </div>
   </footer>
+
+  <button class="scroll-to-top">↑</button>
+
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Enable all links
-      document.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', function(e) {
-          if (this.getAttribute('href') !== '#') {
-            window.location.href = this.getAttribute('href');
+    document.addEventListener('DOMContentLoaded', function () {
+      // Header hide/show on scroll
+      let lastScrollTop = 0;
+      const header = document.querySelector('header');
+      const scrollThreshold = 50;
+
+      window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (currentScroll > lastScrollTop && currentScroll > scrollThreshold) {
+          header.classList.add('hidden');
+        } else {
+          header.classList.remove('hidden');
+        }
+
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+
+        // Scroll to top button
+        const scrollToTopBtn = document.querySelector('.scroll-to-top');
+        if (window.pageYOffset > 300) {
+          scrollToTopBtn.classList.add('visible');
+        } else {
+          scrollToTopBtn.classList.remove('visible');
+        }
+      });
+
+      // Scroll to top functionality
+      document.querySelector('.scroll-to-top').addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
           }
         });
       });
+
+      // Enable all other links
+      document.querySelectorAll('a').forEach(link => {
+        if (link.getAttribute('href') !== '#' && !link.getAttribute('href').startsWith('#')) {
+          link.addEventListener('click', function (e) {
+            if (this.getAttribute('href') !== '#') {
+              window.location.href = this.getAttribute('href');
+            }
+          });
+        }
+      });
     });
 
-    let lastScrollTop = 0;
-    const header = document.querySelector('header');
-    const scrollThreshold = 50; // Минимальное расстояние прокрутки для срабатывания
+    // Card hover animations
+    document.querySelectorAll('.story-card').forEach(card => {
+      card.addEventListener('mouseenter', function () {
+        this.style.transform = 'translateY(-8px)';
+      });
 
-    window.addEventListener('scroll', () => {
-      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-      
-      // Определяем направление прокрутки
-      if (currentScroll > lastScrollTop && currentScroll > scrollThreshold) {
-        // Прокрутка вниз
-        header.classList.add('hidden');
-      } else {
-        // Прокрутка вверх
-        header.classList.remove('hidden');
-      }
-      
-      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+      card.addEventListener('mouseleave', function () {
+        this.style.transform = 'translateY(0)';
+      });
     });
   </script>
 </body>
-</html> 
+
+</html>
