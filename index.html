@@ -8,6 +8,194 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 50%, #7c3aed 100%);
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: linear-gradient(135deg, #4169e1 0%, #1e40af 50%, #1e3a8a 100%);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      transition: transform 0.3s ease;
+      box-shadow: 0 4px 12px rgba(65, 105, 225, 0.2);
+    }
+
+    header.hidden {
+      transform: translateY(-100%);
+    }
+
+    main {
+      margin-top: 80px;
+      position: relative;
+    }
+
+    main::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      left: 0;
+      right: 0;
+      height: 50px;
+      background: linear-gradient(to bottom, #1e40af, #a78bfa);
+      pointer-events: none;
+    }
+
+    footer {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #4169e1 100%);
+      margin-top: 0;
+      padding: 2rem 0;
+      position: relative;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      left: 0;
+      right: 0;
+      height: 50px;
+      background: linear-gradient(to bottom, #7c3aed, #1e40af);
+      pointer-events: none;
+    }
+
+    .cta-btn, .read-btn {
+      background: linear-gradient(135deg, #f97316 0%, #ea580c 50%, #c2410c 100%);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.2);
+    }
+
+    .cta-btn:hover, .read-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(249, 115, 22, 0.3);
+      background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+    }
+
+    .scroll-to-top {
+      background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      cursor: pointer;
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      display: none;
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .scroll-to-top:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(249, 115, 22, 0.4);
+      background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+    }
+
+    .story-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(124, 58, 237, 0.1);
+    }
+
+    .story-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(124, 58, 237, 0.15);
+    }
+
+    .story-card h3 {
+      color: #7c3aed;
+      margin: 1rem 0;
+      font-size: 1.25rem;
+    }
+
+    .story-card p {
+      color: #4b5563;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+
+    .frog-asia-corner {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #7c3aed;
+      opacity: 0.3;
+    }
+
+    .frog-asia-corner-tl {
+      top: 10px;
+      left: 10px;
+      border-right: none;
+      border-bottom: none;
+    }
+
+    .frog-asia-corner-tr {
+      top: 10px;
+      right: 10px;
+      border-left: none;
+      border-bottom: none;
+    }
+
+    .frog-asia-corner-bl {
+      bottom: 10px;
+      left: 10px;
+      border-right: none;
+      border-top: none;
+    }
+
+    .frog-asia-corner-br {
+      bottom: 10px;
+      right: 10px;
+      border-left: none;
+      border-top: none;
+    }
+
+    .asia-gradient {
+      background: linear-gradient(135deg, #f97316 0%, #ea580c 50%, #c2410c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 800;
+      text-shadow: 0 2px 4px rgba(249, 115, 22, 0.2);
+    }
+
+    /* Скрытие скроллбара */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Для Firefox */
+    * {
+      scrollbar-width: none;
+    }
+
+    /* Для IE и Edge */
+    body {
+      -ms-overflow-style: none;
+    }
+  </style>
 </head>
 <body>
   <svg class="frog-main-bg-spot spot1" viewBox="0 0 320 120" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -34,28 +222,16 @@
   <header>
     <nav class="navbar">
       <div class="logo">
-        <svg class="logo-book" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M8 4C8 2.89543 8.89543 2 10 2H22C23.1046 2 24 2.89543 24 4V28C24 29.1046 23.1046 30 22 30H10C8.89543 30 8 29.1046 8 28V4Z" fill="url(#bookGradient)"/>
-          <path d="M8 4C8 2.89543 8.89543 2 10 2H22C23.1046 2 24 2.89543 24 4V28C24 29.1046 23.1046 30 22 30H10C8.89543 30 8 29.1046 8 28V4Z" stroke="#2d1a05" stroke-width="1.5"/>
-          <path d="M12 8H20M12 12H20M12 16H20M12 20H20" stroke="#2d1a05" stroke-width="1.5" stroke-linecap="round"/>
-          <defs>
-            <linearGradient id="bookGradient" x1="8" y1="2" x2="24" y2="30" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#e76f51"/>
-              <stop offset="100%" stop-color="#fbbf77"/>
-            </linearGradient>
-          </defs>
-        </svg>
         <span style="font-weight:bold;vertical-align:middle;">K-Study</span>
       </div>
       <ul class="nav-links">
-        <li><a href="#stories-section" class="cta-btn">Читать сказки</a></li>
+        <li><a href="#stories-section" class="cta-btn">Читать</a></li>
       </ul>
     </nav>
   </header>
   <section class="hero">
     <div class="hero-content">
       <h1>Добро пожаловать в <br><span class="asia-gradient">K-Study Stories</span></h1>
-      <div style="font-size:1.25rem;color:#388e3c;font-weight:500;margin-bottom:1.2rem;">Корейские сказки для изучения языка и души</div>
       <p>K-Study — это место, где вы можете читать корейские сказки, изучать язык и получать удовольствие от обучения!</p>
     </div>
   </section>
@@ -84,7 +260,7 @@
         </div>
         <h3>Тигр и хурма</h3>
         <p>Классическая корейская сказка о хитрой матери и голодном тигре.</p>
-        <a href="#" class="read-btn">Читать сказку</a>
+        <a href="#" class="read-btn">Читать</a>
       </div>
       <div class="story-card">
         <div class="frog-asia-corner frog-asia-corner-tl"></div>
@@ -107,8 +283,8 @@
           </svg>
         </div>
         <h3>Зелёный лягушонок</h3>
-        <p>История о непослушном лягушонке, который учится слушаться маму.</p>
-        <a href="frog.html" class="read-btn">Читать сказку</a>
+        <p>Корейская народная сказка о непослушном лягушонке и его матери.</p>
+        <a href="frog.html" class="read-btn">Читать</a>
       </div>
       <div class="story-card">
         <div class="frog-asia-corner frog-asia-corner-tl"></div>
@@ -129,24 +305,90 @@
         </div>
         <h3>Хынбу и Нольбу</h3>
         <p>Сказка о двух братьях и награде за доброту.</p>
-        <a href="#" class="read-btn">Читать сказку</a>
+        <a href="#" class="read-btn">Читать</a>
+      </div>
+      <div class="story-card">
+        <div class="frog-asia-corner frog-asia-corner-tl"></div>
+        <div class="frog-asia-corner frog-asia-corner-tr"></div>
+        <div class="frog-asia-corner frog-asia-corner-bl"></div>
+        <div class="frog-asia-corner frog-asia-corner-br"></div>
+        <div style="text-align:center;margin-bottom:0.7em;">
+          <!-- Peach Boy SVG -->
+          <svg width="60" height="48" viewBox="0 0 60 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="30" cy="36" rx="15" ry="8" fill="#fbbf77"/>
+            <ellipse cx="30" cy="24" rx="12" ry="14" fill="#fbbf77"/>
+            <ellipse cx="24" cy="20" rx="3" ry="3" fill="#fff"/>
+            <ellipse cx="36" cy="20" rx="3" ry="3" fill="#fff"/>
+            <ellipse cx="24" cy="20" rx="1.5" ry="1.5" fill="#2d1a05"/>
+            <ellipse cx="36" cy="20" rx="1.5" ry="1.5" fill="#2d1a05"/>
+            <ellipse cx="30" cy="28" rx="5" ry="3" fill="#f4845f"/>
+          </svg>
+        </div>
+        <h3>Хонгильдон</h3>
+        <p>История о мальчике, который родился из персика и стал героем.</p>
+        <a href="#" class="read-btn">Читать</a>
+      </div>
+      <div class="story-card">
+        <div class="frog-asia-corner frog-asia-corner-tl"></div>
+        <div class="frog-asia-corner frog-asia-corner-tr"></div>
+        <div class="frog-asia-corner frog-asia-corner-bl"></div>
+        <div class="frog-asia-corner frog-asia-corner-br"></div>
+        <div style="text-align:center;margin-bottom:0.7em;">
+          <!-- Simcheong SVG -->
+          <svg width="60" height="48" viewBox="0 0 60 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="30" cy="36" rx="12" ry="8" fill="#fbbf77"/>
+            <ellipse cx="30" cy="24" rx="10" ry="12" fill="#fbbf77"/>
+            <ellipse cx="25" cy="20" rx="3" ry="3" fill="#fff"/>
+            <ellipse cx="35" cy="20" rx="3" ry="3" fill="#fff"/>
+            <ellipse cx="25" cy="20" rx="1.5" ry="1.5" fill="#2d1a05"/>
+            <ellipse cx="35" cy="20" rx="1.5" ry="1.5" fill="#2d1a05"/>
+            <ellipse cx="30" cy="28" rx="4" ry="2" fill="#f4845f"/>
+          </svg>
+        </div>
+        <h3>Симчхон</h3>
+        <p>Трогательная история о дочери, которая пожертвовала собой ради отца.</p>
+        <a href="#" class="read-btn">Читать</a>
       </div>
     </div>
-  </section>
-  <section class="support-upgrade">
-    <p>Ваша поддержка помогает нам публиковать больше сказок и новых функций! <a href="#" class="upgrade-btn">Оформить пожизненный доступ</a></p>
   </section>
   <footer>
     <div class="footer-content">
       <div class="footer-links">
-        <a href="#">Купить книги</a>
-        <a href="#">Обновить</a>
-        <a href="#">Контакты</a>
         <a href="#">О нас</a>
-        <a href="#">Политика конфиденциальности</a>
       </div>
       <p>&copy; 2024 K-Study Stories. Все права защищены.</p>
     </div>
   </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Enable all links
+      document.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function(e) {
+          if (this.getAttribute('href') !== '#') {
+            window.location.href = this.getAttribute('href');
+          }
+        });
+      });
+    });
+
+    let lastScrollTop = 0;
+    const header = document.querySelector('header');
+    const scrollThreshold = 50; // Минимальное расстояние прокрутки для срабатывания
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+      
+      // Определяем направление прокрутки
+      if (currentScroll > lastScrollTop && currentScroll > scrollThreshold) {
+        // Прокрутка вниз
+        header.classList.add('hidden');
+      } else {
+        // Прокрутка вверх
+        header.classList.remove('hidden');
+      }
+      
+      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    });
+  </script>
 </body>
 </html> 
