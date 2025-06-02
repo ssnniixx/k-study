@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>K-Study: Трехлетний перевал</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #c3cfe2 0%, #c3cfe2 50%, #c3cfe2 100%);
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: linear-gradient(135deg, #05102e 0%, #05102e 50%, #05102e 100%);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      transition: transform 0.3s ease;
+      box-shadow: 0 4px 12px rgba(139, 69, 19, 0.2);
+    }
+
+    header.hidden {
+      transform: translateY(-100%);
+    }
+
+    main {
+      margin-top: 80px;
+      position: relative;
+    }
+
+    main::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      left: 0;
+      right: 0;
+      height: 50px;
+      background: linear-gradient(to bottom, #a0522d, #c3cfe2);
+      pointer-events: none;
+    }
+
+    footer {
+      background: linear-gradient(135deg, #05102e 0%, #05102e 50%, #05102e 100%);
+      margin-top: 0;
+      padding: 2rem 0;
+      position: relative;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      left: 0;
+      right: 0;
+      height: 50px;
+      background: linear-gradient(to bottom, #c3cfe2, #05102e);
+      pointer-events: none;
+    }
+
+    .scroll-to-top {
+      background: linear-gradient(135deg, #66d2de 0%, #66d2de 100%);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      cursor: pointer;
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      display: none;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .scroll-to-top:hover {
+      transform: translateY(-3px);
+      background: linear-gradient(135deg, #05102e 0%, #05102e 100%);
+    }
+
+    .logo span {
+      color: #fff !important;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      font-weight: 900;
+      font-size: 1.4rem;
+      letter-spacing: 0.5px;
+    }
+
+    .tab-panel {
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .tab {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .tab::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+    
+    .tab:hover::after {
+      width: 100%;
+    }
+    
+    .tab.active::after {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <span>K-Study</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="#grammar-section">Грамматика/Слова</a></li>
+        <li><a href="#quiz-section">Тест</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main style="max-width: 700px; margin: 3rem auto 2rem auto; background: #fff; border-radius: 18px; box-shadow: 0 2px 12px; padding: 2.5rem 2rem;">
+    <div style="text-align:center; margin-bottom: 1.5rem;">
+      <svg class="hill-cartoon-img" width="120" height="100" viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 80 Q30 40 60 80 Q90 20 120 80 L120 100 L0 100 Z" fill="#8b4513"/>
+        <path d="M40 60 L50 40 L60 60 L70 40 L80 60" stroke="#2d1a05" stroke-width="2" fill="none"/>
+        <circle cx="30" cy="30" r="5" fill="#f5f7fa"/>
+        <circle cx="90" cy="30" r="5" fill="#f5f7fa"/>
+        <path d="M20 70 L30 60 M90 70 L80 60" stroke="#2d1a05" stroke-width="2"/>
+      </svg>
+    </div>
+    <h1 style="color: #e76f51; text-align: center;">Трехлетний перевал</h1>
+    <div class="story">
+      <div class="story-block">
+        <span class="kor-tooltip" data-tooltip='<div class="tooltip-main-grammar">N + 에</div><div class="tooltip-expl">Указывает на место или время.</div><div class="tooltip-ex">Пример: 저는 학교에 갑니다. (Я иду в школу.)</div><div class="tooltip-divider"></div><div class="tooltip-grammar">N + 이/가</div><div class="tooltip-expl">Выделяет подлежащее.</div><div class="tooltip-ex">Пример: 학생이 교실에 들어왔어요. (Студент вошёл в класс.)</div><div class="tooltip-divider"></div><div class="tooltip-grammar">V/A + ㅂ니다/습니다</div><div class="tooltip-expl">Вежливая формальная форма.</div><div class="tooltip-ex">Пример: 저는 매일 공부합니다. (Я учусь каждый день.)</div><div class="tooltip-divider"></div><div class="tooltip-grammar">N + (이)라고 하다</div><div class="tooltip-expl">Конструкция для названий.</div><div class="tooltip-ex">Пример: 이것은 한강이라고 합니다. (Это называют Ханган.)</div>'>옛날에 어느 마음에 3년 고개라는 고개가 있었습니다.</span>
+        <div class="rus-sentence">Давным-давно в одной деревне был перевал под названием «3년 고개».</div>
+      </div>
+      <div class="story-block">
+        <span class="kor-tooltip" data-tooltip='<div class="tooltip-main-grammar">N + 에서</div><div class="tooltip-expl">Место действия.</div><div class="tooltip-ex">Пример: 도서관에서 책을 읽어요. (Я читаю книгу в библиотеке.)</div><div class="tooltip-divider"></div><div class="tooltip-grammar">V + (으)면</div><div class="tooltip-expl">Условие (если/когда).</div><div class="tooltip-ex">Пример: 비가 오면 집에 있을 거예요. (Если пойдёт дождь, я буду дома.)</div><div class="tooltip-divider"></div><div class="tooltip-grammar">V + 을/ㄹ 수 없다</div><div class="tooltip-expl">Невозможность.</div><div class="tooltip-ex">Пример: 나는 수영을 할 수 없어요. (Я не умею плавать.)</div><div class="tooltip-divider"></div><div class="tooltip-grammar">V/A + 기 때문에</div><div class="tooltip-expl">Причина (потому что).</div><div class="tooltip-ex">Пример: 비 때문에 집에 있었어요. (Из-за дождя я остался дома.)</div><div class="tooltip-divider"></div><div class="tooltip-grammar">N + 입니다</div><div class="tooltip-expl">Формальное утверждение.</div><div class="tooltip-ex">Пример: 저는 학생입니다. (Я студент.)</div>'>이 고개에서 넘어지면 3년밖에 살 수 없기 때문에 생긴 이름입니다.</span>
+        <div class="rus-sentence">Это название появилось потому, что, если упасть на этом перевале, можно прожить только три года.</div>
+      </div>
+      <div class="story-block">
+        <span class="kor-tooltip" data-tooltip='<div class="tooltip-main-grammar">V + 는 + N</div><div class="tooltip-expl">Глагол как определение.</div><div class="tooltip-ex">Пример: 내가 읽는 책은 재미있어요. (Книга, которую я читаю, интересная.)</div><div class="tooltip-divider"></div><div class="tooltip-grammar">N + 은/는</div><div class="tooltip-expl">Тема предложения.</div><div class="tooltip-ex">Пример: 저는 매일 아침 책을 읽어요. (Я читаю книгу каждое утро.)</div><div class="tooltip-divider"></div><div class="tooltip-grammar">N + 을/를</div><div class="tooltip-expl">Прямое дополнение.</div><div class="tooltip-ex">Пример: 저는 사과를 먹었어요. (Я съел яблоко.)</div><div class="tooltip-divider"></div><div class="tooltip-grammar">V + 고 있다</div><div class="tooltip-expl">Длительное действие.</div><div class="tooltip-ex">Пример: 친구가 책을 읽고 있어요. (Друг читает книгу.)</div>'>이 마을에 사는 사람들은 모두 이것을 알고 있었습니다.</span>
+        <div class="rus-sentence">Люди, живущие в этой деревне, все знали об этом.</div>
+      </div>
+      <div class="story-block">
+        <span class="kor-tooltip" data-tooltip='<div class="tooltip-main-grammar">V + 을/ㄹ 때</div><div class="tooltip-expl">Когда (время действия).</div><div class="tooltip-ex">Пример: 밥을 먹을 때 TV를 봐요. (Когда я ем, я смотрю телевизор.)</div><div class="tooltip-divider"></div><div class="tooltip-grammar">V + 지 않다</div><div class="tooltip-expl">Формальное отрицание.</div><div class="tooltip-ex">Пример: 저는 숙제를 하지 않았습니다. (Я не сделал домашнюю работу.)</div><div class="tooltip-divider"></div><div class="tooltip-grammar">V + (으)려고</div><div class="tooltip-expl">Намерение.</div><div class="tooltip-ex">Пример: 한국어를 배우려고 한국에 왔어요. (Я приехал в Корею, чтобы учить корейский.)</div>'>그래서 마을 사람들은 이 고개를 지나갈 때면 모두 넘어지지 않으려고 조심했습니다.</span>
+        <div class="rus-sentence">Поэтому люди деревни, когда проходили через этот перевал, все старались не споткнуться.</div>
+      </div>
+      <div class="story-block">
+        <span class="kor-tooltip" data-tooltip='<div class="tooltip-main-grammar">V/A + 고</div><div class="tooltip-expl">Соединение действий.</div><div class="tooltip-ex">Пример: 밥을 먹고 책을 읽었어요. (Я поел и читал книгу.)</div><div class="tooltip-divider"></div><div class="tooltip-grammar">N + (으)로</div><div class="tooltip-expl">Направление.</div><div class="tooltip-ex">Пример: 우리는 기차로 여행했어요. (Мы путешествовали на поезде.)</div><div class="tooltip-divider"></div><div class="tooltip-grammar">V + 게 되다</div><div class="tooltip-expl">Наступление состояния.</div><div class="tooltip-ex">Пример: 결혼하게 됐어요. (Я женился.)</div>'>어느 날 한 할아버지가 시장에서 술을 마시고 집으로 돌아오는 길에 이 고개를 지나게 되었습니다.</span>
+        <div class="rus-sentence">Однажды один дедушка, выпив в рынке, возвращался домой и проходил (мимо) этот перевал.</div>
+      </div>
+      <div class="story-block">
+        <span class="kor-tooltip" data-tooltip='<div class="tooltip-main-grammar">N + 만</div><div class="tooltip-expl">Только, лишь.</div><div class="tooltip-ex">Пример: 물만 마셨어요. (Я пил только воду.)</div>'>하지만 마음만은 이 고개에서 넘어지지 않으려고 조심조심 걸어가고 있었습니다.</span>
+        <div class="rus-sentence">Но (хоть) в душе он старался, он осторожно шел, чтобы не упасть на этом перевале.</div>
+      </div>
+      <div class="story-block">
+        <span class="kor-tooltip" data-tooltip='<div class="tooltip-main-grammar">V + 다가</div><div class="tooltip-expl">Прерванное действие.</div><div class="tooltip-ex">Пример: 텔레비전을 보다가 잠들었어요. (Я смотрел телевизор, а потом заснул.)</div>'>할아버지는 그 행인을 피하다가 들이 걸려 넘어졌습니다.</span>
+        <div class="rus-sentence">Дедушка, пытаясь увернуться от этого прохожего, споткнулся и упал.</div>
+      </div>
+      <div class="story-block">
+        <span class="kor-tooltip" data-tooltip='<div class="tooltip-main-grammar">V/A + (으)니</div><div class="tooltip-expl">Выражение удивления.</div><div class="tooltip-ex">Пример: 이겼다니! 믿을 수 없어요. (Не могу поверить, что (они) выиграли!)</div>'>"재수 없게 3년 고개에서 넘어지다니, 아!"</span>
+        <div class="rus-sentence">"Как невезуче --- упасть с 3년 고개! Ах!"</div>
+      </div>
+      <div class="story-block">
+        <span class="kor-tooltip" data-tooltip='<div class="tooltip-main-grammar">N + 의</div><div class="tooltip-expl">Принадлежность.</div><div class="tooltip-ex">Пример: 우리집의 고양이. (Кошка моего дома.)</div>'>할아버지의 발걸음은 무거워졌습니다.</span>
+        <div class="rus-sentence">Шаги дедушки стали тяжелыми.</div>
+      </div>
+      <div class="story-block">
+        <span class="kor-tooltip" data-tooltip='<div class="tooltip-main-grammar">V/A + 아/어/여서</div><div class="tooltip-expl">Причина или последовательность.</div><div class="tooltip-ex">Пример: 피곤해서 집에 일찍 갔어요. (Я устал, поэтому рано пошёл домой.)</div>'>온몸에 힘이 다 빠져서 하루 종일 아무것도 할 수 없었습니다.</span>
+        <div class="rus-sentence">У него весь организм был опустошен, и целый день он ни чего не мог делать.</div>
+      </div>
+      <div class="story-block">
+        <span class="kor-tooltip" data-tooltip='<div class="tooltip-main-grammar">A + (으)ㄴ + N</div><div class="tooltip-expl">Прилагательное как определение.</div><div class="tooltip-ex">Пример: 예쁜 꽃을 샀어요. (Я купил красивый цветок.)</div><div class="tooltip-divider"></div><div class="tooltip-grammar">N + 도</div><div class="tooltip-expl">Тоже, даже.</div><div class="tooltip-ex">Пример: 나도 그 영화를 봤어요. (Я тоже смотрел этот фильм.)</div><div class="tooltip-divider"></div><div class="tooltip-grammar">V/A + 지만</div><div class="tooltip-expl">Противопоставление (но).</div><div class="tooltip-ex">Пример: 배고프지만 밥을 안 먹었어요. (Я голоден, но не поел.)</div><div class="tooltip-divider"></div><div class="tooltip-grammar">V/A + 이/가 없다/있다</div><div class="tooltip-expl">Наличие/отсутствие.</div><div class="tooltip-ex">Пример: 시간이 없어요. (Времени нет.)</div>'>몸에 좋은 약은 다 먹어 보고, 죽은 사람도 살린다는 산삼도 먹어 봤지만 아무런 소용이 없었습니다.</span>
+        <div class="rus-sentence">Он перепробовал все целебные травы, которые были полезны для организма, пил даже сансам, который, говорят, воскресил мертвых, но всё было бесполезно.</div>
+      </div>
+      <div class="story-block">
+        <span class="kor-tooltip" data-tooltip='<div class="tooltip-main-grammar">N + 에게/한테/께</div><div class="tooltip-expl">Получатель действия.</div><div class="tooltip-ex">Пример: 친구에게 선물을 줬어요. (Я подарил подарок другу.)</div>'>할아버지에게는 매우 똑똑한 딸이 하나 있었는데 이 딸은 이웃 마을에 시집을 가서 살고 있었습니다.</span>
+        <div class="rus-sentence">У дедушки была очень умная дочь, которая вышла замуж и жила в соседней деревне.</div>
+      </div>
+      <div class="story-block">
+        <span class="kor-tooltip" data-tooltip='<div class="tooltip-main-grammar">V + 으러</div><div class="tooltip-expl">Цель движения.</div><div class="tooltip-ex">Пример: 밥을 먹으러 식당에 갔어요. (Пошел в ресторан, чтобы поесть.)</div>'>이 딸은 아버지가 아프다는 말을 듣고 아버지를 문병하러 왔습니다.</span>
+        <div class="rus-sentence">Эта дочь услышала, что отец болен, и пришла проведать его в больницу.</div>
+      </div>
+      <div class="story-block">
+        <span class="kor-tooltip" data-tooltip='<div class="tooltip-main-grammar">못 + V</div><div class="tooltip-expl">Невозможность.</div><div class="tooltip-ex">Пример: 나는 수영을 못 해요. (Я не умею плавать.)</div><div class="tooltip-divider"></div><div class="tooltip-grammar">V/A + (으)라고 하다</div><div class="tooltip-expl">Прямая речь.</div><div class="tooltip-ex">Пример: 선생님이 "준비해라"고 하셨어요. (Учитель сказал: "Готовьтесь!".)</div>'>그러나 할아버지는 "애야, 나는 3년 고개에서 넘어져서 어차피 3년밖에 못 살 텐데, 이런 약이 무슨 소용이 있겠냐?"라고 말했습니다.</span>
+        <div class="rus-sentence">Но дедушка сказал: "Дитя, я ведь упал на 3년 고개, и всё равно проживу только три года. Для чего мне эти лекарства?"</div>
+      </div>
+      <div class="story-block">
+        <span class="kor-tooltip" data-tooltip='<div class="tooltip-main-grammar">V + 는지 알다/모르다</div><div class="tooltip-expl">Неуверенность.</div><div class="tooltip-ex">Пример: 그가 어디에 있는지 몰라요. (Я не знаю, где он.)</div>'>그제야 딸은 아버지가 왜 병이 났는지 이유를 알게 되었습니다.</span>
+        <div class="rus-sentence">Только тогда дочь поняла, почему отец заболел.</div>
+      </div>
+      <div class="story-block">
+        <span class="kor-tooltip" data-tooltip='<div class="tooltip-main-grammar">V/A + (으)세요</div><div class="tooltip-expl">Вежливая форма.</div><div class="tooltip-ex">Пример: 이거 드세요. (Пожалуйста, съешьте это.)</div>'>"아버지, 무슨 걱정이세요? 3년 고개에 가서 더 넘어지면 되잖아요."</span>
+        <div class="rus-sentence">"Отец, почему ты волнуешься? Пойди на перевал 3년 고개 и еще раз упади --- ведь тогда сможешь прожить дольше!"</div>
+      </div>
+      <div class="story-block">
+        <span class="kor-tooltip" data-tooltip='<div class="tooltip-main-grammar">V/A + (으)니까</div><div class="tooltip-expl">Причина.</div><div class="tooltip-ex">Пример: 피곤하니까 집에 가요. (Потому что устал, иду домой.)</div>'>"한 번 넘어지면 3년, 두 번 넘어지면 6년, 세 번 넘어지면 9년, 이렇게 계속 넘어지면 앞으로 더 많이 살 수 있으니 얼마나 좋아요?"</span>
+        <div class="rus-sentence">"Если раз упасть --- три года, если два раза --- шесть лет, если три раза --- девять лет; так, падая снова и снова, ты сможешь жить гораздо дольше --- разве это не замечательно?"</div>
+      </div>
+      <div class="story-block">
+        <span class="kor-tooltip" data-tooltip='<div class="tooltip-main-grammar">N + 하고/와/과 + N</div><div class="tooltip-expl">Соединение существительных.</div><div class="tooltip-ex">Пример: 친구와 영화를 봤어요. (С другом посмотрел фильм.)</div>'>그러고는 딸과 함께 3년 고개로 달려갔습니다.</span>
+        <div class="rus-sentence">Затем он вместе с дочерью помчался к перевалу 3년 고개.</div>
+      </div>
+      <div class="story-block">
+        <span class="kor-tooltip" data-tooltip='<div class="tooltip-main-grammar">A + (으)ㄴ + 것 같다</div><div class="tooltip-expl">Предположение.</div><div class="tooltip-ex">Пример: 오늘 날씨가 좋은 것 같아요. (Кажется, сегодня хорошая погода.)</div>'>3년 고개로 가는 발걸음은 훨씬 가벼워진 것 같았습니다.</span>
+        <div class="rus-sentence">Шаги по направлению к перевалу 3년 고개 казались намного легче.</div>
+      </div>
+      <div class="story-block">
+        <span class="kor-tooltip" data-tooltip='<div class="tooltip-main-grammar">V/A + (으)면서</div><div class="tooltip-expl">Одновременные действия.</div><div class="tooltip-ex">Пример: 음악을 들으면서 공부해요. (Я учусь, слушая музыку.)</div>'>3년 고개에 도착한 할아버지는 기쁜 마음으로 한 번 넘어지며 말했습니다.</span>
+        <div class="rus-sentence">Достигнув перевала 3년 고개, дедушка с радостным сердцем один раз споткнулся и сказал:</div>
+      </div>
+      <div class="story-block">
+        <span class="kor-tooltip" data-tooltip=''>"3년이다!" 다시 원어나서 또 한 번 넘어지며 말했습니다.</span>
+        <div class="rus-sentence">"Три года!" Снова он встал и еще раз споткнулся, говоря:</div>
+      </div>
+      <div class="story-block">
+        <span class="kor-tooltip" data-tooltip=''>"6년이다!" 이 할아버지는 넘어지고 또 넘어졌습니다.</span>
+        <div class="rus-sentence">"Шесть лет!" И он снова падал и снова падал.</div>
+      </div>
+      <div class="story-block">
+        <span class="kor-tooltip" data-tooltip=''>할아버지 아프지 않았습니다. 그리고 건강하게 오래오래 있다고 합니다</span>
+        <div class="rus-sentence">Дедушка не болеет. И, говорят, он живет здоровым и долгим счастьем.</div>
+      </div>
+    </div>  
+
+    <section class="grammar-section" id="grammar-section" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 3rem 2rem; border-radius: 24px; margin: 2rem 0;">
+      <h2 style="text-align: center; color: #2d3436; font-size: 2rem; margin-bottom: 2rem; font-weight: 700;">Грамматика и Слова</h2>
+      <div class="tabs" style="display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 3rem;">
+        <button class="tab active" data-tab="grammar" style="background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%); color: white; border: none; padding: 1.2rem 2.5rem; border-radius: 16px; cursor: pointer; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(108, 92, 231, 0.2); font-size: 1.1rem;">Грамматика</button>
+        <button class="tab" data-tab="words" style="background: white; color: #2d3436; border: 2px solid #a29bfe; padding: 1.2rem 2.5rem; border-radius: 16px; cursor: pointer; font-weight: 600; transition: all 0.3s ease; font-size: 1.1rem;">Сложные слова</button>
+      </div>
+      <div class="tabs-content" style="max-width: 800px; margin: 0 auto;">
+        <div class="tab-panel" id="tab-grammar" style="display:block;">
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">N + 에</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Частица, указывающая на место или время действия.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 학교에 갑니다. (Иду в школу.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">N + 이/가</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Выделяет подлежащее.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 학생이 교실에 들어왔어요. (Студент вошёл в класс.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">V/A + ㅂ니다/습니다</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Вежливая формальная форма.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 저는 매일 공부합니다. (Я учусь каждый день.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">N + (이)라고 하다</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Конструкция для названий.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 이것은 한강이라고 합니다. (Это называют Ханган.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">N + 에서</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Место действия.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 도서관에서 책을 읽어요. (Я читаю книгу в библиотеке.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">V + (으)면</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Условие (если/когда).</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 비가 오면 집에 있을 거예요. (Если пойдёт дождь, я буду дома.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">V + 을/ㄹ 수 없다</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Невозможность.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 나는 수영을 할 수 없어요. (Я не умею плавать.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">V/A + 기 때문에</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Причина (потому что).</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 비 때문에 집에 있었어요. (Из-за дождя я остался дома.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">N + 입니다</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Формальное утверждение.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 저는 학생입니다. (Я студент.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">V + 는 + N</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Глагол как определение.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 내가 읽는 책은 재미있어요. (Книга, которую я читаю, интересная.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">N + 은/는</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Тема предложения.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 저는 매일 아침 책을 읽어요. (Я читаю книгу каждое утро.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">N + 을/를</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Прямое дополнение.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 저는 사과를 먹었어요. (Я съел яблоко.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">V + 고 있다</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Длительное действие.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 친구가 책을 읽고 있어요. (Друг читает книгу.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">V + 을/ㄹ 때</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Когда (время действия).</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 밥을 먹을 때 TV를 봐요. (Когда я ем, я смотрю телевизор.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">V + 지 않다</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Формальное отрицание.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 저는 숙제를 하지 않았습니다. (Я не сделал домашнюю работу.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">V + (으)려고</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Намерение.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 한국어를 배우려고 한국에 왔어요. (Я приехал в Корею, чтобы учить корейский.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">V/A + 고</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Соединение действий.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 밥을 먹고 책을 읽었어요. (Я поел и читал книгу.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">N + (으)로</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Направление.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 우리는 기차로 여행했어요. (Мы путешествовали на поезде.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">V + 게 되다</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Наступление состояния.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 결혼하게 됐어요. (Я женился.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">N + 만</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Только, лишь.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 물만 마셨어요. (Я пил только воду.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">V + 다가</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Прерванное действие.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 텔레비전을 보다가 잠들었어요. (Я смотрел телевизор, а потом заснул.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">V/A + (으)니</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Выражение удивления.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 이겼다니! 믿을 수 없어요. (Не могу поверить, что (они) выиграли!)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">N + 의</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Принадлежность.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 우리집의 고양이. (Кошка моего дома.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">V/A + 아/어/여서</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Причина или последовательность.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 피곤해서 집에 일찍 갔어요. (Я устал, поэтому рано пошёл домой.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">A + (으)ㄴ + N</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Прилагательное как определение.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 예쁜 꽃을 샀어요. (Я купил красивый цветок.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">N + 도</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Тоже, даже.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 나도 그 영화를 봤어요. (Я тоже смотрел этот фильм.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">V/A + 지만</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Противопоставление (но).</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 배고프지만 밥을 안 먹었어요. (Я голоден, но не поел.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">V/A + 이/가 없다/있다</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Наличие/отсутствие.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 시간이 없어요. (Времени нет.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">N + 에게/한테/께</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Получатель действия.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 친구에게 선물을 줬어요. (Я подарил подарок другу.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">V + 으러</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Цель движения.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 밥을 먹으러 식당에 갔어요. (Пошел в ресторан, чтобы поесть.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">못 + V</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Невозможность.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 나는 수영을 못 해요. (Я не умею плавать.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">V/A + (으)라고 하다</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Прямая речь.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 선생님이 "준비해라"고 하셨어요. (Учитель сказал: "Готовьтесь!".)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">V + 는지 알다/모르다</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Неуверенность.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 그가 어디에 있는지 몰라요. (Я не знаю, где он.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">V/A + (으)세요</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Вежливая форма.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 이거 드세요. (Пожалуйста, съешьте это.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">V/A + (으)니까</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Причина.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 피곤하니까 집에 가요. (Потому что устал, иду домой.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">N + 하고/와/과 + N</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Соединение существительных.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 친구와 영화를 봤어요. (С другом посмотрел фильм.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">A + (으)ㄴ + 것 같다</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Предположение.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 오늘 날씨가 좋은 것 같아요. (Кажется, сегодня хорошая погода.)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">V/A + (으)면서</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Одновременные действия.</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 음악을 들으면서 공부해요. (Я учусь, слушая музыку.)</div>
+          </div>
+        </div>
+        <div class="tab-panel" id="tab-words" style="display:none;">
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">고개</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">перевал, холм</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">3년 고개 (Трёхлетний перевал)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">넘어지다</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">упасть, споткнуться</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">고개에서 넘어지다 (упасть на перевале)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">조심하다</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">быть осторожным</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">조심조심 걸어가다 (идти осторожно)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">술</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">алкоголь, саке</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">술을 마시다 (пить алкоголь)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">취하다</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">опьянеть</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">술에 취하다 (быть пьяным)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">비틀비틀</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">пошатываясь</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">비틀비틀 걸어가다 (идти пошатываясь)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">행인</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">прохожий</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">행인 한 사람 (один прохожий)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">재수 없다</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">невезучий</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">재수 없게 (как невезуче)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">발걸음</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">шаги</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">발걸음이 무겁다 (шаги тяжелые)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">무겁다</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">тяжёлый</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">마음이 무겁다 (тяжело на душе)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">한숨</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">вздох</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">한숨만 나오다 (только вздыхать)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">힘</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">сила</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">힘이 빠지다 (силы иссякли)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">빠지다</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">иссякнуть</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">힘이 빠지다 (силы иссякли)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">병세</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">состояние болезни</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">병세가 심해지다 (состояние ухудшается)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">심해지다</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">ухудшаться</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">병이 심해지다 (болезнь ухудшается)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">산삼</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">дикий женьшень</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">산삼을 먹다 (принимать женьшень)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">소용</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">польза</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">소용이 없다 (нет пользы)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">시집가다</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">выйти замуж</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">시집을 가다 (выходить замуж)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">문병하다</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">навестить больного</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">아버지를 문병하러 오다 (прийти навестить отца)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">귀하다</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">редкий, ценный</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">귀한 약 (редкое лекарство)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">어차피</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">всё равно</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">어차피 못 살 텐데 (всё равно не смогу жить)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">무릎</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">колено</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">무릎을 치다 (хлопнуть по колену)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">벌떡</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">резко</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">벌떡 일어나다 (резко встать)</div>
+          </div>
+          <div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+            <div class="card-title" style="color: #6c5ce7; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">가볍다</div>
+            <div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">лёгкий</div>
+            <div class="card-ex" style="color: #00b894; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">발걸음이 가볍다 (шаги лёгкие)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="quiz-section" id="quiz-section">
+      <h2 style="text-align:center;color:#6c5ce7;margin-bottom:1.5rem;">Проверь себя: тест по грамматике</h2>
+      <form id="quiz-form">
+        <div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <div class="quiz-q" style="color: #666; margin-bottom: 1rem;">1. Какой суффикс используется для выражения причины?</div>
+          <label style="display: block; margin-bottom: 0.5rem; color: #666;"><input type="radio" name="q1" value="에"> 에</label>
+          <label style="display: block; margin-bottom: 0.5rem; color: #666;"><input type="radio" name="q1" value="기 때문에"> 기 때문에</label>
+          <label style="display: block; margin-bottom: 0.5rem; color: #666;"><input type="radio" name="q1" value="에서"> 에서</label>
+        </div>
+        <div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <div class="quiz-q" style="color: #666; margin-bottom: 1rem;">2. Какой суффикс делает глагол определением к существительному?</div>
+          <label style="display: block; margin-bottom: 0.5rem; color: #666;"><input type="radio" name="q2" value="는"> 는</label>
+          <label style="display: block; margin-bottom: 0.5rem; color: #666;"><input type="radio" name="q2" value="고 있다"> 고 있다</label>
+          <label style="display: block; margin-bottom: 0.5rem; color: #666;"><input type="radio" name="q2" value="게 되다"> 게 되다</label>
+        </div>
+        <div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <div class="quiz-q" style="color: #666; margin-bottom: 1rem;">3. Какой суффикс используется для выражения удивления?</div>
+          <label style="display: block; margin-bottom: 0.5rem; color: #666;"><input type="radio" name="q3" value="니"> 니</label>
+          <label style="display: block; margin-bottom: 0.5rem; color: #666;"><input type="radio" name="q3" value="지만"> 지만</label>
+          <label style="display: block; margin-bottom: 0.5rem; color: #666;"><input type="radio" name="q3" value="거나"> 거나</label>
+        </div>
+        <button type="button" class="cta-btn" id="quiz-check" style="background: linear-gradient(135deg, #072f9b 0%, #072f9b 100%); color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 600; margin-top: 1.2rem; transition: all 0.3s ease;">Проверить</button>
+      </form>
+      <div id="quiz-result" style="text-align:center;font-weight:bold;margin-top:1.2rem;color:#e76f51;"></div>
+    </section>
+  </main>
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="#">О нас</a>
+      </div>
+      <p>&copy; 2024 K-Study.</p>
+    </div>
+  </footer>
+  <button id="scrollToTop" class="scroll-to-top" onclick="scrollToTop()">↑</button>
+
+  <script>
+    // JS Tooltip for kor-tooltip
+    document.querySelectorAll('.kor-tooltip').forEach(function(el) {
+      const tooltipContent = el.getAttribute('data-tooltip');
+      // Only add tooltip functionality if there's actual content
+      if (tooltipContent && tooltipContent.trim() !== '') {
+        el.addEventListener('mouseenter', function(e) {
+          let tooltip = document.createElement('div');
+          tooltip.className = 'kor-tooltip-popup';
+          tooltip.innerHTML = el.getAttribute('data-tooltip');
+          document.body.appendChild(tooltip);
+          // Position
+          const rect = el.getBoundingClientRect();
+          tooltip.style.position = 'absolute';
+          tooltip.style.left = (window.scrollX + rect.left + rect.width/2 - tooltip.offsetWidth/2) + 'px';
+          tooltip.style.top = (window.scrollY + rect.bottom + 8) + 'px';
+          tooltip.style.zIndex = 9999;
+          // Save ref
+          el._tooltip = tooltip;
+        });
+        el.addEventListener('mouseleave', function() {
+          if (el._tooltip) {
+            el._tooltip.remove();
+            el._tooltip = null;
+          }
+        });
+        el.addEventListener('mousemove', function(e) {
+          if (el._tooltip) {
+            const rect = el.getBoundingClientRect();
+            el._tooltip.style.left = (window.scrollX + rect.left + rect.width/2 - el._tooltip.offsetWidth/2) + 'px';
+            el._tooltip.style.top = (window.scrollY + rect.bottom + 8) + 'px';
+          }
+        });
+      }
+    });
+
+    // Russian text visibility toggle
+    document.querySelectorAll('.story-block').forEach(function(block) {
+      const rusText = block.querySelector('.rus-sentence');
+      const toggleBtn = document.createElement('button');
+      toggleBtn.className = 'toggle-rus';
+      toggleBtn.title = 'Показать/скрыть перевод';
+      block.querySelector('.kor-tooltip').after(toggleBtn);
+      
+      toggleBtn.addEventListener('click', function() {
+        rusText.classList.toggle('visible');
+        // Change button appearance when text is visible
+        if (rusText.classList.contains('visible')) {
+          toggleBtn.style.color = '#e76f51';
+        } else {
+          toggleBtn.style.color = '#388e3c';
+        }
+      });
+    });
+  </script>
+  <script>
+    // Tabs interactivity
+    document.querySelectorAll('.tab').forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        // Remove active class from all tabs
+        document.querySelectorAll('.tab').forEach(t => {
+          t.classList.remove('active');
+          t.style.background = 'white';
+          t.style.color = '#2d3436';
+          t.style.border = '2px solid #a29bfe';
+          t.style.boxShadow = 'none';
+        });
+        
+        // Add active class to clicked tab
+        tab.classList.add('active');
+        tab.style.background = 'linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%)';
+        tab.style.color = 'white';
+        tab.style.border = 'none';
+        tab.style.boxShadow = '0 4px 15px rgba(108, 92, 231, 0.2)';
+        
+        // Hide all panels with fade out
+        document.querySelectorAll('.tab-panel').forEach(panel => {
+          panel.style.opacity = '0';
+          panel.style.transform = 'translateY(10px)';
+          setTimeout(() => {
+            panel.style.display = 'none';
+          }, 300);
+        });
+        
+        // Show selected panel with fade in
+        const selectedPanel = document.getElementById('tab-' + tab.dataset.tab);
+        setTimeout(() => {
+          selectedPanel.style.display = 'block';
+          setTimeout(() => {
+            selectedPanel.style.opacity = '1';
+            selectedPanel.style.transform = 'translateY(0)';
+          }, 50);
+        }, 300);
+      });
+    });
+
+    // Card hover effects
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-5px)';
+        this.style.boxShadow = '0 8px 25px rgba(0,0,0,0.1)';
+      });
+
+      card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+        this.style.boxShadow = '0 4px 20px rgba(0,0,0,0.05)';
+      });
+    });
+  </script>
+  <script>
+    // Quiz interactivity
+    document.getElementById('quiz-check').addEventListener('click', function() {
+      let score = 0;
+      const answers = {
+        q1: '기 때문에',
+        q2: '는',
+        q3: '니'
+      };
+      
+      Object.keys(answers).forEach(question => {
+        const selected = document.querySelector(`input[name="${question}"]:checked`);
+        if (selected && selected.value === answers[question]) {
+          score++;
+        }
+      });
+      
+      document.getElementById('quiz-result').textContent = 'Вы ответили правильно на ' + score + ' из 3 вопросов!';
+    });
+  </script>
+  <script>
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    // Скрипт для скрытия header при прокрутке
+    let lastScrollTop = 0;
+    const header = document.querySelector('header');
+    const scrollThreshold = 100;
+
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > lastScrollTop && scrollTop > scrollThreshold) {
+            header.classList.add('hidden');
+        } else {
+            header.classList.remove('hidden');
+        }
+        
+        lastScrollTop = scrollTop;
+
+        // Показывать/скрывать кнопку прокрутки наверх
+        const scrollButton = document.getElementById('scrollToTop');
+        if (scrollTop > 20) {
+            scrollButton.style.display = 'block';
+        } else {
+            scrollButton.style.display = 'none';
+        }
+    });
+  </script>
+</body>
+</html>
