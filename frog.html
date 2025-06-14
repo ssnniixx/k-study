@@ -94,6 +94,7 @@
       font-size: 1.4rem;
       letter-spacing: 0.5px;
     }
+
     .grammar-highlight {
       color: #e53935;
       font-weight: bold;
@@ -101,29 +102,34 @@
       border-radius: 3px;
       transition: background 0.2s;
     }
+
     .grammar-highlight:hover {
       background: #ffeaea;
     }
+
     .kor-tooltip-popup {
       background: white;
       border: 1px solid #ddd;
       border-radius: 8px;
       padding: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       max-width: 300px;
       font-size: 14px;
       line-height: 1.4;
     }
+
     .tooltip-main-grammar {
       color: #e53935;
       font-weight: bold;
       margin-bottom: 8px;
       font-size: 15px;
     }
+
     .tooltip-expl {
       color: #333;
       margin-bottom: 8px;
     }
+
     .tooltip-ex {
       color: #666;
       font-style: italic;
@@ -135,7 +141,6 @@
 </head>
 
 <body>
-  <!-- Only lily pad remains -->
   <svg class="frog-bg-lily" viewBox="0 0 70 40" fill="none" xmlns="http://www.w3.org/2000/svg">
     <ellipse cx="35" cy="20" rx="30" ry="12" fill="#7ed957" />
     <path d="M35 20 L65 20 Q55 5 35 20 Z" fill="#4eae4a" />
@@ -146,7 +151,7 @@
         <span>K-Study</span>
       </div>
       <ul class="nav-links">
-        <li><a href="index.html#home">Главная</a></li>
+        <li><a href="index.html">Главная</a></li>
         <li><a href="#grammar-section">Грамматика/Слова</a></li>
         <li><a href="#quiz-section">Тест</a></li>
       </ul>
@@ -172,253 +177,336 @@
     </div>
     <h1 style="color: #e76f51; text-align: center;">Зелёный лягушонок</h1>
     <div class="story-block">
-      <span class="kor-tooltip">옛날<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + 에</div><div class="tooltip-expl">Дательный падеж неодушевленных имен образуется путем присоединения к корню окончания -에. Имеет несколько значений:<br>1. Времени действия (когда?)<br>2. Направления движения (куда?)<br>3. Местонахождения предмета (где?)</div><div class="tooltip-ex">Пример: 밖에 사람이 많습니다 (На улице много людей.)</div>'>에</span> 아주 <span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">A + (으)ㄴ + N</div><div class="tooltip-expl">Определительная форма предикативных прилагательных настоящего времени образуется при помощи окончаний -ᄂ / -은.</div><div class="tooltip-ex">Пример: 밝은 옷 (светлая одежда)</div>'>큰</span> 연못에 아들 청개구리<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + 와/하고/과 + N</div><div class="tooltip-expl">Совместный падеж служит для соединения двух или более имен. Связывает два существительных, означает "и/вместе с".</div><div class="tooltip-ex">Пример: 친구와 영화를 봤어요 (С другом посмотрел фильм.)</div>'>와</span> 홀어머니가 함께 <span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V + 고 있다</div><div class="tooltip-expl">Выражает прогрессию или продолжение действия, эквивалентен английскому окончанию "-ing".</div><div class="tooltip-ex">Пример: 책을 읽고 있어요 (Сейчас читаю книгу)</div>'>살고 있었</span> <span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V/A + ㅂ니다/습니다</div><div class="tooltip-expl">Официально-вежливый стиль образуется при помощи прибавления окончания -ㅂ니다 после гласных и -습니다 после согласных.</div><div class="tooltip-ex">Пример: 어제는 비가 왔습니다 (Вчера шёл дождь.)</div>'>습니다</span>.</span>
+      <span class="kor-tooltip">옛날<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">N + 에</div><div class="tooltip-expl">Дательный падеж неодушевленных имен образуется путем присоединения к корню окончания -에. Имеет несколько значений:<br>1. Времени действия (когда?)<br>2. Направления движения (куда?)<br>3. Местонахождения предмета (где?)</div><div class="tooltip-ex">Пример: 밖에 사람이 많습니다 (На улице много людей.)</div>'>에</span>
+        아주 <span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">A + (으)ㄴ + N</div><div class="tooltip-expl">Определительная форма предикативных прилагательных настоящего времени образуется при помощи окончаний -ᄂ / -은.</div><div class="tooltip-ex">Пример: 밝은 옷 (светлая одежда)</div>'>큰</span>
+        연못에 아들 청개구리<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">N + 와/하고/과 + N</div><div class="tooltip-expl">Совместный падеж служит для соединения двух или более имен. Связывает два существительных, означает "и/вместе с".</div><div class="tooltip-ex">Пример: 친구와 영화를 봤어요 (С другом посмотрел фильм.)</div>'>와</span>
+        홀어머니가 함께 <span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V + 고 있다</div><div class="tooltip-expl">Выражает прогрессию или продолжение действия, эквивалентен английскому окончанию "-ing".</div><div class="tooltip-ex">Пример: 책을 읽고 있어요 (Сейчас читаю книгу)</div>'>살고
+          있었</span> <span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V/A + ㅂ니다/습니다</div><div class="tooltip-expl">Официально-вежливый стиль образуется при помощи прибавления окончания -ㅂ니다 после гласных и -습니다 после согласных.</div><div class="tooltip-ex">Пример: 어제는 비가 왔습니다 (Вчера шёл дождь.)</div>'>습니다</span>.</span>
       <div class="rus-sentence">Давным-давно в очень большом пруду жили вместе сын-лягушка и его мать-вдова.</div>
-    </div>  
-    
+    </div>
+
     <div class="story-block">
-      <span class="kor-tooltip">그런데 아들 개구리<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + 은/는</div><div class="tooltip-expl">Обозначает тему предложения или объект обсуждения. Эквивалентно английским оборотам "as for..." или "regarding...".</div><div class="tooltip-ex">Пример: 저는 학생입니다 (Что касается меня, я — студент.)</div>'>는</span> 늘 엄마 말<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + 을/를</div><div class="tooltip-expl">Объектная частица, показывает что существительное является прямым дополнением.</div><div class="tooltip-ex">Пример: 밥을 먹어요 (Ем рис.)</div>'>을</span> <span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">A/V + 지 않다</div><div class="tooltip-expl">Формальное отрицание (не).</div><div class="tooltip-ex">Пример: 집에 가지 않아요 (Не иду домой)</div>'>듣지 않았습니다</span>.</span>
+      <span class="kor-tooltip">그런데 아들 개구리<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">N + 은/는</div><div class="tooltip-expl">Обозначает тему предложения или объект обсуждения. Эквивалентно английским оборотам "as for..." или "regarding...".</div><div class="tooltip-ex">Пример: 저는 학생입니다 (Что касается меня, я — студент.)</div>'>는</span>
+        늘 엄마 말<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">N + 을/를</div><div class="tooltip-expl">Объектная частица, показывает что существительное является прямым дополнением.</div><div class="tooltip-ex">Пример: 밥을 먹어요 (Ем рис.)</div>'>을</span>
+        <span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">A/V + 지 않다</div><div class="tooltip-expl">Формальное отрицание (не).</div><div class="tooltip-ex">Пример: 집에 가지 않아요 (Не иду домой)</div>'>듣지
+          않았습니다</span>.</span>
       <div class="rus-sentence">Но сын-лягушка никогда не слушал свою маму.</div>
     </div>
-    
+
     <div class="story-block">
-      <span class="kor-tooltip">엄마<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + 이/가</div><div class="tooltip-expl">Именительный падеж указывает на подлежащее в предложении.</div><div class="tooltip-ex">Пример: 고양이가 있어요 (Кот есть)</div>'>가</span> 말을 하<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V + (으)면</div><div class="tooltip-expl">Условные отношения (если/когда).</div><div class="tooltip-ex">Пример: 비가 오면 우산을 써요 (Если идёт дождь, беру зонт.)</div>'>면</span> 항상 반대로 했습니다.</span>
+      <span class="kor-tooltip">엄마<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">N + 이/가</div><div class="tooltip-expl">Именительный падеж указывает на подлежащее в предложении.</div><div class="tooltip-ex">Пример: 고양이가 있어요 (Кот есть)</div>'>가</span>
+        말을 하<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V + (으)면</div><div class="tooltip-expl">Условные отношения (если/когда).</div><div class="tooltip-ex">Пример: 비가 오면 우산을 써요 (Если идёт дождь, беру зонт.)</div>'>면</span>
+        항상 반대로 했습니다.</span>
       <div class="rus-sentence">Когда мать что-то говорила, он всегда поступал наоборот.</div>
     </div>
-      
+
     <div class="story-block">
-      <span class="kor-tooltip">엄마가 산<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + (으)로</div><div class="tooltip-expl">Указывает на направление движения.</div><div class="tooltip-ex">Пример: 학교로 가요 (Иду в школу)</div>'>으로</span> 가<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V/A + (으)라고 하다</div><div class="tooltip-expl">Передача чужой речи (сказал, чтобы...).</div><div class="tooltip-ex">Пример: 선생님이 조용히 하라고 했어요 (Учитель сказал вести себя тихо)</div>'>라고</span> 하면 강으로 가<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V/A + 고</div><div class="tooltip-expl">Соединяет два действия или предложения (и).</div><div class="tooltip-ex">Пример: 밥을 먹고 책을 읽었어요 (Я поел и читал книгу.)</div>'>고</span>, 강으로 가라고 하면 산으로 갔습니다.</span>
-      <div class="rus-sentence">Если мать говорила идти в горы, он шёл к реке, а если говорила идти к реке, он шёл в горы.</div>
+      <span class="kor-tooltip">엄마가 산<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">N + (으)로</div><div class="tooltip-expl">Указывает на направление движения.</div><div class="tooltip-ex">Пример: 학교로 가요 (Иду в школу)</div>'>으로</span>
+        가<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V/A + (으)라고 하다</div><div class="tooltip-expl">Передача чужой речи (сказал, чтобы...).</div><div class="tooltip-ex">Пример: 선생님이 조용히 하라고 했어요 (Учитель сказал вести себя тихо)</div>'>라고</span>
+        하면 강으로 가<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V/A + 고</div><div class="tooltip-expl">Соединяет два действия или предложения (и).</div><div class="tooltip-ex">Пример: 밥을 먹고 책을 읽었어요 (Я поел и читал книгу.)</div>'>고</span>,
+        강으로 가라고 하면 산으로 갔습니다.</span>
+      <div class="rus-sentence">Если мать говорила идти в горы, он шёл к реке, а если говорила идти к реке, он шёл в
+        горы.</div>
     </div>
-    
+
     <!-- Предложение 5 -->
     <div class="story-block">
-      <span class="kor-tooltip">'다른 아이들<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + 도</div><div class="tooltip-expl">Означает "тоже" или "даже".</div><div class="tooltip-ex">Пример: 나도 가고 싶어요 (Я тоже хочу пойти)</div>'>도</span> 부모 말을 잘 듣<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V/A + 는데</div><div class="tooltip-expl">Используется для противопоставления (но), объяснения фона.</div><div class="tooltip-ex">Пример: 배고프는데 밥을 먹을 시간이 없어요 (Я голоден, но нет времени поесть)</div>'>는데</span> 왜 우리 아들은 말을 안 듣는 걸까?'</span>
+      <span class="kor-tooltip">'다른 아이들<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">N + 도</div><div class="tooltip-expl">Означает "тоже" или "даже".</div><div class="tooltip-ex">Пример: 나도 가고 싶어요 (Я тоже хочу пойти)</div>'>도</span>
+        부모 말을 잘 듣<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V/A + 는데</div><div class="tooltip-expl">Используется для противопоставления (но), объяснения фона.</div><div class="tooltip-ex">Пример: 배고프는데 밥을 먹을 시간이 없어요 (Я голоден, но нет времени поесть)</div>'>는데</span>
+        왜 우리 아들은 말을 안 듣는 걸까?'</span>
       <div class="rus-sentence">«Другие дети хорошо слушаются родителей, но почему мой сын не слушает?»</div>
     </div>
-    
+
     <!-- Предложение 6 -->
     <div class="story-block">
-      <span class="kor-tooltip">엄마 개구리는 아들<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + 이/가</div><div class="tooltip-expl">Именительный падеж указывает на подлежащее в предложении.</div><div class="tooltip-ex">Пример: 고양이가 있어요 (Кот есть)</div>'>이</span> 말을 듣지 않<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V/A + 아/어/여서</div><div class="tooltip-expl">Причина или последовательность (потому что, после того как).</div><div class="tooltip-ex">Пример: 피곤해서 집에 일찍 갔어요 (Я устал, поэтому рано пошёл домой.)</div>'>아서</span> 속상했습니다.</span>
+      <span class="kor-tooltip">엄마 개구리는 아들<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">N + 이/가</div><div class="tooltip-expl">Именительный падеж указывает на подлежащее в предложении.</div><div class="tooltip-ex">Пример: 고양이가 있어요 (Кот есть)</div>'>이</span>
+        말을 듣지 않<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V/A + 아/어/여서</div><div class="tooltip-expl">Причина или последовательность (потому что, после того как).</div><div class="tooltip-ex">Пример: 피곤해서 집에 일찍 갔어요 (Я устал, поэтому рано пошёл домой.)</div>'>아서</span>
+        속상했습니다.</span>
       <div class="rus-sentence">Мать-лягушка очень переживала из-за непослушания сына.</div>
     </div>
-    
+
     <!-- Предложение 7 -->
     <div class="story-block">
-      <span class="kor-tooltip">그래서 엄마 개구리는 아들 개구리<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + 에게/한테/께</div><div class="tooltip-expl">Указывает на получателя действия (кому-то).</div><div class="tooltip-ex">Пример: 친구에게 선물을 줬어요 (Я подарил подарок другу.)</div>'>에게</span> 말했습니다.</span>
+      <span class="kor-tooltip">그래서 엄마 개구리는 아들 개구리<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">N + 에게/한테/께</div><div class="tooltip-expl">Указывает на получателя действия (кому-то).</div><div class="tooltip-ex">Пример: 친구에게 선물을 줬어요 (Я подарил подарок другу.)</div>'>에게</span>
+        말했습니다.</span>
       <div class="rus-sentence">Поэтому мать-лягушка сказала сыну-лягушке.</div>
     </div>
-    
+
     <!-- Предложение 8 -->
     <div class="story-block">
-      <span class="kor-tooltip">"얘야, 너는 왜 엄마 말을 듣지 않<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V + 나요?/니?</div><div class="tooltip-expl">Вопросительная форма (вежливая).</div><div class="tooltip-ex">Пример: 밥을 먹나요? (Ты ешь?)</div>'>니</span>?"</span>
+      <span class="kor-tooltip">"얘야, 너는 왜 엄마 말을 듣지 않<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V + 나요?/니?</div><div class="tooltip-expl">Вопросительная форма (вежливая).</div><div class="tooltip-ex">Пример: 밥을 먹나요? (Ты ешь?)</div>'>니</span>?"</span>
       <div class="rus-sentence">«Дитя моё, почему ты не слушаешься мать?»</div>
     </div>
-    
+
     <!-- Предложение 9 -->
     <div class="story-block">
-      <span class="kor-tooltip">"엄마가 똑바로 말하<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V + 는 것</div><div class="tooltip-expl">Превращает глагол в существительное (герундий).</div><div class="tooltip-ex">Пример: 책 읽는 것을 좋아해요 (Я люблю читать книги.)</div>'>는</span> 것을 가르쳐 줄 테니<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">A/V-(으)ㄹ 테니까</div><div class="tooltip-expl">Выражение намерения или предположения (я сделаю, так что...).</div><div class="tooltip-ex">Пример: 제가 도와줄 테니까 걱정하지 마세요 (Я помогу, так что не волнуйтесь)</div>'>까</span> 잘 따라 해 봐라."</span>
+      <span class="kor-tooltip">"엄마가 똑바로 말하<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V + 는 것</div><div class="tooltip-expl">Превращает глагол в существительное (герундий).</div><div class="tooltip-ex">Пример: 책 읽는 것을 좋아해요 (Я люблю читать книги.)</div>'>는</span>
+        것을 가르쳐 줄 테니<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">A/V-(으)ㄹ 테니까</div><div class="tooltip-expl">Выражение намерения или предположения (я сделаю, так что...).</div><div class="tooltip-ex">Пример: 제가 도와줄 테니까 걱정하지 마세요 (Я помогу, так что не волнуйтесь)</div>'>까</span>
+        잘 따라 해 봐라."</span>
       <div class="rus-sentence">«Я научу тебя говорить правильно, так что старайся повторять».</div>
     </div>
-    
+
     <!-- Предложение 10 -->
     <div class="story-block">
       <span class="kor-tooltip">"개굴개굴."</span>
       <div class="rus-sentence">«Ква-ква».</div>
     </div>
-    
+
     <!-- Предложение 11 -->
     <div class="story-block">
-      <span class="kor-tooltip">그러자 아들은 "굴개굴개" 하<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V + (으)며</div><div class="tooltip-expl">Одновременные действия (делая что-то).</div><div class="tooltip-ex">Пример: 웃으며 말했다 (Сказал, улыбаясь)</div>'>며</span> 말했습니다.</span>
+      <span class="kor-tooltip">그러자 아들은 "굴개굴개" 하<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V + (으)며</div><div class="tooltip-expl">Одновременные действия (делая что-то).</div><div class="tooltip-ex">Пример: 웃으며 말했다 (Сказал, улыбаясь)</div>'>며</span>
+        말했습니다.</span>
       <div class="rus-sentence">Тогда сын сказал, квакая: «Гуль-ква-гуль-ква».</div>
     </div>
-    
+
     <!-- Предложение 12 -->
     <div class="story-block">
       <span class="kor-tooltip">"엄마, 전 항상 거꾸로 하는 것이 좋아요."</span>
       <div class="rus-sentence">«Мама, мне всегда нравится делать всё наоборот».</div>
     </div>
-    
+
     <!-- Предложение 13 -->
     <div class="story-block">
       <span class="kor-tooltip">엄마는 크게 한숨을 쉬며 말했습니다.</span>
       <div class="rus-sentence">Мать тяжело вздохнула и сказала.</div>
     </div>
-    
+
     <!-- Предложение 14 -->
     <div class="story-block">
-      <span class="kor-tooltip">"그래, 하지만 꼭 이것<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + 만</div><div class="tooltip-expl">Только, лишь.</div><div class="tooltip-ex">Пример: 물만 마셨어요 (Я пил только воду.)</div>'>만은</span> 지켜라."</span>
+      <span class="kor-tooltip">"그래, 하지만 꼭 이것<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">N + 만</div><div class="tooltip-expl">Только, лишь.</div><div class="tooltip-ex">Пример: 물만 마셨어요 (Я пил только воду.)</div>'>만은</span>
+        지켜라."</span>
       <div class="rus-sentence">«Ладно, но запомни одно».</div>
     </div>
-    
+
     <!-- Предложение 15 -->
     <div class="story-block">
-      <span class="kor-tooltip">"저 숲 속<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + 에는</div><div class="tooltip-expl">Дательный падеж + 는 (акцент на месте).</div><div class="tooltip-ex">Пример: 여기에는 사람이 많아요 (Здесь много людей)</div>'>에는</span> 뱀이 살고 있<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V/A + (으)니까</div><div class="tooltip-expl">Причина или условие (потому что, так как).</div><div class="tooltip-ex">Пример: 배고프니까 밥을 먹어요 (Я голоден, поэтому ем.)</div>'>으니까</span> 절대로 저 숲에 가면 안 된다."</span>
+      <span class="kor-tooltip">"저 숲 속<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">N + 에는</div><div class="tooltip-expl">Дательный падеж + 는 (акцент на месте).</div><div class="tooltip-ex">Пример: 여기에는 사람이 많아요 (Здесь много людей)</div>'>에는</span>
+        뱀이 살고 있<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V/A + (으)니까</div><div class="tooltip-expl">Причина или условие (потому что, так как).</div><div class="tooltip-ex">Пример: 배고프니까 밥을 먹어요 (Я голоден, поэтому ем.)</div>'>으니까</span>
+        절대로 저 숲에 가면 안 된다."</span>
       <div class="rus-sentence">«В том лесу живёт змея, так что ни в коем случае не ходи в тот лес».</div>
     </div>
-    
+
     <!-- Предложение 16 -->
     <div class="story-block">
-      <span class="kor-tooltip">아들 개구리는 숲에 정말 뱀이 살고 있<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V + 는지 알다/모르다</div><div class="tooltip-expl">Неуверенность или вопрос о факте (знать/не знать, что).</div><div class="tooltip-ex">Пример: 그가 어디에 있는지 몰라요 (Я не знаю, где он.)</div>'>는지</span> 궁금했습니다.</span>
+      <span class="kor-tooltip">아들 개구리는 숲에 정말 뱀이 살고 있<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V + 는지 알다/모르다</div><div class="tooltip-expl">Неуверенность или вопрос о факте (знать/не знать, что).</div><div class="tooltip-ex">Пример: 그가 어디에 있는지 몰라요 (Я не знаю, где он.)</div>'>는지</span>
+        궁금했습니다.</span>
       <div class="rus-sentence">Сын-лягушка заинтересовался, правда ли там живёт змея.</div>
     </div>
-    
+
     <!-- Предложение 17 -->
     <div class="story-block">
-      <span class="kor-tooltip">그래서 엄마 몰래 뱀이 사<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V + 는</div><div class="tooltip-expl">Определительная форма глагола (который).</div><div class="tooltip-ex">Пример: 먹는 사람 (Человек, который ест)</div>'>는</span> 숲으로 갔습니다.</span>
+      <span class="kor-tooltip">그래서 엄마 몰래 뱀이 사<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V + 는</div><div class="tooltip-expl">Определительная форма глагола (который).</div><div class="tooltip-ex">Пример: 먹는 사람 (Человек, который ест)</div>'>는</span>
+        숲으로 갔습니다.</span>
       <div class="rus-sentence">И тайком от матери отправился в тот лес.</div>
     </div>
-    
+
     <!-- Предложение 18 -->
     <div class="story-block">
-      <span class="kor-tooltip">엄마가 일을 하고 집으로 돌아왔<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V + 을/ㄹ 때</div><div class="tooltip-expl">Когда (время действия).</div><div class="tooltip-ex">Пример: 밥을 먹을 때 TV를 봐요 (Когда я ем, я смотрю телевизор.)</div>'>을 때</span> 아들 개구리가 보이지 않았습니다.</span>
+      <span class="kor-tooltip">엄마가 일을 하고 집으로 돌아왔<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V + 을/ㄹ 때</div><div class="tooltip-expl">Когда (время действия).</div><div class="tooltip-ex">Пример: 밥을 먹을 때 TV를 봐요 (Когда я ем, я смотрю телевизор.)</div>'>을
+          때</span> 아들 개구리가 보이지 않았습니다.</span>
       <div class="rus-sentence">Когда мать вернулась домой, после работы, сына нигде не было.</div>
     </div>
-    
+
     <!-- Предложение 19 -->
     <div class="story-block">
       <span class="kor-tooltip">그래서 엄마 개구리는 아들 개구리를 찾아다녔습니다.</span>
       <div class="rus-sentence">Поэтому мать-лягушка искала сына-лягушку.</div>
     </div>
-    
+
     <!-- Предложение 20 -->
     <div class="story-block">
-      <span class="kor-tooltip">"애들아, 우리 아들 <span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">못 + V</div><div class="tooltip-expl">Не мочь, не (отрицание возможности).</div><div class="tooltip-ex">Пример: 나는 수영을 못 해요 (Я не умею плавать.)</div>'>못</span> 봤니?"</span>
+      <span class="kor-tooltip">"애들아, 우리 아들 <span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">못 + V</div><div class="tooltip-expl">Не мочь, не (отрицание возможности).</div><div class="tooltip-ex">Пример: 나는 수영을 못 해요 (Я не умею плавать.)</div>'>못</span>
+        봤니?"</span>
       <div class="rus-sentence">«Дети, вы не видели моего сына?»</div>
     </div>
-    
+
     <!-- Предложение 21 -->
     <div class="story-block">
       <span class="kor-tooltip">"저쪽 숲으로 갔어요."</span>
       <div class="rus-sentence">«Он пошёл в тот лес».</div>
     </div>
-    
+
     <!-- Предложение 22 -->
     <div class="story-block">
       <span class="kor-tooltip">엄마 개구리는 깜짝 놀라서 뱀이 사는 숲으로 달려갔습니다.</span>
       <div class="rus-sentence">Мать-лягушка в панике побежала в лес, где жила змея.</div>
     </div>
-    
+
     <!-- Предложение 23 -->
     <div class="story-block">
-      <span class="kor-tooltip">그곳<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + 에서는</div><div class="tooltip-expl">Место действия + 는 (акцент).</div><div class="tooltip-ex">Пример: 여기에서는 일할 수 없어요 (Здесь нельзя работать)</div>'>에서는</span> 마침 큰 뱀이 아들 개구리를 잡아먹<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V + (으)려고 하다</div><div class="tooltip-expl">Намерение или план.</div><div class="tooltip-ex">Пример: 내일 친구를 만나려고 해요 (Я собираюсь завтра встретиться с другом.)</div>'>으려고</span> 하고 있었습니다.</span>
+      <span class="kor-tooltip">그곳<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">N + 에서는</div><div class="tooltip-expl">Место действия + 는 (акцент).</div><div class="tooltip-ex">Пример: 여기에서는 일할 수 없어요 (Здесь нельзя работать)</div>'>에서는</span>
+        마침 큰 뱀이 아들 개구리를 잡아먹<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V + (으)려고 하다</div><div class="tooltip-expl">Намерение или план.</div><div class="tooltip-ex">Пример: 내일 친구를 만나려고 해요 (Я собираюсь завтра встретиться с другом.)</div>'>으려고</span>
+        하고 있었습니다.</span>
       <div class="rus-sentence">Там как раз большая змея собиралась съесть сына-лягушку.</div>
     </div>
-    
+
     <!-- Предложение 24 -->
     <div class="story-block">
       <span class="kor-tooltip">"안 돼!"</span>
       <div class="rus-sentence">«Нет!»</div>
     </div>
-    
+
     <!-- Предложение 25 -->
     <div class="story-block">
       <span class="kor-tooltip">소리치며 엄마 개구리는 뱀을 향해 달려갔습니다.</span>
       <div class="rus-sentence">Крикнула мать и бросилась к змее.</div>
     </div>
-    
+
     <!-- Предложение 26 -->
     <div class="story-block">
-      <span class="kor-tooltip">큰 뱀은 엄마 개구리<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + 의</div><div class="tooltip-expl">Притяжательный падеж (чей?).</div><div class="tooltip-ex">Пример: 제 책이에요 (Это моя книга)</div>'>의</span> 다리를 물었습니다.</span>
+      <span class="kor-tooltip">큰 뱀은 엄마 개구리<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">N + 의</div><div class="tooltip-expl">Притяжательный падеж (чей?).</div><div class="tooltip-ex">Пример: 제 책이에요 (Это моя книга)</div>'>의</span>
+        다리를 물었습니다.</span>
       <div class="rus-sentence">Большая змея укусила мать-лягушку за ногу.</div>
     </div>
-    
+
     <!-- Предложение 27 -->
     <div class="story-block">
       <span class="kor-tooltip">그때 이웃들이 달려와서 엄마 개구리를 구해 주었습니다.</span>
       <div class="rus-sentence">В этот момент соседи прибежали и спасли мать-лягушку.</div>
     </div>
-    
+
     <!-- Предложение 28 -->
     <div class="story-block">
-      <span class="kor-tooltip">그렇지만 엄마 개구리는 뱀에 물렸<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V/A + 기 때문에</div><div class="tooltip-expl">Причина (из-за, потому что).</div><div class="tooltip-ex">Пример: 비가 오기 때문에 집에 있었어요 (Из-за дождя я остался дома.)</div>'>기</span> 때문에 온몸에 독이 퍼졌습니다.</span>
+      <span class="kor-tooltip">그렇지만 엄마 개구리는 뱀에 물렸<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V/A + 기 때문에</div><div class="tooltip-expl">Причина (из-за, потому что).</div><div class="tooltip-ex">Пример: 비가 오기 때문에 집에 있었어요 (Из-за дождя я остался дома.)</div>'>기</span>
+        때문에 온몸에 독이 퍼졌습니다.</span>
       <div class="rus-sentence">Но поскольку мать-лягушку укусила змея, яд распространился по всему её телу.</div>
     </div>
-    
+
     <!-- Предложение 29 -->
     <div class="story-block">
-      <span class="kor-tooltip">엄마 개구리는 죽어 가<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V + (으)면서</div><div class="tooltip-expl">Одновременные действия (пока, в то же время).</div><div class="tooltip-ex">Пример: 음악을 들으면서 공부해요 (Я учусь, слушая музыку.)</div>'>면서</span>도 아들 개구리가 거꾸로 하는 것이 걱정이 되었습니다.</span>
+      <span class="kor-tooltip">엄마 개구리는 죽어 가<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V + (으)면서</div><div class="tooltip-expl">Одновременные действия (пока, в то же время).</div><div class="tooltip-ex">Пример: 음악을 들으면서 공부해요 (Я учусь, слушая музыку.)</div>'>면서</span>도
+        아들 개구리가 거꾸로 하는 것이 걱정이 되었습니다.</span>
       <div class="rus-sentence">Даже умирая, мать-лягушка беспокоилась, что сын делает всё наоборот.</div>
     </div>
-    
+
     <!-- Предложение 30 -->
     <div class="story-block">
       <span class="kor-tooltip">엄마 개구리는 생각했습니다.</span>
       <div class="rus-sentence">Мать-лягушка подумала.</div>
     </div>
-    
+
     <!-- Предложение 31 -->
     <div class="story-block">
-      <span class="kor-tooltip">"내가 죽<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V + (으)면</div><div class="tooltip-expl">Условные отношения (если/когда).</div><div class="tooltip-ex">Пример: 비가 오면 우산을 써요 (Если идёт дождь, беру зонт.)</div>'>으면</span> 산에 묻어야 하<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V/A + 는데</div><div class="tooltip-expl">Используется для противопоставления (но), объяснения фона.</div><div class="tooltip-ex">Пример: 배고프는데 밥을 먹을 시간이 없어요 (Я голоден, но нет времени поесть)</div>'>는데</span>, 산에 묻으라고 하면 강에 묻겠지."</span>
-      <div class="rus-sentence">«Если я умру, меня надо похоронить в горах, но если я скажу похоронить в горах, он похоронит в реке».</div>
+      <span class="kor-tooltip">"내가 죽<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V + (으)면</div><div class="tooltip-expl">Условные отношения (если/когда).</div><div class="tooltip-ex">Пример: 비가 오면 우산을 써요 (Если идёт дождь, беру зонт.)</div>'>으면</span>
+        산에 묻어야 하<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V/A + 는데</div><div class="tooltip-expl">Используется для противопоставления (но), объяснения фона.</div><div class="tooltip-ex">Пример: 배고프는데 밥을 먹을 시간이 없어요 (Я голоден, но нет времени поесть)</div>'>는데</span>,
+        산에 묻으라고 하면 강에 묻겠지."</span>
+      <div class="rus-sentence">«Если я умру, меня надо похоронить в горах, но если я скажу похоронить в горах, он
+        похоронит в реке».</div>
     </div>
-    
+
     <!-- Предложение 32 -->
     <div class="story-block">
       <span class="kor-tooltip">그래서 엄마 개구리는 말했습니다.</span>
       <div class="rus-sentence">Поэтому мать-лягушка сказала.</div>
     </div>
-    
+
     <!-- Предложение 33 -->
     <div class="story-block">
       <span class="kor-tooltip">"아들아, 내가 죽으면 나를 강가에 묻어라."</span>
       <div class="rus-sentence">«Сынок, когда я умру, похорони меня, пожалуйста, у реки».</div>
     </div>
-    
+
     <!-- Предложение 34 -->
     <div class="story-block">
-      <span class="kor-tooltip">하지만 아들은 지금까지 엄마 말을 듣지 않<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">A + (으)ㄴ + N</div><div class="tooltip-expl">Определительная форма прилагательных.</div><div class="tooltip-ex">Пример: 큰 집 (большой дом)</div>'>은</span> 것이 후회되었습니다.</span>
+      <span class="kor-tooltip">하지만 아들은 지금까지 엄마 말을 듣지 않<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">A + (으)ㄴ + N</div><div class="tooltip-expl">Определительная форма прилагательных.</div><div class="tooltip-ex">Пример: 큰 집 (большой дом)</div>'>은</span>
+        것이 후회되었습니다.</span>
       <div class="rus-sentence">Но сын сожалел, что никогда не слушался мать.</div>
     </div>
-    
+
     <!-- Предложение 35 -->
     <div class="story-block">
-      <span class="kor-tooltip">이번만은 엄마 말을 잘 듣<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V + 고 싶다</div><div class="tooltip-expl">Желание (хочу).</div><div class="tooltip-ex">Пример: 영화를 보고 싶어요 (Я хочу посмотреть фильм.)</div>'>고 싶었습니다</span>.</span>
+      <span class="kor-tooltip">이번만은 엄마 말을 잘 듣<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V + 고 싶다</div><div class="tooltip-expl">Желание (хочу).</div><div class="tooltip-ex">Пример: 영화를 보고 싶어요 (Я хочу посмотреть фильм.)</div>'>고
+          싶었습니다</span>.</span>
       <div class="rus-sentence">На этот раз он очень хотел исполнить её волю.</div>
     </div>
-    
+
     <!-- Предложение 36 -->
     <div class="story-block">
       <span class="kor-tooltip">그래서 엄마를 산에 묻지 않고 강가에 묻었습니다.</span>
       <div class="rus-sentence">Поэтому он не похоронил мать в горах, а похоронил у реки.</div>
     </div>
-    
+
     <!-- Предложение 37 -->
     <div class="story-block">
       <span class="kor-tooltip">며칠 후 비가 많이 왔습니다.</span>
       <div class="rus-sentence">Через несколько дней пошёл сильный дождь.</div>
     </div>
-    
+
     <!-- Предложение 38 -->
     <div class="story-block">
       <span class="kor-tooltip">아들은 엄마 무덤이 떠내려갈까 봐 걱정이 되었습니다.</span>
       <div class="rus-sentence">Сын беспокоился, что могила матери может быть унесена водой.</div>
     </div>
-    
+
     <!-- Предложение 39 -->
     <div class="story-block">
-      <span class="kor-tooltip">그래서 잠을<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V + 을/ㄹ 수 없다</div><div class="tooltip-expl">Неспособность сделать что-то (не могу).</div><div class="tooltip-ex">Пример: 나는 수영할 수 없어요 (Я не умею плавать.)</div>'>잘 수 가 없었</span> 습니다.</span>
+      <span class="kor-tooltip">그래서 잠을<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V + 을/ㄹ 수 없다</div><div class="tooltip-expl">Неспособность сделать что-то (не могу).</div><div class="tooltip-ex">Пример: 나는 수영할 수 없어요 (Я не умею плавать.)</div>'>잘
+          수 가 없었</span> 습니다.</span>
       <div class="rus-sentence">Поэтому он не мог спать.</div>
     </div>
-    
+
     <!-- Предложение 40 -->
     <div class="story-block">
-      <span class="kor-tooltip">아들은 비를 맞<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V + (으)면서</div><div class="tooltip-expl">Одновременные действия (пока, в то же время).</div><div class="tooltip-ex">Пример: 음악을 들으면서 공부해요 (Я учусь, слушая музыку.)</div>'>으면서</span> 엄마 무덤 옆<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + 에서</div><div class="tooltip-expl">Место действия или происхождение.</div><div class="tooltip-ex">Пример: 도서관에서 책을 읽어요 (Я читаю книгу в библиотеке.)</div>'>에서</span> 슬프게 울었습니다.</span>
+      <span class="kor-tooltip">아들은 비를 맞<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V + (으)면서</div><div class="tooltip-expl">Одновременные действия (пока, в то же время).</div><div class="tooltip-ex">Пример: 음악을 들으면서 공부해요 (Я учусь, слушая музыку.)</div>'>으면서</span>
+        엄마 무덤 옆<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">N + 에서</div><div class="tooltip-expl">Место действия или происхождение.</div><div class="tooltip-ex">Пример: 도서관에서 책을 읽어요 (Я читаю книгу в библиотеке.)</div>'>에서</span>
+        슬프게 울었습니다.</span>
       <div class="rus-sentence">Сын, стоя под дождём, печально плакал рядом с могилой матери.</div>
     </div>
-    
+
     <!-- Предложение 41 -->
     <div class="story-block">
       <span class="kor-tooltip">"개굴개굴."</span>
       <div class="rus-sentence">«Ква-ква».</div>
     </div>
-    
+
     <!-- Предложение 42 -->
     <div class="story-block">
       <span class="kor-tooltip">지금도 개구리는 비가 올 때마다 엄마 무덤이 떠내려갈까 봐 슬프게 웁니다.</span>
-      <div class="rus-sentence">С тех пор лягушки грустно квакают, когда идет дождь, боясь, что могилы их матерей смоет водой.</div>
+      <div class="rus-sentence">С тех пор лягушки грустно квакают, когда идет дождь, боясь, что могилы их матерей смоет
+        водой.</div>
     </div>
-    
+
     <!-- Предложение 43 -->
     <div class="story-block">
       <span class="kor-tooltip">"개굴개굴 개굴개굴."</span>
@@ -765,546 +853,620 @@
 
 
 
-      <div class="frog-test-container">
-        <h2 class="frog-test-title">Тест на самопроверку</h2>
-        <p class="frog-test-description">Вставьте пропущенные грамматические конструкции. После заполнения нажмите "Проверить" для проверки ответа.</p>
-        
-        <div class="frog-test-item">
-          <div class="frog-question">
-            <span class="frog-korean">저는 학교<input type="text" class="frog-answer-input" data-answer="에"> 가요.</span>
-            <span class="frog-translation">Я иду в школу.</span>
-          </div>
-          <button class="frog-check-btn">Проверить</button>
-          <div class="frog-answer-result"></div>
-        </div>
-      
-        <div class="frog-test-item">
-          <div class="frog-question">
-            <span class="frog-korean">저는 <input type="text" class="frog-answer-input" data-answer="큰"> 집을 좋아해요.</span>
-            <span class="frog-translation">Мне нравятся большие дома.</span>
-          </div>
-          <button class="frog-check-btn">Проверить</button>
-          <div class="frog-answer-result"></div>
-        </div>
-      
-        <div class="frog-test-item">
-          <div class="frog-question">
-            <span class="frog-korean">저는 사과<input type="text" class="frog-answer-input" data-answer="와"> 바나나를 먹어요.</span>
-            <span class="frog-translation">Я ем яблоки и бананы.</span>
-          </div>
-          <button class="frog-check-btn">Проверить</button>
-          <div class="frog-answer-result"></div>
-        </div>
-      
-        <div class="frog-test-item">
-          <div class="frog-question">
-            <span class="frog-korean">저는 책을 <input type="text" class="frog-answer-input" data-answer="읽고"> 있어요.</span>
-            <span class="frog-translation">Я читаю книгу.</span>
-          </div>
-          <button class="frog-check-btn">Проверить</button>
-          <div class="frog-answer-result"></div>
-        </div>
-      
-        <div class="frog-test-item">
-          <div class="frog-question">
-            <span class="frog-korean">저는 선생님께 <input type="text" class="frog-answer-input" data-answer="인사합니다"> .</span>
-            <span class="frog-translation">Я приветствую учителя.</span>
-          </div>
-          <button class="frog-check-btn">Проверить</button>
-          <div class="frog-answer-result"></div>
-        </div>
-      
-        <div class="frog-test-item">
-          <div class="frog-question">
-            <span class="frog-korean">이 책<input type="text" class="frog-answer-input" data-answer="은"> 재미있다.</span>
-            <span class="frog-translation">Эта книга интересная.</span>
-          </div>
-          <button class="frog-check-btn">Проверить</button>
-          <div class="frog-answer-result"></div>
-        </div>
-      
-        <div class="frog-test-item">
-          <div class="frog-question">
-            <span class="frog-korean">저는 밥<input type="text" class="frog-answer-input" data-answer="을"> 먹어요.</span>
-            <span class="frog-translation">Я ем рис.</span>
-          </div>
-          <button class="frog-check-btn">Проверить</button>
-          <div class="frog-answer-result"></div>
-        </div>
-      
-        <div class="frog-test-item">
-          <div class="frog-question">
-            <span class="frog-korean">저는 학교에 <input type="text" class="frog-answer-input" data-answer="가지"> 않아요.</span>
-            <span class="frog-translation">Я не хожу в школу.</span>
-          </div>
-          <button class="frog-check-btn">Проверить</button>
-          <div class="frog-answer-result"></div>
-        </div>
-      
-        <div class="frog-test-item">
-          <div class="frog-question">
-            <span class="frog-korean"><input type="text" class="frog-answer-input" data-answer="비가"> 오고 있어요.</span>
-            <span class="frog-translation">Идёт дождь.</span>
-          </div>
-          <button class="frog-check-btn">Проверить</button>
-          <div class="frog-answer-result"></div>
-        </div>
-      
-        <div class="frog-test-item">
-          <div class="frog-question">
-            <span class="frog-korean">너는 공부 <input type="text" class="frog-answer-input" data-answer="하면"> 시험을 잘 볼 거야.</span>
-            <span class="frog-translation">Если будешь учиться, сдашь экзамен хорошо.</span>
-          </div>
-          <button class="frog-check-btn">Проверить</button>
-          <div class="frog-answer-result"></div>
-        </div>
-      
-        <div class="frog-test-item">
-          <div class="frog-question">
-            <span class="frog-korean">저는 책을 읽<input type="text" class="frog-answer-input" data-answer="고"> 영화보러 갔어요.</span>
-            <span class="frog-translation">Я прочитал книгу и пошёл смотреть фильм.</span>
-          </div>
-          <button class="frog-check-btn">Проверить</button>
-          <div class="frog-answer-result"></div>
-        </div>
-      
-        <div class="frog-test-item">
-          <div class="frog-question">
-            <span class="frog-korean">엄마가 저에게 <input type="text" class="frog-answer-input" data-answer="오라고"> 했어요.</span>
-            <span class="frog-translation">Мама сказала мне прийти.</span>
-          </div>
-          <button class="frog-check-btn">Проверить</button>
-          <div class="frog-answer-result"></div>
-        </div>
-      
-        <div class="frog-test-item">
-          <div class="frog-question">
-            <span class="frog-korean">저는 버스<input type="text" class="frog-answer-input" data-answer="로"> 학교에 가요.</span>
-            <span class="frog-translation">Я еду в школу на автобусе.</span>
-          </div>
-          <button class="frog-check-btn">Проверить</button>
-          <div class="frog-answer-result"></div>
-        </div>
-      
-        <div class="frog-test-item">
-          <div class="frog-question">
-            <span class="frog-korean">저는 사과<input type="text" class="frog-answer-input" data-answer="도"> 먹었어요.</span>
-            <span class="frog-translation">Я тоже съел яблоко.</span>
-          </div>
-          <button class="frog-check-btn">Проверить</button>
-          <div class="frog-answer-result"></div>
-        </div>
-      
-        <div class="frog-test-item">
-          <div class="frog-question">
-            <span class="frog-korean">저는 피곤한<input type="text" class="frog-answer-input" data-answer="데"> 밥을 먹었어요.</span>
-            <span class="frog-translation">Я устал, но поел.</span>
-          </div>
-          <button class="frog-check-btn">Проверить</button>
-          <div class="frog-answer-result"></div>
-        </div>
-      
-        <div class="frog-test-item">
-          <div class="frog-question">
-            <span class="frog-korean">저는 아침을 <input type="text" class="frog-answer-input" data-answer="먹어서"> 배가 불러요.</span>
-            <span class="frog-translation">Я позавтракал, поэтому сыт.</span>
-          </div>
-          <button class="frog-check-btn">Проверить</button>
-          <div class="frog-answer-result"></div>
-        </div>
-      
-        <div class="frog-test-item">
-          <div class="frog-question">
-            <span class="frog-korean">저는 친구<input type="text" class="frog-answer-input" data-answer="에게"> 선물을 줬어요.</span>
-            <span class="frog-translation">Я подарил подарок другу.</span>
-          </div>
-          <button class="frog-check-btn">Проверить</button>
-          <div class="frog-answer-result"></div>
-        </div>
-      
-        <div class="frog-test-item">
-          <div class="frog-question">
-            <span class="frog-korean">너는 밥 <input type="text" class="frog-answer-input" data-answer="먹었나요">?</span>
-            <span class="frog-translation">Ты поел?</span>
-          </div>
-          <button class="frog-check-btn">Проверить</button>
-          <div class="frog-answer-result"></div>
-        </div>
-      
-        <div class="frog-test-item">
-          <div class="frog-question">
-            <span class="frog-korean">저는 <input type="text" class="frog-answer-input" data-answer="공부하는 것">이 좋아요.</span>
-            <span class="frog-translation">Мне нравится учиться.</span>
-          </div>
-          <button class="frog-check-btn">Проверить</button>
-          <div class="frog-answer-result"></div>
-        </div>
-      
-        <div class="frog-test-item">
-          <div class="frog-question">
-            <span class="frog-korean">저는 TV를 <input type="text" class="frog-answer-input" data-answer="보면서"> 음악을 들었어요.</span>
-            <span class="frog-translation">Я слушал музыку, смотря телевизор.</span>
-          </div>
-          <button class="frog-check-btn">Проверить</button>
-          <div class="frog-answer-result"></div>
-        </div>
-      
-        <div class="frog-test-item">
-          <div class="frog-question">
-            <span class="frog-korean">저는 어제 공원에서 <input type="text" class="frog-answer-input" data-answer="놀았어요"> .</span>
-            <span class="frog-translation">Я вчера играл в парке.</span>
-          </div>
-          <button class="frog-check-btn">Проверить</button>
-          <div class="frog-answer-result"></div>
-        </div>
-      
-        <div class="frog-test-item">
-          <div class="frog-question">
-            <span class="frog-korean">저는 밥을 <input type="text" class="frog-answer-input" data-answer="못 먹어요"> .</span>
-            <span class="frog-translation">Я не могу есть рис.</span>
-          </div>
-          <button class="frog-check-btn">Проверить</button>
-          <div class="frog-answer-result"></div>
-        </div>
-      
-        <div class="frog-test-item">
-          <div class="frog-question">
-            <span class="frog-korean">저는 친구를 <input type="text" class="frog-answer-input" data-answer="만나려고"> 카페에 갔어요.</span>
-            <span class="frog-translation">Я пошёл в кафе, чтобы встретиться с другом.</span>
-          </div>
-          <button class="frog-check-btn">Проверить</button>
-          <div class="frog-answer-result"></div>
-        </div>
-      
-        <div class="frog-test-item">
-          <div class="frog-question">
-            <span class="frog-korean">비가 <input type="text" class="frog-answer-input" data-answer="오기 때문에"> 우산을 가져갔어요.</span>
-            <span class="frog-translation">Я взял зонт, потому что идёт дождь.</span>
-          </div>
-          <button class="frog-check-btn">Проверить</button>
-          <div class="frog-answer-result"></div>
-        </div>
-      
-        <div class="frog-test-item">
-          <div class="frog-question">
-            <span class="frog-korean">저는 한국에 <input type="text" class="frog-answer-input" data-answer="가게"> 되었어요.</span>
-            <span class="frog-translation">Так получилось, что я поехал в Корею.</span>
-          </div>
-          <button class="frog-check-btn">Проверить</button>
-          <div class="frog-answer-result"></div>
-        </div>
-      
-        <div class="frog-test-item">
-          <div class="frog-question">
-            <span class="frog-korean">저는 피자를 <input type="text" class="frog-answer-input" data-answer="먹고 싶어요"> .</span>
-            <span class="frog-translation">Я хочу есть пиццу.</span>
-          </div>
-          <button class="frog-check-btn">Проверить</button>
-          <div class="frog-answer-result"></div>
-        </div>
-      
-        <div class="frog-test-item">
-          <div class="frog-question">
-            <span class="frog-korean">너는 그걸 <input type="text" class="frog-answer-input" data-answer="하지 마"> .</span>
-            <span class="frog-translation">Не делай этого.</span>
-          </div>
-          <button class="frog-check-btn">Проверить</button>
-          <div class="frog-answer-result"></div>
+        <div class="frog-test-container">
+          <h2 class="frog-test-title">Тест на самопроверку</h2>
+          <p class="frog-test-description">Вставьте пропущенные грамматические конструкции. После заполнения нажмите
+            "Проверить" для проверки ответа.</p>
+          <section class="frog-quiz-section" id="quiz-section">
+            <div class="frog-test-item">
+              <div class="frog-question">
+                <span class="frog-korean">저는 학교<input type="text" class="frog-answer-input" data-answer="에"> 가요.</span>
+                <span class="frog-translation">Я иду в школу.</span>
+              </div>
+              <button class="frog-check-btn">Проверить</button>
+              <div class="frog-answer-result"></div>
+            </div>
+
+            <div class="frog-test-item">
+              <div class="frog-question">
+                <span class="frog-korean">저는 <input type="text" class="frog-answer-input" data-answer="큰"> 집을
+                  좋아해요.</span>
+                <span class="frog-translation">Мне нравятся большие дома.</span>
+              </div>
+              <button class="frog-check-btn">Проверить</button>
+              <div class="frog-answer-result"></div>
+            </div>
+
+            <div class="frog-test-item">
+              <div class="frog-question">
+                <span class="frog-korean">저는 사과<input type="text" class="frog-answer-input" data-answer="와"> 바나나를
+                  먹어요.</span>
+                <span class="frog-translation">Я ем яблоки и бананы.</span>
+              </div>
+              <button class="frog-check-btn">Проверить</button>
+              <div class="frog-answer-result"></div>
+            </div>
+
+            <div class="frog-test-item">
+              <div class="frog-question">
+                <span class="frog-korean">저는 책을 <input type="text" class="frog-answer-input" data-answer="읽고">
+                  있어요.</span>
+                <span class="frog-translation">Я читаю книгу.</span>
+              </div>
+              <button class="frog-check-btn">Проверить</button>
+              <div class="frog-answer-result"></div>
+            </div>
+
+            <div class="frog-test-item">
+              <div class="frog-question">
+                <span class="frog-korean">저는 선생님께 <input type="text" class="frog-answer-input" data-answer="인사합니다">
+                  .</span>
+                <span class="frog-translation">Я приветствую учителя (формальный стиль).</span>
+              </div>
+              <button class="frog-check-btn">Проверить</button>
+              <div class="frog-answer-result"></div>
+            </div>
+
+            <div class="frog-test-item">
+              <div class="frog-question">
+                <span class="frog-korean">이 책<input type="text" class="frog-answer-input" data-answer="은"> 재미있다.</span>
+                <span class="frog-translation">Эта книга интересная.</span>
+              </div>
+              <button class="frog-check-btn">Проверить</button>
+              <div class="frog-answer-result"></div>
+            </div>
+
+            <div class="frog-test-item">
+              <div class="frog-question">
+                <span class="frog-korean">저는 밥<input type="text" class="frog-answer-input" data-answer="을"> 먹어요.</span>
+                <span class="frog-translation">Я ем рис.</span>
+              </div>
+              <button class="frog-check-btn">Проверить</button>
+              <div class="frog-answer-result"></div>
+            </div>
+
+            <div class="frog-test-item">
+              <div class="frog-question">
+                <span class="frog-korean">저는 학교에 <input type="text" class="frog-answer-input" data-answer="가지">
+                  않아요.</span>
+                <span class="frog-translation">Я не хожу в школу.</span>
+              </div>
+              <button class="frog-check-btn">Проверить</button>
+              <div class="frog-answer-result"></div>
+            </div>
+
+            <div class="frog-test-item">
+              <div class="frog-question">
+                <span class="frog-korean"><input type="text" class="frog-answer-input" data-answer="비가"> 오고 있어요.</span>
+                <span class="frog-translation">Идёт дождь.</span>
+              </div>
+              <button class="frog-check-btn">Проверить</button>
+              <div class="frog-answer-result"></div>
+            </div>
+
+            <div class="frog-test-item">
+              <div class="frog-question">
+                <span class="frog-korean">너는 공부 <input type="text" class="frog-answer-input" data-answer="하면"> 시험을 잘 볼
+                  거야.</span>
+                <span class="frog-translation">Если будешь учиться, сдашь экзамен хорошо.</span>
+              </div>
+              <button class="frog-check-btn">Проверить</button>
+              <div class="frog-answer-result"></div>
+            </div>
+
+            <div class="frog-test-item">
+              <div class="frog-question">
+                <span class="frog-korean">저는 책을 읽<input type="text" class="frog-answer-input" data-answer="고"> 영화보러
+                  갔어요.</span>
+                <span class="frog-translation">Я прочитал книгу и пошёл смотреть фильм.</span>
+              </div>
+              <button class="frog-check-btn">Проверить</button>
+              <div class="frog-answer-result"></div>
+            </div>
+
+            <div class="frog-test-item">
+              <div class="frog-question">
+                <span class="frog-korean">엄마가 저에게 <input type="text" class="frog-answer-input" data-answer="오라고">
+                  했어요.</span>
+                <span class="frog-translation">Мама сказала мне прийти.</span>
+              </div>
+              <button class="frog-check-btn">Проверить</button>
+              <div class="frog-answer-result"></div>
+            </div>
+
+            <div class="frog-test-item">
+              <div class="frog-question">
+                <span class="frog-korean">저는 버스<input type="text" class="frog-answer-input" data-answer="로"> 학교에
+                  가요.</span>
+                <span class="frog-translation">Я еду в школу на автобусе.</span>
+              </div>
+              <button class="frog-check-btn">Проверить</button>
+              <div class="frog-answer-result"></div>
+            </div>
+
+            <div class="frog-test-item">
+              <div class="frog-question">
+                <span class="frog-korean">저는 사과<input type="text" class="frog-answer-input" data-answer="도">
+                  먹었어요.</span>
+                <span class="frog-translation">Я съел также яблоко.</span>
+              </div>
+              <button class="frog-check-btn">Проверить</button>
+              <div class="frog-answer-result"></div>
+            </div>
+
+            <div class="frog-test-item">
+              <div class="frog-question">
+                <span class="frog-korean">저는 피곤한<input type="text" class="frog-answer-input" data-answer="데"> 밥을
+                  먹었어요.</span>
+                <span class="frog-translation">Я устал, но поел.</span>
+              </div>
+              <button class="frog-check-btn">Проверить</button>
+              <div class="frog-answer-result"></div>
+            </div>
+
+            <div class="frog-test-item">
+              <div class="frog-question">
+                <span class="frog-korean">저는 아침을 <input type="text" class="frog-answer-input" data-answer="먹어서"> 배가
+                  불러요.</span>
+                <span class="frog-translation">Я позавтракал, поэтому сыт.</span>
+              </div>
+              <button class="frog-check-btn">Проверить</button>
+              <div class="frog-answer-result"></div>
+            </div>
+
+            <div class="frog-test-item">
+              <div class="frog-question">
+                <span class="frog-korean">저는 친구<input type="text" class="frog-answer-input" data-answer="에게"> 선물을
+                  줬어요.</span>
+                <span class="frog-translation">Я подарил подарок другу.</span>
+              </div>
+              <button class="frog-check-btn">Проверить</button>
+              <div class="frog-answer-result"></div>
+            </div>
+
+            <div class="frog-test-item">
+              <div class="frog-question">
+                <span class="frog-korean">너는 밥 <input type="text" class="frog-answer-input" data-answer="먹었나요">?</span>
+                <span class="frog-translation">Ты поел?</span>
+              </div>
+              <button class="frog-check-btn">Проверить</button>
+              <div class="frog-answer-result"></div>
+            </div>
+
+            <div class="frog-test-item">
+              <div class="frog-question">
+                <span class="frog-korean">저는 <input type="text" class="frog-answer-input" data-answer="공부하는 것">이
+                  좋아요.</span>
+                <span class="frog-translation">Мне нравится учеба.</span>
+              </div>
+              <button class="frog-check-btn">Проверить</button>
+              <div class="frog-answer-result"></div>
+            </div>
+
+            <div class="frog-test-item">
+              <div class="frog-question">
+                <span class="frog-korean">저는 TV를 <input type="text" class="frog-answer-input" data-answer="보면서"> 음악을
+                  들었어요.</span>
+                <span class="frog-translation">Я слушал музыку, смотря телевизор.</span>
+              </div>
+              <button class="frog-check-btn">Проверить</button>
+              <div class="frog-answer-result"></div>
+            </div>
+
+            <div class="frog-test-item">
+              <div class="frog-question">
+                <span class="frog-korean">저는 어제 공원에서 <input type="text" class="frog-answer-input" data-answer="놀았어요">
+                  .</span>
+                <span class="frog-translation">Я вчера играл в парке.</span>
+              </div>
+              <button class="frog-check-btn">Проверить</button>
+              <div class="frog-answer-result"></div>
+            </div>
+
+            <div class="frog-test-item">
+              <div class="frog-question">
+                <span class="frog-korean">저는 밥을 <input type="text" class="frog-answer-input" data-answer="못 먹어요">
+                  .</span>
+                <span class="frog-translation">Я не могу есть рис.</span>
+              </div>
+              <button class="frog-check-btn">Проверить</button>
+              <div class="frog-answer-result"></div>
+            </div>
+
+            <div class="frog-test-item">
+              <div class="frog-question">
+                <span class="frog-korean">저는 친구를 <input type="text" class="frog-answer-input" data-answer="만나려고"> 카페에
+                  갔어요.</span>
+                <span class="frog-translation">Я пошёл в кафе, чтобы встретиться с другом.</span>
+              </div>
+              <button class="frog-check-btn">Проверить</button>
+              <div class="frog-answer-result"></div>
+            </div>
+
+            <div class="frog-test-item">
+              <div class="frog-question">
+                <span class="frog-korean">비가 <input type="text" class="frog-answer-input" data-answer="오기 때문에"> 우산을
+                  가져갔어요.</span>
+                <span class="frog-translation">Я взял зонт, потому что идёт дождь.</span>
+              </div>
+              <button class="frog-check-btn">Проверить</button>
+              <div class="frog-answer-result"></div>
+            </div>
+
+            <div class="frog-test-item">
+              <div class="frog-question">
+                <span class="frog-korean">저는 한국에 <input type="text" class="frog-answer-input" data-answer="가게">
+                  되었어요.</span>
+                <span class="frog-translation">Так получилось, что я поехал в Корею.</span>
+              </div>
+              <button class="frog-check-btn">Проверить</button>
+              <div class="frog-answer-result"></div>
+            </div>
+
+            <div class="frog-test-item">
+              <div class="frog-question">
+                <span class="frog-korean">저는 피자를 <input type="text" class="frog-answer-input" data-answer="먹고 싶어요">
+                  .</span>
+                <span class="frog-translation">Я хочу есть пиццу.</span>
+              </div>
+              <button class="frog-check-btn">Проверить</button>
+              <div class="frog-answer-result"></div>
+            </div>
+
+            <div class="frog-test-item">
+              <div class="frog-question">
+                <span class="frog-korean">너는 그걸 <input type="text" class="frog-answer-input" data-answer="하지 마">
+                  .</span>
+                <span class="frog-translation">Не делай этого.</span>
+              </div>
+              <button class="frog-check-btn">Проверить</button>
+              <div class="frog-answer-result"></div>
+            </div>
+          </section>
+
+
+          <style>
+            .frog-test-container {
+              font-family: 'Arial', sans-serif;
+              max-width: 800px;
+              margin: 0 auto;
+              padding: 20px;
+              background-color: #f0f8f0;
+              border-radius: 15px;
+              border: 2px solid #4CAF50;
+            }
+
+            .frog-test-title {
+              color: #2E8B57;
+              text-align: center;
+              margin-bottom: 20px;
+            }
+
+            .frog-test-description {
+              color: #555;
+              text-align: center;
+              margin-bottom: 30px;
+            }
+
+            .frog-test-item {
+              margin-bottom: 25px;
+              padding: 15px;
+              background-color: white;
+              border-radius: 10px;
+              box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .frog-question {
+              margin-bottom: 10px;
+              line-height: 1.6;
+            }
+
+            .frog-korean {
+              font-size: 18px;
+              color: #333;
+              display: block;
+              margin-bottom: 5px;
+            }
+
+            .frog-translation {
+              font-size: 14px;
+              color: #666;
+              display: block;
+              font-style: italic;
+            }
+
+            .frog-answer-input {
+              border: 1px solid #4CAF50;
+              border-radius: 4px;
+              padding: 5px;
+              width: 80px;
+              text-align: center;
+            }
+
+            .frog-check-btn {
+              background-color: #4CAF50;
+              color: white;
+              border: none;
+              padding: 8px 15px;
+              border-radius: 5px;
+              cursor: pointer;
+              transition: background-color 0.3s;
+            }
+
+            .frog-check-btn:hover {
+              background-color: #3e8e41;
+            }
+
+            .frog-answer-result {
+              margin-top: 10px;
+              padding: 8px;
+              border-radius: 5px;
+              display: none;
+            }
+          </style>
+
+          <script>
+            document.addEventListener('DOMContentLoaded', function () {
+              // Проверка отдельных ответов
+              const checkButtons = document.querySelectorAll('.frog-check-btn');
+              checkButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                  const testItem = this.closest('.frog-test-item');
+                  const input = testItem.querySelector('.frog-answer-input');
+                  const resultDiv = testItem.querySelector('.frog-answer-result');
+
+                  if (input.value.trim().toLowerCase() === input.dataset.answer.toLowerCase()) {
+                    resultDiv.textContent = 'Правильно! 🎉';
+                    resultDiv.style.backgroundColor = '#dff0d8';
+                    resultDiv.style.color = '#3c763d';
+                  } else {
+                    resultDiv.textContent = 'Попробуйте ещё раз';
+                    resultDiv.style.backgroundColor = '#f2dede';
+                    resultDiv.style.color = '#a94442';
+                  }
+                  resultDiv.style.display = 'block';
+                });
+              });
+
+              // Проверка при нажатии Enter
+              const inputs = document.querySelectorAll('.frog-answer-input');
+              inputs.forEach(input => {
+                input.addEventListener('keypress', function (e) {
+                  if (e.key === 'Enter') {
+                    this.closest('.frog-test-item').querySelector('.frog-check-btn').click();
+                  }
+                });
+              });
+            });
+          </script>
         </div>
 
-        <style>
-          .frog-test-container {
-            font-family: 'Arial', sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f0f8f0;
-            border-radius: 15px;
-            border: 2px solid #4CAF50;
-          }
-          
-          .frog-test-title {
-            color: #2E8B57;
-            text-align: center;
-            margin-bottom: 20px;
-          }
-          
-          .frog-test-description {
-            color: #555;
-            text-align: center;
-            margin-bottom: 30px;
-          }
-          
-          .frog-test-item {
-            margin-bottom: 25px;
-            padding: 15px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-          }
-          
-          .frog-question {
-            margin-bottom: 10px;
-            line-height: 1.6;
-          }
-          
-          .frog-korean {
-            font-size: 18px;
-            color: #333;
-            display: block;
-            margin-bottom: 5px;
-          }
-          
-          .frog-translation {
-            font-size: 14px;
-            color: #666;
-            display: block;
-            font-style: italic;
-          }
-          
-          .frog-answer-input {
-            border: 1px solid #4CAF50;
-            border-radius: 4px;
-            padding: 5px;
-            width: 80px;
-            text-align: center;
-          }
-          
-          .frog-check-btn {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-          }
-          
-          .frog-check-btn:hover {
-            background-color: #3e8e41;
-          }
-          
-          .frog-answer-result {
-            margin-top: 10px;
-            padding: 8px;
-            border-radius: 5px;
-            display: none;
-          }
-          </style>
-          
-          <script>
-          document.addEventListener('DOMContentLoaded', function() {
-            // Проверка отдельных ответов
-            const checkButtons = document.querySelectorAll('.frog-check-btn');
-            checkButtons.forEach(button => {
-              button.addEventListener('click', function() {
-                const testItem = this.closest('.frog-test-item');
-                const input = testItem.querySelector('.frog-answer-input');
-                const resultDiv = testItem.querySelector('.frog-answer-result');
-                
-                if (input.value.trim().toLowerCase() === input.dataset.answer.toLowerCase()) {
-                  resultDiv.textContent = 'Правильно! 🎉';
-                  resultDiv.style.backgroundColor = '#dff0d8';
-                  resultDiv.style.color = '#3c763d';
-                } else {
-                  resultDiv.textContent = 'Попробуйте ещё раз';
-                  resultDiv.style.backgroundColor = '#f2dede';
-                  resultDiv.style.color = '#a94442';
-                }
-                resultDiv.style.display = 'block';
+        <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            // ===== Подсказки по грамматике =====
+            const tooltips = [];
+
+            document.querySelectorAll('.grammar-highlight').forEach(el => {
+              const tooltip = document.createElement('div');
+              tooltip.className = 'kor-tooltip-popup';
+              tooltip.innerHTML = el.dataset.tooltip;
+              tooltip.style.position = 'fixed';
+              tooltip.style.display = 'none';
+              document.body.appendChild(tooltip);
+              tooltips.push({ el, tooltip });
+
+              el.addEventListener('mouseenter', (e) => {
+                tooltip.style.display = 'block';
+                updateTooltipPosition(e, tooltip);
+              });
+
+              el.addEventListener('mouseleave', () => {
+                tooltip.style.display = 'none';
+              });
+
+              el.addEventListener('mousemove', (e) => {
+                updateTooltipPosition(e, tooltip);
               });
             });
-          
-            // Проверка при нажатии Enter
-            const inputs = document.querySelectorAll('.frog-answer-input');
-            inputs.forEach(input => {
-              input.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                  this.closest('.frog-test-item').querySelector('.frog-check-btn').click();
-                }
+
+            function updateTooltipPosition(e, tooltip) {
+              const x = e.clientX + 15;
+              const y = e.clientY + 15;
+
+              // Проверка, чтобы не выходило за правый край
+              const rightEdge = window.innerWidth - tooltip.offsetWidth - 10;
+              const finalX = x > rightEdge ? rightEdge : x;
+
+              tooltip.style.left = finalX + 'px';
+              tooltip.style.top = y + 'px';
+            }
+
+            // ===== Показ/скрытие переводов =====
+            document.querySelectorAll('.story-block').forEach(block => {
+              const translation = block.querySelector('.rus-sentence');
+              if (!translation) return;
+
+              translation.style.display = 'none';
+
+              block.addEventListener('click', function (e) {
+                // Не срабатывает при клике на подсвеченную грамматику
+                if (e.target.classList.contains('grammar-highlight')) return;
+
+                translation.style.display = translation.style.display === 'none' ? 'block' : 'none';
+              });
+            });
+
+            // Закрываем все подсказки при прокрутке
+            window.addEventListener('scroll', () => {
+              tooltips.forEach(({ tooltip }) => {
+                tooltip.style.display = 'none';
               });
             });
           });
-          </script>
-      </div>
-      
-      <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          // ===== Подсказки по грамматике =====
-          const tooltips = [];
-          
-          document.querySelectorAll('.grammar-highlight').forEach(el => {
-            const tooltip = document.createElement('div');
-            tooltip.className = 'kor-tooltip-popup';
-            tooltip.innerHTML = el.dataset.tooltip;
-            tooltip.style.position = 'fixed';
-            tooltip.style.display = 'none';
-            document.body.appendChild(tooltip);
-            tooltips.push({el, tooltip});
-        
-            el.addEventListener('mouseenter', (e) => {
-              tooltip.style.display = 'block';
-              updateTooltipPosition(e, tooltip);
-            });
-        
-            el.addEventListener('mouseleave', () => {
-              tooltip.style.display = 'none';
-            });
-        
-            el.addEventListener('mousemove', (e) => {
-              updateTooltipPosition(e, tooltip);
-            });
-          });
-        
-          function updateTooltipPosition(e, tooltip) {
-            const x = e.clientX + 15;
-            const y = e.clientY + 15;
-            
-            // Проверка, чтобы не выходило за правый край
-            const rightEdge = window.innerWidth - tooltip.offsetWidth - 10;
-            const finalX = x > rightEdge ? rightEdge : x;
-            
-            tooltip.style.left = finalX + 'px';
-            tooltip.style.top = y + 'px';
-          }
-        
-          // ===== Показ/скрытие переводов =====
-          document.querySelectorAll('.story-block').forEach(block => {
-            const translation = block.querySelector('.rus-sentence');
-            if (!translation) return;
-            
-            translation.style.display = 'none';
-            
-            block.addEventListener('click', function(e) {
-              // Не срабатывает при клике на подсвеченную грамматику
-              if (e.target.classList.contains('grammar-highlight')) return;
-              
-              translation.style.display = translation.style.display === 'none' ? 'block' : 'none';
-            });
-          });
-        
-          // Закрываем все подсказки при прокрутке
-          window.addEventListener('scroll', () => {
-            tooltips.forEach(({tooltip}) => {
-              tooltip.style.display = 'none';
-            });
-          });
-        });
         </script>
 
 
-<script>
-  // JS Tooltip for kor-tooltip
-  document.querySelectorAll('.kor-tooltip').forEach(function(el) {
-    const tooltipContent = el.getAttribute('data-tooltip');
-    // Only add tooltip functionality if there's actual content
-    if (tooltipContent && tooltipContent.trim() !== '') {
-      el.addEventListener('mouseenter', function(e) {
-        let tooltip = document.createElement('div');
-        tooltip.className = 'kor-tooltip-popup';
-        tooltip.innerHTML = el.getAttribute('data-tooltip');
-        document.body.appendChild(tooltip);
-        // Position
-        const rect = el.getBoundingClientRect();
-        tooltip.style.position = 'absolute';
-        tooltip.style.left = (window.scrollX + rect.left + rect.width/2 - tooltip.offsetWidth/2) + 'px';
-        tooltip.style.top = (window.scrollY + rect.bottom + 8) + 'px';
-        tooltip.style.zIndex = 9999;
-        // Save ref
-        el._tooltip = tooltip;
-      });
-      el.addEventListener('mouseleave', function() {
-        if (el._tooltip) {
-          el._tooltip.remove();
-          el._tooltip = null;
-        }
-      });
-      el.addEventListener('mousemove', function(e) {
-        if (el._tooltip) {
-          const rect = el.getBoundingClientRect();
-          el._tooltip.style.left = (window.scrollX + rect.left + rect.width/2 - el._tooltip.offsetWidth/2) + 'px';
-          el._tooltip.style.top = (window.scrollY + rect.bottom + 8) + 'px';
-        }
-      });
-    }
-  });
+        <script>
+          // JS Tooltip for kor-tooltip
+          document.querySelectorAll('.kor-tooltip').forEach(function (el) {
+            const tooltipContent = el.getAttribute('data-tooltip');
+            // Only add tooltip functionality if there's actual content
+            if (tooltipContent && tooltipContent.trim() !== '') {
+              el.addEventListener('mouseenter', function (e) {
+                let tooltip = document.createElement('div');
+                tooltip.className = 'kor-tooltip-popup';
+                tooltip.innerHTML = el.getAttribute('data-tooltip');
+                document.body.appendChild(tooltip);
+                // Position
+                const rect = el.getBoundingClientRect();
+                tooltip.style.position = 'absolute';
+                tooltip.style.left = (window.scrollX + rect.left + rect.width / 2 - tooltip.offsetWidth / 2) + 'px';
+                tooltip.style.top = (window.scrollY + rect.bottom + 8) + 'px';
+                tooltip.style.zIndex = 9999;
+                // Save ref
+                el._tooltip = tooltip;
+              });
+              el.addEventListener('mouseleave', function () {
+                if (el._tooltip) {
+                  el._tooltip.remove();
+                  el._tooltip = null;
+                }
+              });
+              el.addEventListener('mousemove', function (e) {
+                if (el._tooltip) {
+                  const rect = el.getBoundingClientRect();
+                  el._tooltip.style.left = (window.scrollX + rect.left + rect.width / 2 - el._tooltip.offsetWidth / 2) + 'px';
+                  el._tooltip.style.top = (window.scrollY + rect.bottom + 8) + 'px';
+                }
+              });
+            }
+          });
 
-  // Russian text visibility toggle
-  document.querySelectorAll('.story-block').forEach(function(block) {
-    const rusText = block.querySelector('.rus-sentence');
-    const toggleBtn = document.createElement('button');
-    toggleBtn.className = 'toggle-rus';
-    toggleBtn.title = 'Показать/скрыть перевод';
-    block.querySelector('.kor-tooltip').after(toggleBtn);
-    
-    toggleBtn.addEventListener('click', function() {
-      rusText.classList.toggle('visible');
-      // Change button appearance when text is visible
-      if (rusText.classList.contains('visible')) {
-        toggleBtn.style.color = '#e76f51';
-      } else {
-        toggleBtn.style.color = '#388e3c';
-      }
-    });
-  });
-</script>
-<script>
-  // Frog tabs interactivity
-  document.querySelectorAll('.frog-tab').forEach(function(tab) {
-    tab.addEventListener('click', function() {
-      document.querySelectorAll('.frog-tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      document.querySelectorAll('.frog-tab-panel').forEach(panel => panel.style.display = 'none');
-      document.getElementById('tab-' + tab.dataset.tab).style.display = 'block';
-    });
-  });
-</script>
-<script>
-  // Frog quiz interactivity
-  document.getElementById('frog-quiz-check').addEventListener('click', function() {
-    let score = 0;
-    let form = document.getElementById('frog-quiz-form');
-    let inputs = form.querySelectorAll('input[type="radio"]:checked');
-    inputs.forEach(function(input) {
-      if (input.value === '에') score++;
-    });
-    document.getElementById('frog-quiz-result').textContent = 'Вы ответили правильно на ' + score + ' из 3 вопросов!';
-  });
-</script>
-<script>
-function scrollToTop() {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
-}
+          // Russian text visibility toggle
+          document.querySelectorAll('.story-block').forEach(function (block) {
+            const rusText = block.querySelector('.rus-sentence');
+            const toggleBtn = document.createElement('button');
+            toggleBtn.className = 'toggle-rus';
+            toggleBtn.title = 'Показать/скрыть перевод';
+            block.querySelector('.kor-tooltip').after(toggleBtn);
 
-// Скрипт для скрытия header при прокрутке
-let lastScrollTop = 0;
-const header = document.querySelector('header');
-const scrollThreshold = 100;
+            toggleBtn.addEventListener('click', function () {
+              rusText.classList.toggle('visible');
+              // Change button appearance when text is visible
+              if (rusText.classList.contains('visible')) {
+                toggleBtn.style.color = '#e76f51';
+              } else {
+                toggleBtn.style.color = '#388e3c';
+              }
+            });
+          });
+        </script>
 
-window.addEventListener('scroll', () => {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
-    if (scrollTop > lastScrollTop && scrollTop > scrollThreshold) {
-        header.classList.add('hidden');
-    } else {
-        header.classList.remove('hidden');
-    }
-    
-    lastScrollTop = scrollTop;
 
-    // Показывать/скрывать кнопку прокрутки наверх
-    const scrollButton = document.getElementById('scrollToTop');
-    if (scrollTop > 20) {
-        scrollButton.style.display = 'block';
-    } else {
-        scrollButton.style.display = 'none';
-    }
-});
-</script>
+        <script>
+          // Frog tabs interactivity
+          document.querySelectorAll('.frog-tab').forEach(function (tab) {
+            tab.addEventListener('click', function () {
+              document.querySelectorAll('.frog-tab').forEach(t => t.classList.remove('active'));
+              tab.classList.add('active');
+              document.querySelectorAll('.frog-tab-panel').forEach(panel => panel.style.display = 'none');
+              document.getElementById('tab-' + tab.dataset.tab).style.display = 'block';
+            });
+          });
+        </script>
 
+        <script>
+          function scrollToTop() {
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+            });
+          }
+
+          // Скрипт для скрытия header при прокрутке
+          let lastScrollTop = 0;
+          const header = document.querySelector('header');
+          const scrollThreshold = 100;
+
+          window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > lastScrollTop && scrollTop > scrollThreshold) {
+              header.classList.add('hidden');
+            } else {
+              header.classList.remove('hidden');
+            }
+
+            lastScrollTop = scrollTop;
+
+            // Показывать/скрывать кнопку прокрутки наверх
+            const scrollButton = document.getElementById('scrollToTop');
+            if (scrollTop > 20) {
+              scrollButton.style.display = 'block';
+            } else {
+              scrollButton.style.display = 'none';
+            }
+          });
+        </script>
+        <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            // Закрытие всех popups при клике на страницу
+            document.addEventListener('click', function (e) {
+              // Проверяем, что клик был не по элементу с грамматической подсказкой
+              if (!e.target.closest('.grammar-highlight')) {
+                // Скрываем все открытые popups
+                document.querySelectorAll('.kor-tooltip-popup').forEach(popup => {
+                  popup.style.display = 'none';
+                });
+              }
+            });
+
+            // Остальной существующий код для работы popups...
+            const tooltips = [];
+
+            document.querySelectorAll('.grammar-highlight').forEach(el => {
+              const tooltip = document.createElement('div');
+              tooltip.className = 'kor-tooltip-popup';
+              tooltip.innerHTML = el.dataset.tooltip;
+              tooltip.style.position = 'fixed';
+              tooltip.style.display = 'none';
+              document.body.appendChild(tooltip);
+              tooltips.push({ el, tooltip });
+
+              el.addEventListener('mouseenter', (e) => {
+                tooltip.style.display = 'block';
+                updateTooltipPosition(e, tooltip);
+              });
+
+              el.addEventListener('mouseleave', () => {
+                tooltip.style.display = 'none';
+              });
+
+              el.addEventListener('mousemove', (e) => {
+                updateTooltipPosition(e, tooltip);
+              });
+            });
+
+            function updateTooltipPosition(e, tooltip) {
+              const x = e.clientX + 15;
+              const y = e.clientY + 15;
+
+              // Проверка, чтобы не выходило за правый край
+              const rightEdge = window.innerWidth - tooltip.offsetWidth - 10;
+              const finalX = x > rightEdge ? rightEdge : x;
+
+              tooltip.style.left = finalX + 'px';
+              tooltip.style.top = y + 'px';
+            }
+
+            // Закрываем все подсказки при прокрутке
+            window.addEventListener('scroll', () => {
+              tooltips.forEach(({ tooltip }) => {
+                tooltip.style.display = 'none';
+              });
+            });
+          });
+        </script>
 
 
 </body>
