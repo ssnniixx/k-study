@@ -17,7 +17,7 @@
       --primary-dark: #5b21b6;
       --secondary: #f97316;
       --secondary-light: #fb923c;
-      --secondary-dark: #ea580c;
+      --secondary-dark: #fb923c;
       --text-dark: #1f2937;
       --text-light: #6b7280;
       --bg-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
@@ -49,8 +49,8 @@
       left: 0;
       right: 0;
       z-index: 1000;
-      box-shadow: 0 4px 30px rgba(0,0,0,0.1);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -417,6 +417,7 @@
     }
 
     @keyframes float {
+
       0%,
       100% {
         transform: translateY(0);
@@ -453,27 +454,43 @@
 </head>
 
 <body>
-  <header style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); position: fixed; top: 0; left: 0; right: 0; z-index: 1000; box-shadow: 0 4px 30px rgba(0,0,0,0.1); border-bottom: 1px solid rgba(255,255,255,0.08);">
-    <nav class="navbar" style="position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2rem; max-width: 1200px; margin: 0 auto;">
+  <header
+    style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); position: fixed; top: 0; left: 0; right: 0; z-index: 1000; box-shadow: 0 4px 30px rgba(0,0,0,0.1); border-bottom: 1px solid rgba(255,255,255,0.08);">
+    <nav class="navbar"
+      style="position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2rem; max-width: 1200px; margin: 0 auto;">
       <div class="logo" style="font-size: 2rem; font-weight: 800; color: #f9f9f9; letter-spacing: 0.02em;">
         K-Study
       </div>
       <ul class="nav-links" style="display: flex; list-style: none; gap: 2.2rem;">
-        <li><a href="#about-section" style="color: #fff; font-weight: 500; font-size: 1.1rem; text-decoration: none; transition: color 0.2s;">О нас</a></li>
-        <li><a href="#stories-section" style="color: #fff; font-weight: 500; font-size: 1.1rem; text-decoration: none; transition: color 0.2s;">Сказки</a></li>
-        <li><a href="#news-section" style="color: #fff; font-weight: 500; font-size: 1.1rem; text-decoration: none; transition: color 0.2s;">Новости</a></li>
-        <li><a href="#contact-section" style="color: #fff; font-weight: 500; font-size: 1.1rem; text-decoration: none; transition: color 0.2s;">Контакты</a></li>
-        <li><a href="#feedback-section" style="color: #fff; font-weight: 500; font-size: 1.1rem; text-decoration: none; transition: color 0.2s;">Обратная связь</a></li>
+        <li><a href="#about-section"
+            style="color: #fff; font-weight: 500; font-size: 1.1rem; text-decoration: none; transition: color 0.2s;">О
+            нас</a></li>
+        <li><a href="#stories-section"
+            style="color: #fff; font-weight: 500; font-size: 1.1rem; text-decoration: none; transition: color 0.2s;">Сказки</a>
+        </li>
+        <li><a href="#news-section"
+            style="color: #fff; font-weight: 500; font-size: 1.1rem; text-decoration: none; transition: color 0.2s;">Новости</a>
+        </li>
+        <li><a href="#contact-section"
+            style="color: #fff; font-weight: 500; font-size: 1.1rem; text-decoration: none; transition: color 0.2s;">Контакты</a>
+        </li>
+        <li><a href="#feedback-section"
+            style="color: #fff; font-weight: 500; font-size: 1.1rem; text-decoration: none; transition: color 0.2s;">Обратная
+            связь</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
     <!-- Hero Section -->
-    <section class="hero" style="padding: 7rem 2rem 5rem 2rem; text-align: center; background: none; position: relative; overflow: hidden;">
+    <section class="hero"
+      style="padding: 7rem 2rem 5rem 2rem; text-align: center; background: none; position: relative; overflow: hidden;">
       <div class="hero-content" style="max-width: 800px; margin: 0 auto; position: relative; z-index: 1;">
-        <h1 style="font-size: 3.5rem; font-weight: 800; margin-bottom: 1.5rem; line-height: 1.2; background: linear-gradient(90deg, #7c3aed 0%, #8b5cf6 50%, #d946ef 100%); -webkit-background-clip: text; background-clip: text;">Добро пожаловать в <br><span class="asia-gradient">K-Study Stories</span></h1>
-        <p style="font-size: 1.3rem; color: rgba(255,255,255,0.95); margin-bottom: 2.5rem; line-height: 1.6;">K-Study — это место, где вы можете читать корейские сказки, изучать язык и получать удовольствие от обучения!</p>
+        <h1
+          style="font-size: 3.5rem; font-weight: 800; margin-bottom: 1.5rem; line-height: 1.2; background: linear-gradient(90deg, #7c3aed 0%, #8b5cf6 50%, #d946ef 100%); -webkit-background-clip: text; background-clip: text;">
+          Добро пожаловать в <br><span class="asia-gradient">K-Study Stories</span></h1>
+        <p style="font-size: 1.3rem; color: rgba(255,255,255,0.95); margin-bottom: 2.5rem; line-height: 1.6;">K-Study —
+          это место, где вы можете читать корейские сказки, изучать язык и получать удовольствие от обучения!</p>
         <a href="#stories-section" class="cta-btn" style="margin-top: 1.2rem;">Начать читать</a>
       </div>
     </section>
@@ -482,17 +499,26 @@
 
 
     <!-- News Section -->
-    <section id="news-section" class="news-section" style="max-width: 900px; margin: 0 auto 2.5rem auto; background: #fff; border-radius: 20px; box-shadow: 0 10px 30px -5px rgba(0,0,0,0.08); padding: 2.5rem 2rem 2rem 2rem; font-family: 'Montserrat', 'Noto Sans KR', sans-serif; display: flex; align-items: flex-start; gap: 1.5rem;">
+    <section id="news-section" class="news-section"
+      style="max-width: 900px; margin: 0 auto 2.5rem auto; background: #fff; border-radius: 20px; box-shadow: 0 10px 30px -5px rgba(0,0,0,0.08); padding: 2.5rem 2rem 2rem 2rem; font-family: 'Montserrat', 'Noto Sans KR', sans-serif; display: flex; align-items: flex-start; gap: 1.5rem;">
       <div style="flex-shrink:0; display: flex; align-items: flex-start; justify-content: center; margin-top: 0.2rem;">
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="20" fill="#a78bfa"/><path d="M20 10v10l6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="20" fill="#a78bfa" />
+          <path d="M20 10v10l6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
       </div>
       <div style="flex:1;">
-        <h2 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 1.5rem; background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">Новости</h2>
+        <h2
+          style="font-size: 2.2rem; font-weight: 800; margin-bottom: 1.5rem; background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">
+          Новости</h2>
         <div style="margin-bottom: 1.5rem;">
-          <div style="font-size: 1.3rem; font-weight: 700; color: #2d3a4a; margin-bottom: 0.2rem;">Новая сказка добавлена!</div>
+          <div style="font-size: 1.3rem; font-weight: 700; color: #2d3a4a; margin-bottom: 0.2rem;">Новая сказка
+            добавлена!</div>
           <div style="color: #6b7280; font-size: 1rem; margin-bottom: 0.7rem;">1 июня 2025</div>
-          <div style="color: #374151; font-size: 1.1rem; margin-bottom: 0.7rem;">Познакомьтесь с новой корейской сказкой «Кролик ToTo» в нашем каталоге.</div>
-          <a href="#" style="color: #2563eb; font-size: 1.05rem; text-decoration: none; font-weight: 500;">Читать полностью</a>
+          <div style="color: #374151; font-size: 1.1rem; margin-bottom: 0.7rem;">Познакомьтесь с новой корейской сказкой
+            «Кролик ToTo» в нашем каталоге.</div>
+          <a href="#" style="color: #2563eb; font-size: 1.05rem; text-decoration: none; font-weight: 500;">Читать
+            полностью</a>
         </div>
         <a href="#" style="color: #2563eb; font-size: 1.05rem; text-decoration: none;">Архив новостей</a>
       </div>
@@ -500,11 +526,15 @@
 
     <!-- Stories Section -->
     <section class="stories-section" id="stories-section" style="margin-top: 2.5rem;">
-      <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 2.5rem; background: linear-gradient(90deg, #7c3aed 0%, #8b5cf6 50%, #d946ef 100%); -webkit-background-clip: text; background-clip: text; color: gradient; font-weight: 800; position: relative;">Избранные сказки
-        <span style="display: block; height: 4px; width: 120px; background: var(--secondary); border-radius: 4px; margin: 0.7rem auto 0 auto;"></span>
+      <h2
+        style="text-align: center; font-size: 2.5rem; margin-bottom: 2.5rem; background: linear-gradient(90deg, #7c3aed 0%, #8b5cf6 50%, #d946ef 100%); -webkit-background-clip: text; background-clip: text; color: gradient; font-weight: 800; position: relative;">
+        Избранные сказки
+        <span
+          style="display: block; height: 4px; width: 120px; background: var(--secondary); border-radius: 4px; margin: 0.7rem auto 0 auto;"></span>
       </h2>
       <div class="stories-cards">
-        <div class="story-card" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 420px;">
+        <div class="story-card"
+          style="display: flex; flex-direction: column; justify-content: space-between; min-height: 420px;">
           <div>
             <div class="frog-asia-corner frog-asia-corner-tl"></div>
             <div class="frog-asia-corner frog-asia-corner-tr"></div>
@@ -513,10 +543,29 @@
             <div class="story-icon" style="margin-bottom: 1rem;">
               <!-- Mountain/Pass SVG -->
               <svg viewBox="0 0 60 48" width="80" height="80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 48 L20 20 L30 35 L40 10 L55 48 Z" fill="#8b5cf6"/>
-                <path d="M20 20 L30 35 L40 10" stroke="#fff" stroke-width="2"/>
-                <circle cx="40" cy="10" r="3" fill="#fbbf77"/>
+                <path d="M5 48 L20 20 L30 35 L40 10 L55 48 Z" fill="#8b5cf6" />
+                <path d="M20 20 L30 35 L40 10" stroke="#fff" stroke-width="2" />
+                <circle cx="40" cy="10" r="3" fill="#fbbf77" />
               </svg>
+            </div>
+            <style>
+              .level-badge {
+                display: inline-block;
+                padding: 4px 8px;
+                background-color: #4CAF50;
+                color: white;
+                font-size: 12px;
+                font-weight: bold;
+                border-radius: 12px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                margin-left: 8px;
+                vertical-align: middle;
+              }
+            </style>
+            <div style="margin-bottom: 15px;">
+              <span class="level-badge">Beginner</span>
             </div>
             <h3>Перевал трех лет</h3>
             <p>О старике, который, упав на зловещем перевале, поверил, что ему осталось жить лишь три года.</p>
@@ -524,7 +573,8 @@
           <a href="three years.html" class="read-btn"><span>Читать</span></a>
         </div>
 
-        <div class="story-card" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 420px;">
+        <div class="story-card"
+          style="display: flex; flex-direction: column; justify-content: space-between; min-height: 420px;">
           <div>
             <div class="frog-asia-corner frog-asia-corner-tl"></div>
             <div class="frog-asia-corner frog-asia-corner-tr"></div>
@@ -545,13 +595,17 @@
                 <ellipse cx="50" cy="10" rx="1.5" ry="1.5" fill="#7ed957" />
               </svg>
             </div>
+            <div style="margin-bottom: 15px;">
+              <span class="level-badge">Beginner</span>
+            </div>
             <h3>Зелёный лягушонок</h3>
             <p>Корейская народная сказка о непослушном лягушонке и его матери.</p>
           </div>
           <a href="frog.html" class="read-btn"><span>Читать</span></a>
         </div>
 
-        <div class="story-card" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 420px;">
+        <div class="story-card"
+          style="display: flex; flex-direction: column; justify-content: space-between; min-height: 420px;">
           <div>
             <div class="frog-asia-corner frog-asia-corner-tl"></div>
             <div class="frog-asia-corner frog-asia-corner-tr"></div>
@@ -560,10 +614,13 @@
             <div class="story-icon" style="margin-bottom: 1rem;">
               <!-- Axe SVG -->
               <svg viewBox="0 0 60 48" width="80" height="80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="28" y="10" width="4" height="28" rx="2" fill="#a0522d"/>
-                <rect x="20" y="10" width="12" height="8" rx="4" fill="#ffd700"/>
-                <rect x="28" y="18" width="12" height="8" rx="4" fill="#c0c0c0"/>
+                <rect x="28" y="10" width="4" height="28" rx="2" fill="#a0522d" />
+                <rect x="20" y="10" width="12" height="8" rx="4" fill="#ffd700" />
+                <rect x="28" y="18" width="12" height="8" rx="4" fill="#c0c0c0" />
               </svg>
+            </div>
+            <div style="margin-bottom: 15px;">
+              <span class="level-badge">Beginner</span>
             </div>
             <h3>Золотой топор, серебряный топор</h3>
             <p>Честность бедного дровосека вознаграждается, а жадность ленивого соседа наказывается.</p>
@@ -571,7 +628,8 @@
           <a href="#" class="read-btn"><span>Читать</span></a>
         </div>
 
-        <div class="story-card" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 420px;">
+        <div class="story-card"
+          style="display: flex; flex-direction: column; justify-content: space-between; min-height: 420px;">
           <div>
             <div class="frog-asia-corner frog-asia-corner-tl"></div>
             <div class="frog-asia-corner frog-asia-corner-tr"></div>
@@ -587,13 +645,17 @@
                 <circle cx="48" cy="12" r="6" fill="#fbbf77" />
               </svg>
             </div>
+            <div style="margin-bottom: 15px;">
+              <span class="level-badge">Beginner</span>
+            </div>
             <h3>Легенда о Тангуне</h3>
             <p>Сын небесного принца и превратившейся в женщину медведицы становится первым царём Кореи.</p>
           </div>
           <a href="#" class="read-btn"><span>Читать</span></a>
         </div>
 
-        <div class="story-card" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 420px;">
+        <div class="story-card"
+          style="display: flex; flex-direction: column; justify-content: space-between; min-height: 420px;">
           <div>
             <div class="frog-asia-corner frog-asia-corner-tl"></div>
             <div class="frog-asia-corner frog-asia-corner-tr"></div>
@@ -603,9 +665,12 @@
               <!-- Spring/Water SVG -->
               <svg viewBox="0 0 60 48" width="80" height="80" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <ellipse cx="30" cy="40" rx="14" ry="5" fill="#b7e994" />
-                <path d="M30 40 Q30 20 40 20 Q50 20 50 40" stroke="#4eae4a" stroke-width="3" fill="none"/>
+                <path d="M30 40 Q30 20 40 20 Q50 20 50 40" stroke="#4eae4a" stroke-width="3" fill="none" />
                 <circle cx="40" cy="20" r="4" fill="#7ed957" />
               </svg>
+            </div>
+            <div style="margin-bottom: 15px;">
+              <span class="level-badge">Beginner</span>
             </div>
             <h3>Волшебный родник</h3>
             <p>Сказка про то, как доброта вознаграждается молодостью, а жадность наказывается вторым детством.</p>
@@ -613,7 +678,8 @@
           <a href="#" class="read-btn"><span>Читать</span></a>
         </div>
 
-        <div class="story-card" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 420px;">
+        <div class="story-card"
+          style="display: flex; flex-direction: column; justify-content: space-between; min-height: 420px;">
           <div>
             <div class="frog-asia-corner frog-asia-corner-tl"></div>
             <div class="frog-asia-corner frog-asia-corner-tr"></div>
@@ -633,8 +699,12 @@
                 <rect x="38" y="6" width="4" height="12" rx="2" fill="#fbbf77" />
               </svg>
             </div>
+            <div style="margin-bottom: 15px;">
+              <span class="level-badge">Beginner</span>
+            </div>
             <h3>Кролик Тото</h3>
-            <p>Корейская сказка о любознательном кролике, который, несмотря на предостережения, отправляется исследовать таинственный лес, находит новых друзей и учится осторожности.</p>
+            <p>Корейская сказка о любознательном кролике, который, несмотря на предостережения, отправляется исследовать
+              таинственный лес, находит новых друзей и учится осторожности.</p>
           </div>
           <a href="#" class="read-btn"><span>Читать</span></a>
         </div>
@@ -642,37 +712,59 @@
     </section>
 
     <!-- Contact & Feedback Section -->
-    <section id="contact-section" class="contact-section" style="padding: 4rem 0 2rem 0; background: none; max-width: 1200px; margin: 0 auto;">
+    <section id="contact-section" class="contact-section"
+      style="padding: 4rem 0 2rem 0; background: none; max-width: 1200px; margin: 0 auto;">
       <div style="display: flex; gap: 2.5rem; align-items: flex-start; flex-wrap: wrap;">
-        <div style="flex: 1 1 320px; background: rgba(255,255,255,0.95); border-radius: 20px; box-shadow: 0 10px 30px -5px rgba(0,0,0,0.1); padding: 2.5rem; min-width: 260px; margin-bottom: 1.5rem; font-family: 'Montserrat', 'Noto Sans KR', sans-serif;">
+        <div
+          style="flex: 1 1 320px; background: rgba(255,255,255,0.95); border-radius: 20px; box-shadow: 0 10px 30px -5px rgba(0,0,0,0.1); padding: 2.5rem; min-width: 260px; margin-bottom: 1.5rem; font-family: 'Montserrat', 'Noto Sans KR', sans-serif;">
           <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--primary); margin-bottom: 1.5rem;">Контакты</h2>
-          <div style="display: flex; align-items: flex-start; gap: 0.7rem; margin-bottom: 1.1rem; color: var(--secondary-dark);">
-            <svg width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 21s8-6.5 8-12A8 8 0 1 0 3 9c0 5.5 8 12 8 12Z" stroke="#ea580c" stroke-width="2"/></svg>
+          <div
+            style="display: flex; align-items: flex-start; gap: 0.7rem; margin-bottom: 1.1rem; color: var(--secondary-dark);">
+            <svg width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11 21s8-6.5 8-12A8 8 0 1 0 3 9c0 5.5 8 12 8 12Z" stroke="#ea580c" stroke-width="2" />
+            </svg>
             <span style="color: var(--text-dark);">ул. Белинского 58, Якутск, Россия</span>
           </div>
-          <div style="display: flex; align-items: flex-start; gap: 0.7rem; margin-bottom: 1.1rem; color: var(--secondary-dark);">
-            <svg width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="6" width="16" height="10" rx="2" stroke="#ea580c" stroke-width="2"/><path d="M3 6l8 7 8-7" stroke="#ea580c" stroke-width="2"/></svg>
+          <div
+            style="display: flex; align-items: flex-start; gap: 0.7rem; margin-bottom: 1.1rem; color: var(--secondary-dark);">
+            <svg width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="6" width="16" height="10" rx="2" stroke="#ea580c" stroke-width="2" />
+              <path d="M3 6l8 7 8-7" stroke="#ea580c" stroke-width="2" />
+            </svg>
             <span style="color: var(--text-dark);">info@k-study.com</span>
           </div>
-          <div style="display: flex; align-items: flex-start; gap: 0.7rem; margin-bottom: 1.1rem; color: var(--secondary-dark);">
-            <svg width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="2" width="14" height="18" rx="2" stroke="#ea580c" stroke-width="2"/><path d="M8 6h4M8 10h4M8 14h2" stroke="#ea580c" stroke-width="2"/></svg>
+          <div
+            style="display: flex; align-items: flex-start; gap: 0.7rem; margin-bottom: 1.1rem; color: var(--secondary-dark);">
+            <svg width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="2" width="14" height="18" rx="2" stroke="#ea580c" stroke-width="2" />
+              <path d="M8 6h4M8 10h4M8 14h2" stroke="#ea580c" stroke-width="2" />
+            </svg>
             <span style="color: var(--text-dark);">+7-914-110-69-68,<br>+7-914-277-83-71</span>
           </div>
         </div>
-        <div style="flex: 2 1 400px; background: rgba(255,255,255,0.95); border-radius: 20px; box-shadow: 0 10px 30px -5px rgba(0,0,0,0.1); padding: 2.5rem; margin-bottom: 1.5rem; min-width: 320px; font-family: 'Montserrat', 'Noto Sans KR', sans-serif;">
-          <h2 style="font-size: 2rem; font-weight: 800; color: var(--primary); margin-bottom: 1.5rem;">Обратная связь</h2>
+        <div
+          style="flex: 2 1 400px; background: rgba(255,255,255,0.95); border-radius: 20px; box-shadow: 0 10px 30px -5px rgba(0,0,0,0.1); padding: 2.5rem; margin-bottom: 1.5rem; min-width: 320px; font-family: 'Montserrat', 'Noto Sans KR', sans-serif;">
+          <h2 style="font-size: 2rem; font-weight: 800; color: var(--primary); margin-bottom: 1.5rem;">Обратная связь
+          </h2>
           <form>
             <div style="margin-bottom: 1.2rem;">
-              <label for="name" style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-dark);">Ваше ФИО:</label>
-              <input type="text" id="name" name="name" style="width: 100%; padding: 0.8rem; border-radius: 12px; border: 1px solid #e0e0e0; font-size: 1rem; font-family: inherit; background: #f5f7fa;">
+              <label for="name"
+                style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-dark);">Ваше
+                ФИО:</label>
+              <input type="text" id="name" name="name"
+                style="width: 100%; padding: 0.8rem; border-radius: 12px; border: 1px solid #e0e0e0; font-size: 1rem; font-family: inherit; background: #f5f7fa;">
             </div>
             <div style="margin-bottom: 1.2rem;">
-              <label for="email" style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-dark);">Email:</label>
-              <input type="email" id="email" name="email" style="width: 100%; padding: 0.8rem; border-radius: 12px; border: 1px solid #e0e0e0; font-size: 1rem; font-family: inherit; background: #f5f7fa;">
+              <label for="email"
+                style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-dark);">Email:</label>
+              <input type="email" id="email" name="email"
+                style="width: 100%; padding: 0.8rem; border-radius: 12px; border: 1px solid #e0e0e0; font-size: 1rem; font-family: inherit; background: #f5f7fa;">
             </div>
             <div style="margin-bottom: 1.5rem;">
-              <label for="message" style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-dark);">Сообщение:</label>
-              <textarea id="message" name="message" rows="5" style="width: 100%; padding: 0.8rem; border-radius: 12px; border: 1px solid #e0e0e0; font-size: 1rem; font-family: inherit; background: #f5f7fa;"></textarea>
+              <label for="message"
+                style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-dark);">Сообщение:</label>
+              <textarea id="message" name="message" rows="5"
+                style="width: 100%; padding: 0.8rem; border-radius: 12px; border: 1px solid #e0e0e0; font-size: 1rem; font-family: inherit; background: #f5f7fa;"></textarea>
             </div>
             <button type="submit" class="read-btn" style="margin-top: 0.5rem;">Отправить</button>
           </form>
