@@ -1730,6 +1730,166 @@
         </script>
 
 
+
+        <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            // Добавляем обработчики клика на грамматические выделения
+            document.querySelectorAll('.grammar-highlight').forEach(highlight => {
+              highlight.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                // Получаем название грамматики из tooltip
+                const tooltipContent = this.getAttribute('data-tooltip');
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(tooltipContent, 'text/html');
+                const grammarTitle = doc.querySelector('.tooltip-main-grammar').textContent.trim();
+
+                // Находим соответствующую карточку с грамматикой
+                const grammarCards = document.querySelectorAll('.frog-card-title');
+                let targetCard = null;
+
+                grammarCards.forEach(card => {
+                  if (card.textContent.trim() === grammarTitle) {
+                    targetCard = card.closest('.frog-card');
+                  }
+                });
+
+                // Если нашли карточку, скроллим к ней
+                if (targetCard) {
+                  // Переключаем вкладку на грамматику, если она не активна
+                  const grammarTab = document.querySelector('.frog-tab[data-tab="grammar"]');
+                  if (!grammarTab.classList.contains('active')) {
+                    grammarTab.click();
+                  }
+
+                  // Прокручиваем к карточке с плавной анимацией
+                  targetCard.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                  });
+
+                  // Добавляем временное выделение карточки
+                  targetCard.style.boxShadow = '0 0 0 3px #e53935';
+                  setTimeout(() => {
+                    targetCard.style.boxShadow = '';
+                  }, 2000);
+                }
+              });
+            });
+
+            // Остальной существующий код...
+          });
+        </script>
+
+
+        <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            // Создаем карту соответствий грамматик
+            const grammarMap = new Map();
+
+            // 1. Собираем все грамматические выделения в тексте
+            document.querySelectorAll('.grammar-highlight').forEach((highlight, index) => {
+              const tooltipContent = highlight.getAttribute('data-tooltip');
+              const parser = new DOMParser();
+              const doc = parser.parseFromString(tooltipContent, 'text/html');
+              const grammarTitle = doc.querySelector('.tooltip-main-grammar').textContent.trim();
+
+              // Сохраняем в карту
+              if (!grammarMap.has(grammarTitle)) {
+                grammarMap.set(grammarTitle, []);
+              }
+              grammarMap.get(grammarTitle).push(highlight);
+
+              // Добавляем ID для быстрого поиска
+              highlight.id = `grammar-highlight-${grammarTitle.replace(/\s+/g, '-')}-${index}`;
+
+              // Обработчик клика - прокрутка к грамматике в списке
+              highlight.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                scrollToGrammarCard(grammarTitle);
+              });
+            });
+
+            // 2. Добавляем обработчики для карточек грамматик
+            document.querySelectorAll('.frog-card').forEach(card => {
+              const titleElement = card.querySelector('.frog-card-title');
+              if (titleElement) {
+                const grammarTitle = titleElement.textContent.trim();
+
+                // Добавляем курсор-указатель
+                titleElement.style.cursor = 'pointer';
+
+                // Обработчик клика - прокрутка к выделениям в тексте
+                titleElement.addEventListener('click', function () {
+                  if (grammarMap.has(grammarTitle)) {
+                    // Находим первое вхождение этой грамматики в тексте
+                    const firstHighlight = grammarMap.get(grammarTitle)[0];
+
+                    // Прокручиваем к нему
+                    firstHighlight.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'center'
+                    });
+
+                    // Временно выделяем
+                    highlightElement(firstHighlight);
+
+                    // Подсвечиваем все вхождения этой грамматики
+                    grammarMap.get(grammarTitle).forEach(h => {
+                      h.style.backgroundColor = '#ffeaea';
+                      setTimeout(() => {
+                        h.style.backgroundColor = '';
+                      }, 2000);
+                    });
+                  }
+                });
+              }
+            });
+
+            // Функция для прокрутки к карточке грамматики
+            function scrollToGrammarCard(grammarTitle) {
+              const grammarCards = document.querySelectorAll('.frog-card-title');
+              let targetCard = null;
+
+              grammarCards.forEach(card => {
+                if (card.textContent.trim() === grammarTitle) {
+                  targetCard = card.closest('.frog-card');
+                }
+              });
+
+              if (targetCard) {
+                // Активируем вкладку грамматики
+                const grammarTab = document.querySelector('.frog-tab[data-tab="grammar"]');
+                if (!grammarTab.classList.contains('active')) {
+                  grammarTab.click();
+                }
+
+                // Прокручиваем
+                targetCard.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'center'
+                });
+
+                // Временно выделяем
+                highlightElement(targetCard);
+              }
+            }
+
+            // Функция для временного выделения элемента
+            function highlightElement(element) {
+              element.style.boxShadow = '0 0 0 3px #e53935';
+              setTimeout(() => {
+                element.style.boxShadow = '';
+              }, 2000);
+            }
+
+            // Остальной существующий код...
+          });
+        </script>
+
+
 </body>
 
 </html>
