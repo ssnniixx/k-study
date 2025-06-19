@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>K-Study</title>
+  <title>K-Study Stories</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -15,9 +15,9 @@
       --primary: #7c3aed;
       --primary-light: #a78bfa;
       --primary-dark: #5b21b6;
-      --secondary: #f97316;
-      --secondary-light: #fb923c;
-      --secondary-dark: #fb923c;
+      --secondary: #fb9d59;
+      --secondary-light: #ff9946;
+      --secondary-dark: #ff943c;
       --text-dark: #1f2937;
       --text-light: #6b7280;
       --bg-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
@@ -488,7 +488,7 @@
       <div class="hero-content" style="max-width: 800px; margin: 0 auto; position: relative; z-index: 1;">
         <h1
           style="font-size: 3.5rem; font-weight: 800; margin-bottom: 1.5rem; line-height: 1.2; background: linear-gradient(90deg, #7c3aed 0%, #8b5cf6 50%, #d946ef 100%); -webkit-background-clip: text; background-clip: text;">
-          Добро пожаловать в <br><span class="asia-gradient">K-Study</span></h1>
+          Добро пожаловать в <br><span class="asia-gradient">K-Study Stories</span></h1>
         <p style="font-size: 1.3rem; color: rgba(255,255,255,0.95); margin-bottom: 2.5rem; line-height: 1.6;">K-Study —
           это место, где вы можете читать корейские сказки, изучать язык и получать удовольствие от обучения!</p>
         <a href="#stories-section" class="cta-btn" style="margin-top: 1.2rem;">Начать читать</a>
@@ -598,7 +598,7 @@
             <div style="margin-bottom: 15px;">
               <span class="level-badge">Beginner</span>
             </div>
-            <h3>Зелёный лягушонок</h3>
+            <h3>Зеленый лягушонок</h3>
             <p>Корейская народная сказка о непослушном лягушонке и его матери.</p>
           </div>
           <a href="frog.html" class="read-btn"><span>Читать</span></a>
@@ -625,7 +625,7 @@
             <h3>Золотой топор, серебряный топор</h3>
             <p>Честность бедного дровосека вознаграждается, а жадность ленивого соседа наказывается.</p>
           </div>
-          <a href="#" class="read-btn"><span>Читать</span></a>
+          <a href="axe.html" class="read-btn"><span>Читать</span></a>
         </div>
 
         <div class="story-card"
@@ -651,7 +651,7 @@
             <h3>Легенда о Тангуне</h3>
             <p>Сын небесного принца и превратившейся в женщину медведицы становится первым царём Кореи.</p>
           </div>
-          <a href="tangun.html" class="read-btn"><span>Читать</span></a>
+          <a href="tale.html" class="read-btn"><span>Читать</span></a>
         </div>
 
         <div class="story-card"
@@ -706,7 +706,7 @@
             <p>Корейская сказка о любознательном кролике, который, несмотря на предостережения, отправляется исследовать
               таинственный лес, находит новых друзей и учится осторожности.</p>
           </div>
-          <a href="#" class="read-btn"><span>Читать</span></a>
+          <a href="rabbit.html" class="read-btn"><span>Читать</span></a>
         </div>
       </div>
     </section>
@@ -839,17 +839,6 @@
             });
           }
         });
-      });
-
-      // Enable all other links
-      document.querySelectorAll('a').forEach(link => {
-        if (link.getAttribute('href') !== '#' && !link.getAttribute('href').startsWith('#')) {
-          link.addEventListener('click', function (e) {
-            if (this.getAttribute('href') !== '#') {
-              window.location.href = this.getAttribute('href');
-            }
-          });
-        }
       });
     });
 
