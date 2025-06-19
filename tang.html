@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>이상한 샘물 - K-Study</title>
+  <title>K-Study</title>
   <style>
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
@@ -44,7 +44,7 @@
       padding: 0 1rem;
       flex: 1;
     }
-    .story, .grammar, .test {
+    .story, .grammar, .vocabulary, .test {
       background-color: #ffffff;
       border-radius: 10px;
       padding: 1.5rem;
@@ -52,7 +52,7 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s;
     }
-    .story:hover, .grammar:hover, .test:hover {
+    .story:hover, .grammar:hover, .vocabulary:hover, .test:hover {
       transform: translateY(-5px);
     }
     .sentence {
@@ -101,39 +101,12 @@
       top: 100%;
       left: 0;
     }
-    .grammar-list, .vocabulary-list {
-      display: none;
-    }
-    .grammar-list.active, .vocabulary-list.active {
-      display: block;
-    }
-    .tab-buttons {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 1rem;
-    }
-    .tab-button {
-      padding: 0.5rem 1rem;
-      margin: 0 0.5rem;
-      background-color: #4dd0e1;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    .tab-button.active {
-      background-color: #00838f;
-    }
-    .tab-button:hover {
-      background-color: #0097a7;
-    }
-    .grammar-list a, .vocabulary-list a {
+    .grammar-list a {
       color: #00796b;
       text-decoration: none;
       font-weight: bold;
     }
-    .grammar-list a:hover, .vocabulary-list a:hover {
+    .grammar-list a:hover {
       color: #004d40;
     }
     .test-question {
@@ -177,7 +150,7 @@
     <h1>K-Study</h1>
   </header>
   <nav>
-    <a href="#home">Главная</a>
+    <a href="index.html">Главная</a>
     <a href="#grammar">Грамматика/Слова</a>
     <a href="#test">Тест</a>
   </nav>
@@ -186,7 +159,7 @@
       <h2>이상한 샘물 (Странный источник)</h2>
       
       <div class="sentence" id="sentence-1">
-        <div class="korean"><span class="grammar-point" data-grammar="13">깊은 산골에</span> <span class="grammar-point" data-grammar="47">마음씨 착한</span> <span class="grammar-point" data-grammar="9">할아버지와 할머니가</span> <span class="grammar-point" data-grammar="36">살고 있었습니다</span>. <span class="toggle-translation">...</span></div>
+        <div class="korean">옛날 <span class="grammar-point" data-grammar="13">깊은 산골에</span> <span class="grammar-point" data-grammar="47">마음씨 착한</span> <span class="grammar-point" data-grammar="9">할아버지와 할머니가</span> <span class="grammar-point" data-grammar="36">살고 있었습니다</span>. <span class="toggle-translation">...</span></div>
         <div class="translation">Давным-давно, в глубокой горной долине, жили-были добросердечные дедушка и бабушка.</div>
       </div>
       
@@ -246,48 +219,48 @@
       </div>
       
       <div class="sentence" id="sentence-13">
-        <div class="korean">그때 파랑새 한 마리가 <span class="grammar-point" data-grammar="43">옆으로</span> 날아와 계속 노래를 불렀습니다. <span class="toggle-translation">...</span></div>
+        <div class="korean">그때 파랑새 한 마리가 할아버지 <span class="grammar-point" data-grammar="43">옆으로</span> 날아와 계속 노래를 불렀습니다. <span class="toggle-translation">...</span></div>
         <div class="translation">Тогда одна голубая птичка подлетела к дедушке и всё время пела ему песни.</div>
       </div>
       
       <div class="sentence" id="sentence-14">
-        <div class="korean">파랑새는 날아올라며 <span class="grammar-point" data-grammar="12">이 나무에서 저 나무로</span> 이 바위에서 저 바위로 날아갔어요. <span class="toggle-translation">...</span></div>
+        <div class="korean">파랑새는 날아올라 <span class="grammar-point" data-grammar="12">이 나무에서 저 나무로</span>, 이 바위에서 저 바위로 날아갔습니다. <span class="toggle-translation">...</span></div>
         <div class="translation">Птичка-голубка взлетела и перелетала с одного дерева на другое, с этого камня на тот, потом улетела.</div>
       </div>
       
       <div class="sentence" id="sentence-15">
-        <div class="korean">할아버지는 다리가 후들거렸지만 파랑새를 <span class="grammar-point" data-grammar="49">놓칠까 봐</span> 땀을 뺏뺏 흘리며 쫓아갔어요. <span class="toggle-translation">...</span></div>
+        <div class="korean">할아버지는 다리가 후들거렸지만 파랑새를 <span class="grammar-point" data-grammar="49">놓칠까 봐</span> 땀을 뻘뻘 흘리며 쫓아갔습니다. <span class="toggle-translation">...</span></div>
         <div class="translation">Ноги у дедушки дрожали, но он, боясь упустить птичку, во весь голос бежал за ней, облившись потом.</div>
       </div>
       
       <div class="sentence" id="sentence-16">
-        <div class="korean"><span class="grammar-point" data-grammar="19">고개를 넘고</span>, 계곡을 건너서 한참을 따라갔어요. <span class="toggle-translation">...</span></div>
-        <div class="translation">Он перелез через перевал, пересёк ущелье и продолжал идти очень долго.</div>
+        <div class="korean"><span class="grammar-point" data-grammar="19">고개를 넘고</span>, 계곡을 건너서 한참을 따라갔습니다. <span class="toggle-translation">...</span></div>
+        <div class="translation">Он перелез перевал, пересёк ущелье и продолжал идти очень долго.</div>
       </div>
       
       <div class="sentence" id="sentence-17">
-        <div class="korean">하지만 할아버지는 목도 마르고 다리도 아파서 더 이상 <span class="grammar-point" data-grammar="49">걸을 수 없었습니다.</span> <span class="toggle-translation">...</span></div>
+        <div class="korean">하지만 할아버지는 목도 마르고 다리도 아파서 더 이상 <span class="grammar-point" data-grammar="49">걸을 수 없었습니다</span>. <span class="toggle-translation">...</span></div>
         <div class="translation">Но у дедушки пересохло в горле, а ноги ещё сильнее заболели, и он уже не мог идти дальше.</div>
       </div>
       
       <div class="sentence" id="sentence-18">
-        <div class="korean"><span class="grammar-point" data-grammar="45">할아버지의 마음을</span> 어떻게 <span class="grammar-point" data-grammar="70">알았는지</span> 파랑새가 한 나무에 내려와 <span class="grammar-point" data-grammar="59">앉았는데</span> 그 밑으로 맑은 샘물이 솟아오르고 있었어요. <span class="toggle-translation">...</span></div>
+        <div class="korean"><span class="grammar-point" data-grammar="45">할아버지의 마음을</span> 어떻게 <span class="grammar-point" data-grammar="70">알았는지</span> 파랑새가 한 나무에 내려와 <span class="grammar-point" data-grammar="59">앉았는데</span> 그 밑으로 맑은 샘물이 솟아오르고 있었습니다. <span class="toggle-translation">...</span></div>
         <div class="translation">Как будто понимая, о чём думает дедушка, голубая птичка села на одно дерево, и прямо под ним забил чистый источник.</div>
       </div>
       
       <div class="sentence" id="sentence-19">
-        <div class="korean">할아버지는 두 손으로 샘물을 꿀꺽꺽 마셨습니다. <span class="toggle-translation">...</span></div>
+        <div class="korean">할아버지는 두 손으로 샘물을 꿀꺽꿀꺽 마셨습니다. <span class="toggle-translation">...</span></div>
         <div class="translation">Дедушка обеими руками залпом пил воду из источника.</div>
       </div>
       
       <div class="sentence" id="sentence-20">
-        <div class="korean">그러고 나니 이상하게 잠이 와서, 할아버지는 바위에 누워 깊은 잠에 빠져들었어요. <span class="toggle-translation">...</span></div>
+        <div class="korean">그러고 나니 이상하게 잠이 와서, 할아버지는 바위에 누워 깊은 잠에 빠져들었습니다. <span class="toggle-translation">...</span></div>
         <div class="translation">После этого (он) вдруг почувствовал странную сонливость, лёг на камень и погрузился в глубокий сон.</div>
       </div>
       
       <div class="sentence" id="sentence-21">
-        <div class="korean">날이 어두워지고, 어느새 달이 떠올랐습니다. <span class="toggle-translation">...</span></div>
-        <div class="translation">День стал темнеть, вскоре поднялся месяц.</div>
+        <div class="korean">날이 어두워지고. 어느새 달이 떠올랐습니다. <span class="toggle-translation">...</span></div>
+        <div class="translation">День стал темнеть. Вскоре поднялся месяц.</div>
       </div>
       
       <div class="sentence" id="sentence-22">
@@ -296,167 +269,158 @@
       </div>
       
       <div class="sentence" id="sentence-23">
-        <div class="korean">할머니는 무서웠지만 혼자서 할아버지를 찾아 나섰어요. <span class="toggle-translation">...</span></div>
+        <div class="korean">할머니는 무서웠지만 혼자서 할아버지를 찾아 나섰습니다. <span class="toggle-translation">...</span></div>
         <div class="translation">Бабушка испугалась, но всё равно отправилась искать дедушку в одиночку.</div>
       </div>
       
       <div class="sentence" id="sentence-24">
-        <div class="korean">어두운 밤길을 한참 걷다 보니 저쪽에서 누군가 걸어오는 게 보였어요. <span class="toggle-translation">...</span></div>
+        <div class="korean">어두운 밤길을 한참 걷다 보니 저쪽에서 누군가 걸어오는 게 보였습니다. <span class="toggle-translation">...</span></div>
         <div class="translation">Пойдя долго по тёмной ночной тропинке, она увидела, что кто-то идёт навстречу оттуда.</div>
       </div>
       
       <div class="sentence" id="sentence-25">
-        <div class="korean">할머니는 너무 반가워 달려갔지만, 할아버지가 아니라 어떤 젊은 사람이었어요. <span class="toggle-translation">...</span></div>
+        <div class="korean">할머니는 너무 반가워 달려갔지만, 할아버지가 아니라 어떤 젊은 사람이었습니다. <span class="toggle-translation">...</span></div>
         <div class="translation">Бабушка, обрадовавшись, побежала навстречу, но это был не дедушка, а какой-то молодой человек.</div>
       </div>
       
       <div class="sentence" id="sentence-26">
-        <div class="korean">할머니는 힘이 빠져서 <span class="grammar-point" data-id="grammar="50">그냥 지나가려고</span> 하는데 그 젊은 사람이 <span class="grammar-point" data-grammar="44">할머니에게</span> 다가왔어요. <span class="toggle-translation">...</span></div>
+        <div class="korean">할머니는 힘이 빠져서 <span class="grammar-point" data-grammar="50">그냥 지나가려고</span> 하는데 그 젊은 사람이 <span class="grammar-point" data-grammar="44">할머니에게</span> 다가왔습니다. <span class="toggle-translation">...</span></div>
         <div class="translation">Бабушка ослабла и собиралась просто пройти мимо, когда тот молодой человек подошёл к ней.</div>
       </div>
       
       <div class="sentence" id="sentence-27">
-        <div class="korean">“할머니, 나야!” <span class="toggle-translation">...</span></div>
+        <div class="korean">“할멈. 나야!” <span class="toggle-translation">...</span></div>
         <div class="translation">«Бабуля, это я!»</div>
       </div>
       
       <div class="sentence" id="sentence-28">
-        <div class="korean">할머니는 너무 놀랐지만 옷과 지게는 <span class="grammar-point" data-grammar="45">할머니의</span> 물건이 분명했어요. <span class="toggle-translation">...</span></div>
+        <div class="korean">할머니는 너무 놀랐지만 옷과 지게는 <span class="grammar-point" data-grammar="45">할아버지의</span> 물건이 분명했습니다. <span class="toggle-translation">...</span></div>
         <div class="translation">Бабушка очень испугалась, но одежда и ношёнка однозначно были дедушкины вещи.</div>
       </div>
       
       <div class="sentence" id="sentence-29">
-        <div class="korean">그런데 <span class="grammar-point" data-grammar="45">할아버지의</span> 주글주글한 피부는 팽팽해졌고, <span class="grammar-point" data-grammar="20">굽은 허리도 곧게 펴져 있었습니다</span>. <span class="toggle-translation">...</span></div>
+        <div class="korean">그런데 <span class="grammar-point" data-grammar="45">할아버지의</span> 주글주글한 피부는 팽팽해졌고, <span class="grammar-point" data-grammar="36">굽은 허리도 곧게 펴져 있었습니다</span>. <span class="toggle-translation">...</span></div>
         <div class="translation">Но кожа дедушки, вся морщинистая, вдруг стала гладкой, а сутулая спина выпрямилась.</div>
       </div>
       
       <div class="sentence" id="sentence-30">
-        <div class="korean">할아버지는 파랑새를 <span class="grammar-point" data-grammar="35">따라가다가</span> 샘물을 마신 이야기를 <span class="grammar-point" data-grammar="42">할머니에게 해 주었어요</span>. <span class="toggle-translation">...</span></div>
+        <div class="korean">할아버지는 파랑새를 <span class="grammar-point" data-grammar="35">따라가다가</span> 샘물을 마신 이야기를 <span class="grammar-point" data-grammar="42">할머니에게 해 주었습니다</span>. <span class="toggle-translation">...</span></div>
         <div class="translation">Дедушка рассказал бабушке, как он гнался за голубой птичкой и выпил воду из источника.</div>
       </div>
       
       <div class="sentence" id="sentence-31">
-        <div class="korean"><span class="grammar-point" data-grammar="19">할아버지의 말을 듣고</span> 할머니도 <span class="grammar-point" data-grammar="43">샘물로</span> 가서 그 물을 마셨어요. <span class="toggle-translation">...</span></div>
-        <div class="translation">Услышав слова дедушки, бабушка тоже пошла к источнику и выпила воду.</div>
+        <div class="korean"><span class="grammar-point" data-grammar="19">할아버지의 말을 듣고</span> 할머니도 <span class="grammar-point" data-grammar="43">샘물로</span> 가서 그 물을 마셨습니다. <span class="toggle-translation">...</span></div>
+        <div class="translation">Услушавшись дедушки, бабушка тоже пошла к источнику и выпила воду.</div>
       </div>
       
       <div class="sentence" id="sentence-32">
-        <div class="korean">샘물을 마신 할머니도 <span class="span class="grammar-point" data-grammar="23">젊고 예쁜 부인이</span> 되었어요. <span class="toggle-translation">...</span>
-</div>
+        <div class="korean">샘물을 마신 할머니도 <span class="grammar-point" data-grammar="23">젊고 예쁜 부인이</span> 되었습니다. <span class="toggle-translation">...</span></div>
         <div class="translation">Испив воду, бабушка тоже стала молодой и прекрасной женщиной.</div>
       </div>
       
       <div class="sentence" id="sentence-33">
-        <div class="korean">이 이야기를 들은 마음씨 고약한 할아버지는 배가 아파서 <span class="grammar-point" data-grammar="49">견딜 수 없었어요</span>. <span class="toggle-translation">...</span></div>
-        <div class="translation">Услышав эту историю, сосед-жадина настолько забеспокоился, что у него заболел живот, и терпеть дальше он не мог.</span>
+        <div class="korean">이 이야기를 들은 마음씨 고약한 할아버지는 배가 아파서 <span class="grammar-point" data-grammar="49">견딜 수가 없었습니다</span>. <span class="toggle-translation">...</span></div>
+        <div class="translation">Услышав эту историю, сосед-жадина настолько забеспокоился, что у него заболел живот, и терпеть дальше он не мог.</div>
       </div>
       
       <div class="sentence" id="sentence-34">
-        <div class="korean">그래서 <span class="grammar-point" data-grammar="2">부부를</span> 찾아가 물어보았어요. <span class="toggle-translation">...</span></div>
-        <div class="translation">Тогда он отправился к добросердечной пары и спросил их обо всём.</div>
+        <div class="korean">그래서 <span class="grammar-point" data-grammar="2">부부를</span> 찾아가 물어보았습니다. <span class="toggle-translation">...</span></div>
+        <div class="translation">Тогда он отправился к добросердечной паре и спросил их обо всём.</div>
       </div>
       
       <div class="sentence" id="sentence-35">
-        <div class="korean">마음씨 착한 부부는 샘물을 마신 이야기를 <span class="grammar-point" data-grammar="42">해 주었어요</span> <span class="toggle-translation">...</span></div>
+        <div class="korean">마음씨 착한 부부는 샘물을 마신 이야기를 <span class="grammar-point" data-grammar="42">해 주었습니다</span>. <span class="toggle-translation">...</span></div>
         <div class="translation">Добросердечная пара рассказала ему историю про воду из этого источника.</div>
       </div>
       
       <div class="sentence" id="sentence-36">
-        <div class="korean">그러자 마음씨 고약한 할아버지도 그 <span class="grammar-point" data-grammar="43">샘물로</span> 찾아갔어요. <span class="toggle-translation">...</span></div>
+        <div class="korean">그러자 마음씨 고약한 할아버지도 그 <span class="grammar-point" data-grammar="43">샘물로</span> 찾아갔습니다. <span class="toggle-translation">...</span></div>
         <div class="translation">И тогда злой старик тоже отправился искать источник.</div>
       </div>
       
       <div class="sentence" id="sentence-37">
-        <div class="korean">그런데 그날 밤, 할아버지는 <span class="grammar-point" data-grammar="14">돌아오지 않았어요</span> <span class="toggle-translation">...</span>
-</div>
+        <div class="korean">그런데 그날 밤, 할아버지는 <span class="grammar-point" data-grammar="14">돌아오지 않았습니다</span>. <span class="toggle-translation">...</span></div>
         <div class="translation">Однако той ночью старик не вернулся.</div>
       </div>
       
       <div class="sentence" id="sentence-38">
-        <div class="korean">부부는 <span class="grammar-point" data-grammar="82">걱정이 되어</span> 마음씨 고약한 할아버지를 찾아 <span class="grammar-point" data-grammar="13">샘물이 있는 곳으로</span> 갔어요. <span class="toggle-translation">...</span>
-</div>
+        <div class="korean">부부는 <span class="grammar-point" data-grammar="82">걱정이 되어</span> 마음씨 고약한 할아버지를 찾아 <span class="grammar-point" data-grammar="13">샘물이 있는 곳으로</span> 갔습니다. <span class="toggle-translation">...</span></div>
         <div class="translation">Пара, встревоженная, пошла искать того старика к месту, где должен быть тот самый источник.</div>
       </div>
       
       <div class="sentence" id="sentence-39">
-        <div class="korean">그런데 할아버지가 없고, “응애애애애! 응애애애!” 하고 <span class="grammar-point" data-grammar="24">갓난아기만</span> 울고 있었어요. <span class="toggle-translation">...</span></div>
-        <div class="translation">Но старика там не оказалось, а вместо него «уаэуаэ» плакал только новорождённый младенец.</div>
+        <div class="korean">그런데 할아버지는 없고, “응애응애! 응애응애!” 하고 <span class="grammar-point" data-grammar="24">갓난아기만</span> 울고 있었습니다. <span class="toggle-translation">...</span></div>
+        <div class="translation">Но старика там не оказалось, а вместо него «уууу-уууу» плакал только новорождённый младенец.</div>
       </div>
       
       <div class="sentence" id="sentence-40">
-        <div class="korean">젊은 부부가 아기를 안아 올리자, 아기는 울음을 뚝 그치고 방긋 웃었어요. <span class="toggle-translation">...</span></div>
+        <div class="korean">젊은 부부가 아기를 안아 올리자, 아기는 울음을 뚝 그치고 방긋방긋 웃었습니다. <span class="toggle-translation">...</span></div>
         <div class="translation">Когда молодая пара подняла ребёнка на руки, он вдруг замолчал и широко улыбнулся.</div>
       </div>
       
       <div class="sentence" id="sentence-41">
-        <div class="korean">그 아이는 바로 이웃 마을의 마음씨 고약한 할아버지<span class="grammar-point" data-grammar="4">였어요</span>. <span class="toggle-translation">...</span></div>
+        <div class="korean">그 아기는 바로 이웃 마을의 마음씨 고약한 할아버지<span class="grammar-point" data-grammar="4">였습니다</span>. <span class="toggle-translation">...</span></div>
         <div class="translation">Оказалось, что этот младенец был вовсе не старик, живший по соседству, а он сам оказался новорождённым младенцем.</div>
       </div>
       
       <div class="sentence" id="sentence-42">
-        <div class="korean"><span class="grammar-point" data-grammar="2">욕심을</span> 부려서 샘물을 너무 많이 마신 <span class="grammar-point" data-grammar="4">것</span>. <span class="toggle-translation">...</span></div>
+        <div class="korean"><span class="grammar-point" data-grammar="2">욕심을</span> 부려서 샘물을 너무 많이 마신 <span class="grammar-point" data-grammar="4">것입니다</span>. <span class="toggle-translation">...</span></div>
         <div class="translation">Жадный старик выпил слишком много воды из источника.</div>
       </div>
       
-      </div class="sentence" id="sentence-43">
-        <div class="korean">마음씨 착한 부부는 이 아이를 <span class="grammar-point" data-grammar="71">키우기로 했어요</span> <span class="toggle-translation">...</span></div>
+      <div class="sentence" id="sentence-43">
+        <div class="korean">마음씨 착한 부부는 이 아이를 <span class="grammar-point" data-grammar="71">키우기로 했습니다</span>. <span class="toggle-translation">...</span></div>
         <div class="translation">Добросердечная пара решила воспитать этого ребёнка.</div>
       </div>
       
       <div class="sentence" id="sentence-44">
-        <div class="korean">그리고 아주 건강하고 행복하게 <span class="grammar-point" data-grammar="36">살았어요</span>. <span class="toggle-translation">...</span></div>
+        <div class="korean">그리고 아주 건강하고 행복하게 <span class="grammar-point" data-grammar="36">살았습니다</span>. <span class="toggle-translation">...</span></div>
         <div class="translation">И они жили очень здорово и счастливо.</div>
       </div>
-      
     </div>
 
     <div class="grammar" id="grammar">
       <h2>Грамматика и Сложные слова</h2>
-      <div class="tab-buttons">
-        <button class="tab-button active" data-tab="grammar">Грамматика</button>
-        <button class="tab-button" data-tab="vocabulary">Словарь</button>
-      </div>
-      <div class="grammar-list active">
+      <div class="grammar-list">
         <h3>Грамматика</h3>
         <ul>
-          <li><a href="#sentence-2" class="grammar-link" data-grammar="1">N + 은/는</a>: Тематические частицы 은/는 обозначают тему предложения или объект обсуждения. Они эквивалентны английским оборотам "as for..." или "regarding...". В тексте: 동네 사람들은 — "что касается жителей деревни". Пример: 저는 학생입니다. (Что касается меня, я — студент.) </li>
+          <li><a href="#sentence-2" class="grammar-link" data-grammar="1">N + 은/는</a>: Тематические частицы 은/는 обозначают тему предложения или объект обсуждения. Они эквивалентны английским оборотам "as for..." или "regarding...". 는 — после гласных, 은 — после согласных. В тексте: 동네 사람들은 — "что касается жителей деревни". Пример: 저는 학생입니다. (Что касается меня, я — студент.)</li>
           <li><a href="#sentence-2" class="grammar-link" data-grammar="2">N + 을/를</a>: Объектная частица указывает на прямое дополнение. 를 — после гласных, 을 — после согласных. В тексте: 할아버지와 할머니를 — "дедушку и бабушку". Пример: 밥을 먹어요. (Ем рис.)</li>
           <li><a href="#sentence-3" class="grammar-link" data-grammar="3">N + 이/가</a>: Именительный падеж, указывает на подлежащее. 이 — после согласных, 가 — после гласных. В тексте: 마음씨가 고약한 할아버지가 — "старик с дурным нравом". Пример: 고양이가 있어요. (Кот есть.)</li>
           <li><a href="#sentence-41" class="grammar-link" data-grammar="4">N + 입니다</a>: Вежливая связка «есть/это» после существительного. В тексте: 것입니다 — "(объяснение того факта)". Пример: 저는 학생입니다. (Я — студент.)</li>
           <li><a href="#sentence-1" class="grammar-link" data-grammar="9">N + 와/과/하고</a>: Совместный падеж для соединения однородных членов. В тексте: 할아버지와 할머니가 — "дедушка и бабушка". Пример: 친구와 영화를 봤어요. (С другом посмотрел фильм.)</li>
-          <li><a href="#sentence-1" class="grammar-link" data-grammar="10">V/A + ㅂ니다/습니다</a>: Официально-вежливый стиль. ㅂ다 — после гласных, 습니다 — после согласных. В тексте: 있었습니다 — "было". Пример: 어제는 비가 왔습니다. (Вчера шёл дождь.)</li>
-          <li><a href="#sentence-14" class="grammar-link" data-grammar="12">N + 에서</a>: Дательно-местный падеж, обозначает место действия или исходный пункт. В тексте: 이 나무에서 저 나무로 — с одного дерева на другое". Пример: 도서관에서 공부해요. (Учусь в библиотеке.)</li>
-          <li><a href="#sentence-1" class="grammar-link" data-grammar="13">N + 에</a>: Дательный падеж, обозначает время, направление или местонахождение. В тексте: 깊은 산골에 — "в глубокой горной долине". Пример: 학교에 갑니다. (Я иду в школу.)</li>
+          <li><a href="#sentence-1" class="grammar-link" data-grammar="10">V/A + ㅂ니다/습니다</a>: Официально-вежливый стиль. ㅂ니다 — после гласных, 습니다 — после согласных. В тексте: 있었습니다 — "было". Пример: 어제는 비가 왔습니다. (Вчера шёл дождь.)</li>
+          <li><a href="#sentence-14" class="grammar-link" data-grammar="12">N + 에서</a>: Дательно-местный падеж, обозначает место действия или исходный пункт. В тексте: 나무에서 — "с дерева". Пример: 도서관에서 공부해요. (Учусь в библиотеке.)</li>
+          <li><a href="#sentence-1" class="grammar-link" data-grammar="13">N + 에</a>: Дательный падеж, обозначает время, направление или местонахождение. В тексте: 산골에 — "в долине". Пример: 학교에 갑니다. (Я иду в школу.)</li>
           <li><a href="#sentence-22" class="grammar-link" data-grammar="14">A/V + 지 않다</a>: Отрицание для глаголов и прилагательных. В тексте: 돌아오지 않자 — "не вернулся и". Пример: 집에 가지 않아요. (Не иду домой.)</li>
-          <li><a href="#sentence-4" class="grammar-link" data-grammar="19">V/A + 고</a>: Соединяет однородные члены или указывает последовательность. В тексте: 심술 많고 — "сварливый и". Пример: 밥을 먹고 공부해요. (Поел и учусь.)</li>
-          <li><a href="#sentence-4" class="grammar-link" data-grammar="20">V/A + 았/었/였다</a>: Прошедшее время. 았 — после ㅏ/ㅗ, 었 — после остальных гласных, 였다 — после согласных. В тексте: 많았습니다 — "было много". Пример: 어제 공부했어요. (Вчера я учился.)</li>
-          <li><a href="#sentence-4" class="grammar-link" data-grammar="23">N + 도</a>: Частица «тоже, также». В тексте: 욕심도 — "и жадность тоже". Пример: 나도 갈 거예요. (Я тоже пойду.)</li>
-          <li><a href="#sentence-39" class="grammar-link" data-grammar="24">N + 만</a>: Частица «только». В тексте: 갓난아기만 — "только младенец". Пример: 물만 마셨어요. (Я пил только воду.)</li>
-          <li><a href="#sentence-7" class="grammar-link" data-grammar="25">V/A + 지만</a>: Указывает на противопоставление или уступку. В тексте: 하고 싶었지만 — "хотел, но". Пример: 가고 싶지만 시간이 없어요. (Хочу пойти, но нет времени.)</li>
-          <li><a href="#sentence-3" class="grammar-link" data-grammar="28">V/A + (으)시다</a>: Уважительная форма. 시다 — после гласных или ㄹ, 으시다 — после согласных. В тексте: 착하신 — "добрые (уважительно)". Пример: 들어오십시요. (Заходите (уважительно).)</li>
-          <li><a href="#sentence-8" class="grammar-link" data-grammar="33">V/A + 을/ㄹ까요?</a>: Вежливый вопрос, выражающий предложение или сомнение. В тексте: 좋을까 — "было бы хорошо?". Пример: 갈까요? (Пойдём?)</li>
-          <li><a href="#sentence-30" class="grammar-link" data-grammar="35">V + 다가</a>: Указывает на прерванное действие или смену действия. В тексте: 따라가다가 — "гоняясь, затем". Пример: 밥을 먹다가 전화가 왔어요. (Ел, когда позвонили.)</li>
-          <li><a href="#sentence-1" class="grammar-link" data-grammar="36">V + 고 있다</a>: Указывает на продолжающееся действие. В тексте: 살고 있었습니다 — "жили". Пример: 지금 공부하고 있어요. (Сейчас я учусь.)</li>
-          <li><a href="#sentence-7" class="grammar-link" data-grammar="37">V + 고 싶다</a>: Выражает желание. В тексте: 하고 싶었지만 — "хотел, но". Пример: 한국에 가고 싶어요. (Хочу поехать в Корею.)</li>
-          <li><a href="#sentence-10" class="grammar-link" data-grammar="38">V/A + (으)ㄹ 텐데</a>: Выражает сожаление или предположение. В тексте: 오를 텐데 — "поднялась бы, но". Пример: 비가 안 왔으면 좋을 텐데. (Жаль, что идёт дождь.)</li>
-          <li><a href="#sentence-3" class="grammar-link" data-grammar="40">V/A + 아/어/여야 하다</a>: Выражает необходимость или обязанность. В тексте: 사셔야 해요 — "должны жить". Пример: 공부해야 해요. (Надо учиться.)</li>
-          <li><a href="#sentence-30" class="grammar-link" data-grammar="42">V + 아/어/여 주다</a>: Указывает на действие, выполненное для кого-то. В тексте: 해 주었어요 — "рассказал (кому-то)". Пример: 도와주세요. (Помогите.)</li>
-          <li><a href="#sentence-13" class="grammar-link" data-grammar="43">N + (으)로</a>: Творительный падеж, обозначает направление, средство или способ. В тексте: 샘물로 — "к источнику". Пример: 버스로 학교에 가요. (Еду в школу на автобусе.)</li>
-          <li><a href="#sentence-26" class="grammar-link" data-grammar="44">N + 에게/한테/께</a>: Дательный падеж для обозначения получателя действия. В тексте: 할머니에게 — "бабушке". Пример: 친구에게 선물을 줬어요. (Дал другу подарок.)</li>
-          <li><a href="#sentence-18" class="grammar-link" data-grammar="45">N + 의</a>: Родительный падеж, обозначает принадлежность. В тексте: 할아버지의 — "дедушкин". Пример: 나의 책. (Моя книга.)</li>
-          <li><a href="#sentence-8" class="grammar-link" data-grammar="46">V + (으)면</a>: Условное предложение. В тексте: 젊었으면 — "если бы был моложе". Пример: 시간이 있으면 갈게요. (Если будет время, я пойду.)</li>
-          <li><a href="#sentence-1" class="grammar-link" data-grammar="47">A + (으)ㄴ + N</a>: Определительная форма прилагательного. В тексте: 마음씨 착한 — "добросердечный". Пример: 예쁜 꽃. (Красивый цветок.)</li>
-          <li><a href="#sentence-7" class="grammar-link" data-grammar="49">V + 을/ㄹ 수 없다</a>: Выражает невозможность действия. В тексте: 할 수 없었습니다 — "не мог сделать". Пример: 수영할 수 없어요. (Я не умею плавать.)</li>
-          <li><a href="#sentence-26" class="grammar-link" data-grammar="50">V + (으)려고</a>: Выражает намерение. В тексте: 지나가려고 — "собиралась пройти мимо". Пример: 밥을 먹으려고 해요. (Собираюсь поесть.)</li>
-          <li><a href="#sentence-5" class="grammar-link" data-grammar="52">V/A + (으)면서</a>: Указывает на одновременное действие. В тексте: 혀를 차며 — "цокая языком". Пример: 웃으며 말했어요. (Говорил, смеясь.)</li>
-          <li><a href="#sentence-18" class="grammar-link" data-grammar="59">V/A + 는데</a>: Указывает на контекст, причину или противопоставление. В тексте: 앉았는데 — "сел, и". Пример: 배고프는데 밥이 없어요. (Я голоден, но еды нет.)</li>
-          <li><a href="#sentence-18" class="grammar-link" data-grammar="70">V + 는지 알다/모르다</a>: Вопросительное придаточное предложение. В тексте: 알았는지 — "как будто знал". Пример: 어디 가는지 몰라요. (Не знаю, куда он идёт.)</li>
-          <li><a href="#sentence-43" class="grammar-link" data-grammar="71">V + 기로 하다</a>: Выражает решение сделать что-либо. В тексте: 키우기로 했어요 — "решили воспитать". Пример: 내일 가기로 했어요. (Решил пойти завтра.)</li>
-          <li><a href="#sentence-22" class="grammar-link" data-grammar="82">V + 게 되다</a>: Указывает на непреднамеренное или изменившееся состояние. В тексте: 걱정이 되었습니다 — "забеспокоилась". Пример: 늦게 됐어요. (Я опоздал.)</li>
+          <li><a href="#sentence-4" class="grammar-link" data-grammar="19">V/A + 고</a>: Соединяет однородные члены или указывает последовательность. В тексте: 심술 많고 — "сварливый, и…". Пример: 밥을 먹고 공부해요. (Поел, а затем учусь.)</li>
+          <li><a href="#sentence-4" class="grammar-link" data-grammar="20">V/A + 았/었/였다</a>: Прошедшее время. 았 — после ㅏ/ㅗ, 었 — после остальных. В тексте: 많았습니다 — "был очень жадным". Пример: 공부했어요. (Я учился.)</li>
+          <li><a href="#sentence-4" class="grammar-link" data-grammar="23">N + 도</a>: Частица «тоже, также». В тексте: 욕심도 — "жадность тоже". Пример: 나도 가고 싶어요. (Я тоже хочу пойти.)</li>
+          <li><a href="#sentence-39" class="grammar-link" data-grammar="24">N + 만</a>: Частица «только». В тексте: 갓난아기만 — "только младенец". Пример: 나만 알겠어. (Только я знаю.)</li>
+          <li><a href="#sentence-7" class="grammar-link" data-grammar="25">V/A + 지만</a>: Указывает противопоставление или уступку. В тексте: 했지만 — "делал, но…". Пример: 가고 싶지만 시간이 없어요. (Хочу пойти, но нет времени.)</li>
+          <li><a href="#sentence-3" class="grammar-link" data-grammar="28">V/A + (으)시다</a>: Уважительная форма. 시다 — после гласных/ㄹ, 으시다 — после согласных. В тексте: 착하신 — "добрые (почтительно)". Пример: 말씀하십니다. (Говорит (почтительно).)</li>
+          <li><a href="#sentence-8" class="grammar-link" data-grammar="33">V/A + 을/ㄹ까요?</a>: Вежливый вопрос «Неужели…?» или «Как насчёт…?». В тексте: 좋을까 — "как было бы здорово?". Пример: 같이 갈까요? (Пойдём вместе?)</li>
+          <li><a href="#sentence-30" class="grammar-link" data-grammar="35">V + 다가</a>: Указывает смену действия. В тексте: 따라가다가 — "гоняясь, (он)…". Пример: 텔레비전을 보다가 잠들었어요. (Смотрел телевизор, а затем заснул.)</li>
+          <li><a href="#sentence-1" class="grammar-link" data-grammar="36">V + 고 있다</a>: Указывает продолженное действие, как "-ing". В тексте: 살고 있었습니다 — "жили". Пример: 책을 읽고 있어요. (Сейчас читаю книгу.)</li>
+          <li><a href="#sentence-7" class="grammar-link" data-grammar="37">V + 고 싶다</a>: Выражает желание. В тексте: 하고 싶었지만 — "хотел (делать)". Пример: 한국어를 배우고 싶어요. (Хочу изучать корейский.)</li>
+          <li><a href="#sentence-10" class="grammar-link" data-grammar="38">V/A + (으)ㄹ 텐데</a>: Выражает сожаление или предположение. В тексте: 오를 텐데 — "бы пошла, но…". Пример: 비가 올 텐데. (Наверное, пойдёт дождь.)</li>
+          <li><a href="#sentence-3" class="grammar-link" data-grammar="40">V/A + 아/어/여야 하다</a>: Обязательность действия. В тексте: 사셔야 해요 — "должны жить". Пример: 약을 먹어야 해요. (Нужно принять лекарство.)</li>
+          <li><a href="#sentence-30" class="grammar-link" data-grammar="42">V + 아/어/여 주다</a>: Действие для другого. В тексте: 해 주었습니다 — "рассказал (ему)". Пример: 밥을 해 주었어요. (Приготовила еду.)</li>
+          <li><a href="#sentence-13" class="grammar-link" data-grammar="43">N + (으)로</a>: Творительный падеж, обозначает направление, средство. В тексте: 옆으로 — "к (боку)". Пример: 버스로 가요. (Еду на автобусе.)</li>
+          <li><a href="#sentence-26" class="grammar-link" data-grammar="44">N + 에게/한테/께</a>: Дательный падеж для адресата. В тексте: 할머니에게 — "к бабушке". Пример: 친구에게 편지를 썼어요. (Написал письмо другу.)</li>
+          <li><a href="#sentence-18" class="grammar-link" data-grammar="45">N + 의</a>: Родительный падеж, обозначает принадлежность. В тексте: 할아버지의 마음 — "мысли дедушки". Пример: 우리집의 개. (Собака моего дома.)</li>
+          <li><a href="#sentence-8" class="grammar-link" data-grammar="46">V + (으)면</a>: Условное окончание. В тексте: 젊었으면 — "если бы был моложе". Пример: 비가 오면 우산을 써요. (Если дождь, беру зонт.)</li>
+          <li><a href="#sentence-1" class="grammar-link" data-grammar="47">A + (으)ㄴ + N</a>: Определительная форма прилагательных. В тексте: 깊은 산골 — "глубокая долина". Пример: 맛있는 음식. (Вкусная еда.)</li>
+          <li><a href="#sentence-7" class="grammar-link" data-grammar="49">V + 을/ㄹ 수 없다</a>: Невозможность действия. В тексте: 할 수 없었습니다 — "не мог сделать". Пример: 피아노를 칠 수 없어요. (Не умею играть на пианино.)</li>
+          <li><a href="#sentence-26" class="grammar-link" data-grammar="50">V + (으)려고</a>: Намерение действия. В тексте: 지나가려고 — "чтобы пройти мимо". Пример: 밥을 먹으려고 갔어요. (Пошёл поесть.)</li>
+          <li><a href="#sentence-5" class="grammar-link" data-grammar="52">V/A + (으)면서</a>: Одновременность действий. В тексте: 혀를 차며 — "щелкая языками". Пример: 음악을 들으면서 공부해요. (Слушаю музыку, учусь.)</li>
+          <li><a href="#sentence-18" class="grammar-link" data-grammar="59">V/A + 는데</a>: Контекст, причина или противопоставление. В тексте: 앉았는데 — "сел, и…". Пример: 영화를 보는데 전화가 왔어요. (Смотрел фильм, позвонили.)</li>
+          <li><a href="#sentence-18" class="grammar-link" data-grammar="70">V + 는지 알다/모르다</a>: Вопросительное придаточное. В тексте: 알았는지 — "как будто узнал". Пример: 어디에 가는지 몰라요. (Не знаю, куда идёт.)</li>
+          <li><a href="#sentence-43" class="grammar-link" data-grammar="71">V + 기로 하다</a>: Решение сделать. В тексте: 키우기로 했습니다 — "решили воспитать". Пример: 운동하기로 했어요. (Решил заниматься спортом.)</li>
+          <li><a href="#sentence-22" class="grammar-link" data-grammar="82">V + 게 되다</a>: Случайное или изменившееся состояние. В тексте: 걱정이 되었습니다 — "стало тревожно". Пример: 한국에 살게 되었어요. (Стал жить в Корее.)</li>
         </ul>
-      </div>
-      <div class="vocabulary-list">
-        <h3>Словарь</h3>
+        
+        <h3>Сложные слова</h3>
         <ul>
           <li><strong>산골</strong> — горная деревня<br>Пример: 산골에서 조용히 살았다. (Он жил тихо в горной деревне.)</li>
           <li><strong>마음씨</strong> — характер, нрав<br>Пример: 그녀는 마음씨가 따뜻하다. (У неё добрый нрав.)</li>
@@ -752,37 +716,36 @@
       '4': 'N + 입니다: Вежливая связка «есть/это» после существительного. В тексте: 것입니다 — "(объяснение того факта)". Пример: 저는 학생입니다. (Я — студент.)',
       '9': 'N + 와/과/하고: Совместный падеж для соединения однородных членов. В тексте: 할아버지와 할머니가 — "дедушка и бабушка". Пример: 친구와 영화를 봤어요. (С другом посмотрел фильм.)',
       '10': 'V/A + ㅂ니다/습니다: Официально-вежливый стиль. ㅂ니다 — после гласных, 습니다 — после согласных. В тексте: 있었습니다 — "было". Пример: 어제는 비가 왔습니다. (Вчера шёл дождь.)',
-      '12': 'N + 에서: Дательно-местный падеж, обозначает место действия или исходный пункт. В тексте: 이 나무에서 저 나무로 — "с одного дерева на другое". Пример: 도서관에서 공부해요. (Учусь в библиотеке.)',
-      '13': 'N + 에: Дательный падеж, обозначает время, направление или местонахождение. В тексте: 깊은 산골에 — "в глубокой горной долине". Пример: 학교에 갑니다. (Я иду в школу.)',
+      '12': 'N + 에서: Дательно-местный падеж, обозначает место действия или исходный пункт. В тексте: 나무에서 — "с дерева". Пример: 도서관에서 공부해요. (Учусь в библиотеке.)',
+      '13': 'N + 에: Дательный падеж, обозначает время, направление или местонахождение. В тексте: 산골에 — "в долине". Пример: 학교에 갑니다. (Я иду в школу.)',
       '14': 'A/V + 지 않다: Отрицание для глаголов и прилагательных. В тексте: 돌아오지 않자 — "не вернулся и". Пример: 집에 가지 않아요. (Не иду домой.)',
-      '19': 'V/A + 고: Соединяет однородные члены или указывает последовательность. В тексте: 심술 많고 — "сварливый и". Пример: 밥을 먹고 공부해요. (Поел и учусь.)',
-      '20': 'V/A + 았/었/였다: Прошедшее время. 았 — после ㅏ/ㅗ, 었 — после остальных гласных, 였다 — после согласных. В тексте: 많았습니다 — "было много". Пример: 어제 공부했어요. (Вчера я учился.)',
-      '23': 'N + 도: Частица «тоже, также». В тексте: 욕심도 — "и жадность тоже". Пример: 나도 갈 거예요. (Я тоже пойду.)',
-      '24': 'N + 만: Частица «только». В тексте: 갓난아기만 — "только младенец". Пример: 물만 마셨어요. (Я пил только воду.)',
-      '25': 'V/A + 지만: Указывает противопоставление или уступку. В тексте: 하고 싶었지만 — "хотел, но". Пример: 가고 싶지만 시간이 없어요. (Хочу пойти, но нет времени.)',
-      '28': 'V/A + (으)시다: Уважительная форма. 시다 — после гласных или ㄹ, 으시다 — после согласных. В тексте: 착하신 — "добрые (уважительно)". Пример: 들어오십시요. (Заходите (уважительно).)',
-      '33': 'V/A + 을/ㄹ까요?: Вежливый вопрос, выражающий предложение или сомнение. В тексте: 좋을까 — "было бы хорошо?". Пример: 갈까요? (Пойдём?)',
-      '35': 'V + 다가: Указывает на прерванное действие или смену действия. В тексте: 따라가다가 — "гоняясь, затем". Пример: 밥을 먹다가 전화가 왔어요. (Ел, когда позвонили.)',
-      '36': 'V + 고 있다: Указывает на продолжающееся действие. В тексте: 살고 있었습니다 — "жили". Пример: 지금 공부하고 있어요. (Сейчас я учусь.)',
-      '37': 'V + 고 싶다: Выражает желание. В тексте: 하고 싶었지만 — "хотел, но". Пример: 한국에 가고 싶어요. (Хочу поехать в Корею.)',
-      '38': 'V/A + (으)ㄹ 텐데: Выражает сожаление или предположение. В тексте: 오를 텐데 — "поднялась бы, но". Пример: 비가 안 왔으면 좋을 텐데. (Жаль, что идёт дождь.)',
-      '40': 'V/A + 아/어/여야 하다: Выражает необходимость или обязанность. В тексте: 사셔야 해요 — "должны жить". Пример: 공부해야 해요. (Надо учиться.)',
-      '42': 'V + 아/어/여 주다: Указывает на действие, выполненное для кого-то. В тексте: 해 주었습니다 — "рассказал (кому-то)". Пример: 도와주세요. (Помогите.)',
-      '43': 'N + (으)로: Творительный падеж, обозначает направление, средство или способ. В тексте: 샘물로 — "к источнику". Пример: 버스로 학교에 가요. (Еду в школу на автобусе.)',
-      '44': 'N + 에게/한테/께: Дательный падеж для обозначения получателя действия. В тексте: 할머니에게 — "бабушке". Пример: 친구에게 선물을 줬어요. (Дал другу подарок.)',
-      '45': 'N + 의: Родительный падеж, обозначает принадлежность. В тексте: 할아버지의 — "дедушкин". Пример: 나의 책. (Моя книга.)',
-      '46': 'V + (으)면: Условное предложение. В тексте: 젊었으면 — "если бы был моложе". Пример: 시간이 있으면 갈게요. (Если будет время, я пойду.)',
-      '47': 'A + (으)ㄴ + N: Определительная форма прилагательного. В тексте: 마음씨 착한 — "добросердечный". Пример: 예쁜 꽃. (Красивый цветок.)',
-      '49': 'V + 을/ㄹ 수 없다: Выражает невозможность действия. В тексте: 할 수 없었습니다 — "не мог сделать". Пример: 수영할 수 없어요. (Я не умею плавать.)',
-      '50': 'V + (으)려고: Выражает намерение. В тексте: 지나가려고 — "собиралась пройти мимо". Пример: 밥을 먹으려고 해요. (Собираюсь поесть.)',
-      '52': 'V/A + (으)면서: Указывает на одновременное действие. В тексте: 혀를 차며 — "цокая языком". Пример: 웃으면서 말했어요. (Говорил, смеясь.)',
-      '59': 'V/A + 는데: Указывает на контекст, причину или противопоставление. В тексте: 앉았는데 — "сел, и". Пример: 배고프는데 밥이 없어요. (Я голоден, но еды нет.)',
-      '70': 'V + 는지 알다/모르다: Вопросительное придаточное предложение. В тексте: 알았는지 — "как будто знал". Пример: 어디 가는지 몰라요. (Не знаю, куда он идёт.)',
-      '71': 'V + 기로 하다: Выражает решение сделать что-либо. В тексте: 키우기로 했습니다 — "решили воспитать". Пример: 내일 가기로 했어요. (Решил пойти завтра.)',
-      '82': 'V + 게 되다: Указывает на непреднамеренное или изменившееся состояние. В тексте: 걱정이 되었습니다 — "забеспокоилась". Пример: 늦게 됐어요. (Я опоздал.)'
+      '19': 'V/A + 고: Соединяет однородные члены или указывает последовательность. В тексте: 심술 많고 — "сварливый, и…". Пример: 밥을 먹고 공부해요. (Поел, а затем учусь.)',
+      '20': 'V/A + 았/었/였다: Прошедшее время. 았 — после ㅏ/ㅗ, 었 — после остальных. В тексте: 많았습니다 — "был очень жадным". Пример: 공부했어요. (Я учился.)',
+      '23': 'N + 도: Частица «тоже, также». В тексте: 욕심도 — "жадность тоже". Пример: 나도 가고 싶어요. (Я тоже хочу пойти.)',
+      '24': 'N + 만: Частица «только». В тексте: 갓난아기만 — "только младенец". Пример: 나만 알겠어. (Только я знаю.)',
+      '25': 'V/A + 지만: Указывает противопоставление или уступку. В тексте: 했지만 — "делал, но…". Пример: 가고 싶지만 시간이 없어요. (Хочу пойти, но нет времени.)',
+      '28': 'V/A + (으)시다: Уважительная форма. 시다 — после гласных/ㄹ, 으시다 — после согласных. В тексте: 착하신 — "добрые (почтительно)". Пример: 말씀하십니다. (Говорит (почтительно).)',
+      '33': 'V/A + 을/ㄹ까요?: Вежливый вопрос «Неужели…?» или «Как насчёт…?». В тексте: 좋을까 — "как было бы здорово?". Пример: 같이 갈까요? (Пойдём вместе?)',
+      '35': 'V + 다가: Указывает смену действия. В тексте: 따라가다가 — "гоняясь, (он)…". Пример: 텔레비전을 보다가 잠들었어요. (Смотрел телевизор, а затем заснул.)',
+      '36': 'V + 고 있다: Указывает продолженное действие, как "-ing". В тексте: 살고 있었습니다 — "жили". Пример: 책을 읽고 있어요. (Сейчас читаю книгу.)',
+      '37': 'V + 고 싶다: Выражает желание. В тексте: 하고 싶었지만 — "хотел (делать)". Пример: 한국어를 배우고 싶어요. (Хочу изучать корейский.)',
+      '38': 'V/A + (으)ㄹ 텐데: Выражает сожаление или предположение. В тексте: 오를 텐데 — "бы пошла, но…". Пример: 비가 올 텐데. (Наверное, пойдёт дождь.)',
+      '40': 'V/A + 아/어/여야 하다: Обязательность действия. В тексте: 사셔야 해요 — "должны жить". Пример: 약을 먹어야 해요. (Нужно принять лекарство.)',
+      '42': 'V + 아/어/여 주다: Действие для другого. В тексте: 해 주었습니다 — "рассказал (ему)". Пример: 밥을 해 주었어요. (Приготовила еду.)',
+      '43': 'N + (으)로: Творительный падеж, обозначает направление, средство. В тексте: 옆으로 — "к (боку)". Пример: 버스로 가요. (Еду на автобусе.)',
+      '44': 'N + 에게/한테/께: Дательный падеж для адресата. В тексте: 할머니에게 — "к бабушке". Пример: 친구에게 편지를 썼어요. (Написал письмо другу.)',
+      '45': 'N + 의: Родительный падеж, обозначает принадлежность. В тексте: 할아버지의 마음 — "мысли дедушки". Пример: 우리집의 개. (Собака моего дома.)',
+      '46': 'V + (으)면: Условное окончание. В тексте: 젊었으면 — "если бы был моложе". Пример: 비가 오면 우산을 써요. (Если дождь, беру зонт.)',
+      '47': 'A + (으)ㄴ + N: Определительная форма прилагательных. В тексте: 깊은 산골 — "глубокая долина". Пример: 맛있는 음식. (Вкусная еда.)',
+      '49': 'V + 을/ㄹ 수 없다: Невозможность действия. В тексте: 할 수 없었습니다 — "не мог сделать". Пример: 피아노를 칠 수 없어요. (Не умею играть на пианино.)',
+      '50': 'V + (으)려고: Намерение действия. В тексте: 지나가려고 — "чтобы пройти мимо". Пример: 밥을 먹으려고 갔어요. (Пошёл поесть.)',
+      '52': 'V/A + (으)면서: Одновременность действий. В тексте: 혀를 차며 — "щелкая языками". Пример: 음악을 들으면서 공부해요. (Слушаю музыку, учусь.)',
+      '59': 'V/A + 는데: Контекст, причина или противопоставление. В тексте: 앉았는데 — "сел, и…". Пример: 영화를 보는데 전화가 왔어요. (Смотрел фильм, позвонили.)',
+      '70': 'V + 는지 알다/모르다: Вопросительное придаточное. В тексте: 알았는지 — "как будто узнал". Пример: 어디에 가는지 몰라요. (Не знаю, куда идёт.)',
+      '71': 'V + 기로 하다: Решение сделать. В тексте: 키우기로 했습니다 — "решили воспитать". Пример: 운동하기로 했어요. (Решил заниматься спортом.)',
+      '82': 'V + 게 되다: Случайное или изменившееся состояние. В тексте: 걱정이 되었습니다 — "стало тревожно". Пример: 한국에 살게 되었어요. (Стал жить в Корее.)'
     };
 
-    // Grammar popups
     document.querySelectorAll('.grammar-point').forEach(point => {
       const grammarId = point.getAttribute('data-grammar');
       const popup = document.createElement('div');
@@ -807,20 +770,6 @@
             point.style.backgroundColor = '';
           }, 2000);
         });
-      });
-    });
-
-    // Tab switching functionality
-    document.querySelectorAll('.tab-button').forEach(button => {
-      button.addEventListener('click', () => {
-        // Remove active class from all buttons and content
-        document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-        document.querySelectorAll('.grammar-list, .vocabulary-list').forEach(content => content.classList.remove('active'));
-
-        // Add active class to clicked button and corresponding content
-        button.classList.add('active');
-        const tab = button.getAttribute('data-tab');
-        document.querySelector(`.${tab}-list`).classList.add('active');
       });
     });
 
