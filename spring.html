@@ -1,0 +1,2609 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>K-Study: Зелёный лягушонок</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #a8e063 0%, #7ed957 50%, #4eae4a 100%);
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: linear-gradient(135deg, #8b4513 0%, #a0522d 50%, #6b4423 100%);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      transition: transform 0.3s ease;
+      box-shadow: 0 4px 12px rgba(139, 69, 19, 0.2);
+    }
+
+    header.hidden {
+      transform: translateY(-100%);
+    }
+
+    main {
+      margin-top: 80px;
+      position: relative;
+    }
+
+    main::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      left: 0;
+      right: 0;
+      height: 50px;
+      background: linear-gradient(to bottom, #a0522d, #a8e063);
+      pointer-events: none;
+    }
+
+    footer {
+      background: linear-gradient(135deg, #6b4423 0%, #8b4513 50%, #a0522d 100%);
+      margin-top: 0;
+      padding: 2rem 0;
+      position: relative;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      left: 0;
+      right: 0;
+      height: 50px;
+      background: linear-gradient(to bottom, #4eae4a, #8b4513);
+      pointer-events: none;
+    }
+
+    .scroll-to-top {
+      background: linear-gradient(135deg, #a8e063 0%, #7ed957 100%);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      cursor: pointer;
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      display: none;
+      box-shadow: 0 4px 12px rgba(126, 217, 87, 0.3);
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .scroll-to-top:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(126, 217, 87, 0.4);
+      background: linear-gradient(135deg, #7ed957 0%, #4eae4a 100%);
+    }
+
+    .logo span {
+      color: #fff !important;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      font-weight: 900;
+      font-size: 1.4rem;
+      letter-spacing: 0.5px;
+    }
+
+    .grammar-highlight {
+      color: #e53935;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 3px;
+      transition: background 0.2s;
+    }
+
+    .grammar-highlight:hover {
+      background: #ffeaea;
+    }
+
+    .kor-tooltip-popup {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      max-width: 300px;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .tooltip-main-grammar {
+      color: #e53935;
+      font-weight: bold;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
+    .tooltip-expl {
+      color: #333;
+      margin-bottom: 8px;
+    }
+
+    .tooltip-ex {
+      color: #666;
+      font-style: italic;
+      border-top: 1px solid #eee;
+      padding-top: 8px;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <svg class="frog-bg-lily" viewBox="0 0 70 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="35" cy="20" rx="30" ry="12" fill="#7ed957" />
+    <path d="M35 20 L65 20 Q55 5 35 20 Z" fill="#4eae4a" />
+  </svg>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <span>K-Study</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="#grammar-section">Грамматика/Слова</a></li>
+        <li><a href="#quiz-section">Тест</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main
+    style="max-width: 700px; margin: 3rem auto 2rem auto; background: #fff; border-radius: 18px; box-shadow: 0 2px 12px rgba(35, 150, 17, 0.829); padding: 2.5rem 2rem;">
+    <div style="text-align:center; margin-bottom: 1.5rem;">
+      <svg class="frog-cartoon-img" width="120" height="100" viewBox="0 0 120 100" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="60" cy="80" rx="38" ry="16" fill="#7ed957" />
+        <ellipse cx="45" cy="55" rx="18" ry="22" fill="#7ed957" />
+        <ellipse cx="75" cy="55" rx="18" ry="22" fill="#7ed957" />
+        <ellipse cx="45" cy="45" rx="6" ry="7" fill="#fff" />
+        <ellipse cx="75" cy="45" rx="6" ry="7" fill="#fff" />
+        <ellipse cx="45" cy="45" rx="3" ry="3" fill="#2d1a05" class="frog-eye" />
+        <ellipse cx="75" cy="45" rx="3" ry="3" fill="#2d1a05" class="frog-eye" />
+        <ellipse cx="60" cy="70" rx="12" ry="7" fill="#4eae4a" />
+        <ellipse cx="60" cy="75" rx="6" ry="2" fill="#2d1a05" opacity="0.18" />
+        <ellipse cx="35" cy="30" rx="5" ry="5" fill="#7ed957" />
+        <ellipse cx="85" cy="30" rx="5" ry="5" fill="#7ed957" />
+      </svg>
+    </div>
+    <h1 style="color: #e76f51; text-align: center;">Зелёный лягушонок <p>(청개구리 이야기)</p>
+    </h1>
+    <div class="story-block">
+      <span class="kor-tooltip">옛날<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">N + 에</div><div class="tooltip-expl">Дательный падеж неодушевленных имен образуется путем присоединения к корню окончания -에. Имеет несколько значений:<br>1. Времени действия (когда?)<br>2. Направления движения (куда?)<br>3. Местонахождения предмета (где?)</div><div class="tooltip-ex">Пример: 밖에 사람이 많습니다. (На улице много людей. (Где? Местонахождение))</div>'>에</span>
+        아주 <span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">A + (으)ㄴ + N</div><div class="tooltip-expl">Определительная форма предикативных прилагательных настоящего времени образуется при помощи окончаний -ㄴ / -은.</div><div class="tooltip-ex">Пример: 밝은 옷. (Светлая одежда.)</div>'>큰</span>
+        연못에 아들 청개구리<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">N + 와/하고/과 + N</div><div class="tooltip-expl">Совместный падеж служит для соединения двух или более имен. Связывает два существительных, означает "и/вместе с".</div><div class="tooltip-ex">Пример: 친구와 영화를 봤어요. (С другом посмотрел фильм.)</div>'>와</span>
+        홀어머니가 함께 <span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V + 고 있다</div><div class="tooltip-expl">Выражает прогрессию или продолжение действия, эквивалентен английскому окончанию "-ing".</div><div class="tooltip-ex">Пример: 책을 읽고 있어요. (Сейчас читаю книгу.)</div>'>살고
+          있었</span> <span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V/A + ㅂ니다/습니다</div><div class="tooltip-expl">Официально-вежливый стиль образуется при помощи прибавления окончания -ㅂ니다 после гласных и -습니다 после согласных.</div><div class="tooltip-ex">Пример: 어제는 비가 왔습니다. (Вчера шёл дождь.)</div>'>습니다</span>.</span>
+      <div class="rus-sentence">Давным-давно в очень большом пруду жили вместе сын-лягушка и его мать-вдова.</div>
+    </div>
+
+    <div class="story-block">
+      <span class="kor-tooltip">그런데 아들 개구리<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">N + 은/는</div><div class="tooltip-expl">Обозначает тему предложения или объект обсуждения. Эквивалентно английским оборотам "as for..." или "regarding...".</div><div class="tooltip-ex">Пример: 저는 학생입니다. (Что касается меня, я — студент.)</div>'>는</span>
+        늘 엄마 말<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">N + 을/를</div><div class="tooltip-expl">Объектная частица, показывает что существительное является прямым дополнением.</div><div class="tooltip-ex">Пример: 밥을 먹어요. (Ем рис.)</div>'>을</span>
+        <span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">A/V + 지 않다</div><div class="tooltip-expl">Конструкция используется для отрицания прилаг. и глаг. Это эквивалентно отрицанию на русском языке с помощью "не".</div><div class="tooltip-ex">Пример: 집에 가지 않아요. (Не иду домой)</div>'>듣지
+          않았습니다</span>.</span>
+      <div class="rus-sentence">Но сын-лягушка никогда не слушал свою маму.</div>
+    </div>
+
+    <div class="story-block">
+      <span class="kor-tooltip">엄마<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">N + 이/가</div><div class="tooltip-expl">Именительный падеж указывает на подлежащее в предложении.</div><div class="tooltip-ex">Пример: 고양이가 있어요. (Кот есть.)</div>'>가</span>
+        말을 하<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V + (으)면</div><div class="tooltip-expl">Условные отношения (если/когда).</div><div class="tooltip-ex">Пример: 비가 오면 우산을 써요. (Если идёт дождь, беру зонт.)</div>'>면</span>
+        항상 반대로 했습니다.</span>
+      <div class="rus-sentence">Когда мать что-то говорила, он всегда поступал наоборот.</div>
+    </div>
+
+
+
+    <div class="story-block">
+      <span class="kor-tooltip">엄마가 산<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">N + (으)로</div><div class="tooltip-expl">Указывает на направление движения.</div><div class="tooltip-ex">Пример: 버스로 학교에 가요. (Еду на автобусе в школу.)</div>'>으로</span>
+        가<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V/A + (으)라고 하다</div><div class="tooltip-expl">Передача чужой речи (сказал, чтобы...).</div><div class="tooltip-ex">Пример: 선생님이 조용히 하라고 했어요. (Учитель сказал вести себя тихо.)</div>'>라고</span>
+        하면 강으로 가<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V/A + 고</div><div class="tooltip-expl">Соединяет два действия или предложения (и).</div><div class="tooltip-ex">Пример: 밥을 먹고 책을 읽었어요. (Я поел и прочитал книгу.)</div>'>고</span>,
+        강으로 가라고 하면 산으로 갔습니다.</span>
+      <div class="rus-sentence">Если мать говорила идти в горы, он шёл к реке, а если говорила идти к реке, он шёл в
+        горы.</div>
+    </div>
+
+    <!-- Предложение 5 -->
+    <div class="story-block">
+      <span class="kor-tooltip">'다른 아이들<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">N + 도</div><div class="tooltip-expl">Означает "тоже" или "даже".</div><div class="tooltip-ex">Пример: 나도 가고 싶어요. (Я тоже хочу пойти)</div>'>도</span>
+        부모 말을 잘 듣<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V/A + 는데</div><div class="tooltip-expl">Имеет противительное значение, однако при этом, с точки зрения говорящего, два
+указанных обстоятельства не исключают одно другое, в отличие от -지만.
+</div><div class="tooltip-ex">Пример: 영화를 보는데 전화가 왔어요. (Смотрел фильм, когда позвонил телефон.)</div>'>는데</span>
+        왜 우리 아들은 말을 <span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">안 + V</div><div class="tooltip-expl">Данный тип отрицания употребляется с глаголами и прилагательными для констатации того, что некоторое положение вещей не имеет место быть, вне зависимости от того, чем это обусловлено.
+</div><div class="tooltip-ex">Пример: 가: 순대를 먹어요? 니: 아니요, 안 먹어요 (Ты ешь сунде? Нет, не ем.)</div>'>안</span> 듣는
+        걸까?'</span>
+      <div class="rus-sentence">«Другие дети хорошо слушаются родителей, но почему мой сын не слушает?»</div>
+    </div>
+
+    <!-- Предложение 6 -->
+    <div class="story-block">
+      <span class="kor-tooltip">엄마 개구리는 아들<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">N + 이/가</div><div class="tooltip-expl">Именительный падеж указывает на подлежащее в предложении.</div><div class="tooltip-ex">Пример: 고양이가 있어요. (Кот есть.)</div>'>이</span>
+        말을 듣지 않<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V/A + 아/어/여서</div><div class="tooltip-expl">Выражает причинно-следственную связь между первой и второй частью предложения, где первая часть с окончанием -아서 выражает причину, а вторая часть — следствие. </div><div class="tooltip-ex">Пример: 비가 와서 우산을 써요. (Из-за дождя беру зонт.)</div>'>아서</span>
+        속상했습니다.</span>
+      <div class="rus-sentence">Мать-лягушка очень переживала из-за непослушания сына.</div>
+    </div>
+
+    <!-- Предложение 7 -->
+    <div class="story-block">
+      <span class="kor-tooltip">그래서 엄마 개구리는 아들 개구리<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">N + 에게/한테/께</div><div class="tooltip-expl">Указывает на получателя действия (кому-то).</div><div class="tooltip-ex">Пример: 나는 학생들한테 한국어를 가르쳤어. (Я преподовал корейский язык ученикам.)</div>'>에게</span>
+        말했습니다.</span>
+      <div class="rus-sentence">Поэтому мама-лягушка сказала сыну-лягушке.</div>
+    </div>
+
+    <!-- Предложение 8 -->
+    <div class="story-block">
+      <span class="kor-tooltip">"얘야, 너는 왜 엄마 말을 듣지 않<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V + 나요?</div><div class="tooltip-expl">V + 나요? – Вопросительная форма (вежливая). V + 니? – более формальная и/или менее вежливая форма. </div><div class="tooltip-ex">Пример: 밥을 먹나요? (Ты ешь?)</div>'>니</span>?"</span>
+      <div class="rus-sentence">«Дитя моё, почему ты не слушаешься мать?»</div>
+    </div>
+
+    <!-- Предложение 9 -->
+    <div class="story-block">
+      <span class="kor-tooltip">"엄마가 똑바로 말하<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V + 는 것</div><div class="tooltip-expl">Субстантивированная форма предикативов, которая образуется с помощью определительной формы предикатива и служебного имени 것. </div><div class="tooltip-ex">Пример: 책 읽는 것을 좋아해요. (То, что читаю книгу, мне нравится.)</div>'>는
+          것</span>
+        을 가르쳐<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">A/V-(으)ㄹ 테니까</div><div class="tooltip-expl">Выражение намерения или предположения.</div><div class="tooltip-ex">Пример: 이제 출발할 테니까 준비해 주세요. (Мы скоро уезжаем, так что, пожалуйста, приготовьтесь.)</div>'>줄
+          테니까</span>
+        잘 따라 해 봐라."</span>
+      <div class="rus-sentence">«Я научу тебя говорить правильно, так что старайся повторять».</div>
+    </div>
+
+    <!-- Предложение 10 -->
+    <div class="story-block">
+      <span class="kor-tooltip">"개굴개굴."</span>
+      <div class="rus-sentence">«Ква-ква».</div>
+    </div>
+
+    <!-- Предложение 11 -->
+    <div class="story-block">
+      <span class="kor-tooltip">그러자 아들은 "굴개굴개" 하며<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V/A + 았/었/였다</div><div class="tooltip-expl">В корейском языке прошедшее время образуется суффиксальным способом — путем присоединения к основе предикатива одного из трех суффиксов.</div><div class="tooltip-ex">Пример: 공부했어요. (Я учился.)</div>'>
+          말했습니다</span>
+        .</span>
+      <div class="rus-sentence">Тогда сын-лягушка сказал: «авк-авк», повторяя наоборот.</div>
+    </div>
+
+    <!-- Предложение 12 -->
+    <div class="story-block">
+      <span class="kor-tooltip">"엄마, 전 항상 거꾸로 하는 것이 좋아요."</span>
+      <div class="rus-sentence">«Мама, мне всегда нравится делать всё наоборот».</div>
+    </div>
+
+    <!-- Предложение 13 -->
+    <div class="story-block">
+      <span class="kor-tooltip">엄마는 크게 한숨을 쉬며 말했습니다.</span>
+      <div class="rus-sentence">Мать тяжело вздохнула и сказала.</div>
+    </div>
+
+    <!-- Предложение 14 -->
+    <div class="story-block">
+      <span class="kor-tooltip">"그래, 하지만 꼭 이것<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">N + 만</div><div class="tooltip-expl">Чтобы сказать, что вам нравится только одна вещь, нужно использовать частицу –만 (только).</div><div class="tooltip-ex">Пример: 나만 알겠어. (Только я знаю.)</div>'>만</span>
+        은 지켜라."</span>
+      <div class="rus-sentence">«Ладно, но запомни только одно».</div>
+    </div>
+
+    <!-- Предложение 15 -->
+    <div class="story-block">
+      <span class="kor-tooltip">"저 숲 속에는
+        뱀이 살고 있<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V/A + (으)니까</div><div class="tooltip-expl">Окончание указывает на аргумент, основание для заключения, вывода. Употребляется с глаголами, прилагательными и связками 이다/아니다.</div><div class="tooltip-ex">Пример: 배가 고프니까 밥을 먹었어요. (Так как был голоден, поел.)</div>'>으니까</span>
+        절대로 저 숲에 가면 안 된다."</span>
+      <div class="rus-sentence">«В том лесу живёт змея, так что ни в коем случае не ходи в тот лес».</div>
+    </div>
+
+    <!-- Предложение 16 -->
+    <div class="story-block">
+      <span class="kor-tooltip">아들 개구리는 숲에 정말 뱀이 살고 있<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V + 는지 알다/모르다</div><div class="tooltip-expl">Вопросительное придаточное предложение в сложном предложении оформляется окончанием -(으)ㄴ지 / -는지 / -(으)ㄹ지, которое присоединяется к сказуемому придаточного. </div><div class="tooltip-ex">Пример: 그가 어디에 있는지 몰라요 (Я не знаю, где он.)</div>'>는지</span>
+        궁금했습니다.</span>
+      <div class="rus-sentence">Сын-лягушка очень хотел узнать: “Правда ли, что в том лесу живут змеи?”</div>
+    </div>
+
+    <!-- Предложение 17 -->
+    <div class="story-block">
+      <span class="kor-tooltip">그래서 엄마 몰래 뱀이 사는
+        숲으로 갔습니다.</span>
+      <div class="rus-sentence">И он тайком от матери отправился в тот лес, где живут змеи.</div>
+    </div>
+
+    <!-- Предложение 18 -->
+    <div class="story-block">
+      <span class="kor-tooltip">엄마가 일을 하고 집으로 돌아왔<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V + (으)ㄹ 때</div><div class="tooltip-expl">Для указания на определенный момент времени используют служебное слово 때 (букв. момент, время, период).</div><div class="tooltip-ex">Пример: 나갈 때 쓰레기도 좀 가지고 가서 버려 줘요. (Когда будешь выходить, захвати мусор и выбрось его, пожалуйста.)</div>'>을
+          때</span> 아들 개구리가 보이지 않았습니다.</span>
+      <div class="rus-sentence">Когда мать вернулась домой, после работы, сына нигде не было.</div>
+    </div>
+
+    <!-- Предложение 19 -->
+    <div class="story-block">
+      <span class="kor-tooltip">그래서 엄마 개구리는 아들 개구리를 찾아다녔습니다.</span>
+      <div class="rus-sentence">Поэтому мать-лягушка искала сына-лягушку.</div>
+    </div>
+
+    <!-- Предложение 20 -->
+    <div class="story-block">
+      <span class="kor-tooltip">"애들아, 우리 아들 <span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">못 + V</div><div class="tooltip-expl">Данный тип отрицания употребляется с глаг. и обозначает, что данное действие не совершается в силу каких-то обстоятельств. Причина, как правило, имеет объективный характер.</div><div class="tooltip-ex">Пример: 나는 수영을 못 해요 (Я не умею плавать.)</div>'>못</span>
+        봤니?"</span>
+      <div class="rus-sentence">«Дети, вы не видели моего сына?»</div>
+    </div>
+
+    <!-- Предложение 21 -->
+    <div class="story-block">
+      <span class="kor-tooltip">"저쪽 숲으로 갔어요."</span>
+      <div class="rus-sentence">«Он ушел в ту сторону, в лес».</div>
+    </div>
+
+    <!-- Предложение 22 -->
+    <div class="story-block">
+      <span class="kor-tooltip">엄마 개구리는 깜짝 놀라서 뱀이 사는 숲으로 달려갔습니다.</span>
+      <div class="rus-sentence">Мать-лягушка в панике побежала в лес, где жили змеи.</div>
+    </div>
+
+    <!-- Предложение 23 -->
+    <div class="story-block">
+      <span class="kor-tooltip">그곳에서는 마침 큰 뱀이 아들 개구리를 잡아먹<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V + (으)려고 하다</div><div class="tooltip-expl">Конструкция означает намерение совершить какое-то действие.</div><div class="tooltip-ex">Пример: 밥을 먹으려고 식당에 갔어요. (Пошёл в ресторан, чтобы поесть.)</div>'>으려고
+          하고</span>
+        있었습니다.</span>
+      <div class="rus-sentence">Там как раз большая змея собиралась съесть сына-лягушку.</div>
+    </div>
+
+    <!-- Предложение 24 -->
+    <div class="story-block">
+      <span class="kor-tooltip">"안 돼!"</span>
+      <div class="rus-sentence">«Нельзя!»</div>
+    </div>
+
+    <!-- Предложение 25 -->
+    <div class="story-block">
+      <span class="kor-tooltip">소리치며 엄마 개구리는 뱀을 향해 달려갔습니다.</span>
+      <div class="rus-sentence">Крикнула мать и бросилась к змее.</div>
+    </div>
+
+    <!-- Предложение 26 -->
+    <div class="story-block">
+      <span class="kor-tooltip">큰 뱀은 엄마 개구리<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">N + 의</div><div class="tooltip-expl">Родительный падеж связывает два (или более) сущ. для выражения притяжательных отношений, т.е. отношений принадлежности.</div><div class="tooltip-ex">Пример: 우리집의 고양이. (Кошка нашего дома.)</div>'>의</span>
+        다리를 물었습니다.</span>
+      <div class="rus-sentence">Большая змея укусила мать-лягушку за ногу.</div>
+    </div>
+
+    <!-- Предложение 27 -->
+    <div class="story-block">
+      <span class="kor-tooltip">그때 이웃들이 달려와서 엄마 개구리를 구<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V + 아/어/여 주다</div><div class="tooltip-expl">Категория направленности действия, которая указывает на то, что данное действие совершается не в собственных интересах, а в интересах или для другого человека.</div><div class="tooltip-ex">Пример: 지난 번에 아나 씨가 저에게 커피를 사 줬어요. 이번에는 제가 사 줄게요. (В прошлый раз ты купила мне кофе. На этот раз я куплю тебе.)</div>'>해
+          주었</span>습니다.</span>
+      <div class="rus-sentence">В этот момент соседи прибежали и спасли мать-лягушку.</div>
+    </div>
+
+    <!-- Предложение 28 -->
+    <div class="story-block">
+      <span class="kor-tooltip">그렇<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">A/V+지만 </div><div class="tooltip-expl">Присоединяется к временной основе предикатива. Используется для выражения: 1) противопоставления двух действий, состояний; 2) уступительных отношений. Подразумевается, что факт, обозначенный во второй части предложения, стал возможен, несмотря на обстоятельства, указанные в первой части предложения.</div><div class="tooltip-ex">Пример: 저는 해산물을 먹지만 어머니는 안 드셔요. (Я ем морепродукты, но мама не ест.)</div>'>지만</span>
+        엄마 개구리는 뱀에 물렸<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V/A + 기 때문에</div><div class="tooltip-expl">Конструкции 때문에 и -기 때문에 указывают на причину или основание ситуации, описанной во второй части предложения, и соответствуют английскому слову "because" (потому что).</div><div class="tooltip-ex">Пример: 피곤하기 때문에 일찍 잤어요. (Потому что устал, лёг спать рано.)</div>'>기
+          때문에</span>
+        온몸에 독이 퍼졌습니다.</span>
+      <div class="rus-sentence">Однако мама-лягушка была укушена змеёй, и яд распространился по всему телу.</div>
+    </div>
+
+    <!-- Предложение 29 -->
+    <div class="story-block">
+      <span class="kor-tooltip">엄마 개구리는 죽어 가면서 도
+        아들 개구리가 거꾸로 하는 것이 걱정이 되었습니다.</span>
+      <div class="rus-sentence">Даже умирая, мать-лягушка беспокоилась, что сын делает всё наоборот.</div>
+    </div>
+
+    <!-- Предложение 30 -->
+    <div class="story-block">
+      <span class="kor-tooltip">엄마 개구리는 생각했습니다.</span>
+      <div class="rus-sentence">Мать-лягушка задумалась.</div>
+    </div>
+
+    <!-- Предложение 31 -->
+    <div class="story-block">
+      <span class="kor-tooltip">"내가 죽으면
+        산에 묻어야 하는데 산에 <span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V/A + 아/어/여야 하다</div><div class="tooltip-expl">Используется для передачи высказывая чужой речи. Для формирования косвенной речи с глаголом связкой 이다 в настоящем времени необходимо заменить 다 на 라고.  </div><div class="tooltip-ex">Пример: 지금 약을 먹어야 해요. (Сейчас нужно принять лекарство.)</div>'>묻어야
+          하</span>는데, 산에 묻으라고 하면 강에 묻겠지."</span>
+      <div class="rus-sentence">“Когда я умру, вы должны похоронить меня в горах, а если скажу ‘хороните в горах’, он
+        похоронит в реке.”</div>
+    </div>
+
+    <!-- Предложение 32 -->
+    <div class="story-block">
+      <span class="kor-tooltip">그래서 엄마 개구리는 말했습니다.</span>
+      <div class="rus-sentence">Поэтому мать-лягушка сказала.</div>
+    </div>
+
+    <!-- Предложение 33 -->
+    <div class="story-block">
+      <span class="kor-tooltip">"아들아, 내가 죽으면 나를 강가에 묻어라."</span>
+      <div class="rus-sentence">«Сынок, когда я умру, похорони меня, пожалуйста, у берега реки».</div>
+    </div>
+
+    <!-- Предложение 34 -->
+    <div class="story-block">
+      <span class="kor-tooltip">하지만 아들은 지금<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">N + (이)까지 </div><div class="tooltip-expl">Определительная форма прилагательных.</div><div class="tooltip-ex">Пример: 다음 주까지 숙제해 오세요. (Сделайте домашнее задание к следующей неделе.)</div>'>
+          까지 </span> 엄마 말을 듣지 않은 것이 후회되었습니다.</span>
+      <div class="rus-sentence">Но сын раскаивался, что до сих пор не слушался маму</div>
+    </div>
+
+    <!-- Предложение 35 -->
+    <div class="story-block">
+      <span class="kor-tooltip">이번만은 엄마 말을 잘 듣<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V + 고 싶다</div><div class="tooltip-expl">Категория желания -고 싶다 присоединяется к основе глагола. Выражает желание сделать что-либо. </div><div class="tooltip-ex">Пример: 저는 여행을 가고 싶어요. (Я хочу поехать в путешествие.)</div>'>고
+          싶</span>습니다.</span>
+      <div class="rus-sentence">В этот раз он действительно хотел послушаться маму.</div>
+    </div>
+
+    <!-- Предложение 36 -->
+    <div class="story-block">
+      <span class="kor-tooltip">그래서 엄마를 산에 묻지 않고 강가에 묻었습니다.</span>
+      <div class="rus-sentence">Поэтому он не похоронил мать в горах, а похоронил у реки.</div>
+    </div>
+
+    <!-- Предложение 37 -->
+    <div class="story-block">
+      <span class="kor-tooltip">며칠 후 비가 많이 왔습니다.</span>
+      <div class="rus-sentence">Через несколько дней пошёл сильный дождь.</div>
+    </div>
+
+    <!-- Предложение 38 -->
+    <div class="story-block">
+      <span class="kor-tooltip">아들은 엄마 무덤이 떠내려갈까 봐 걱정이 되었습니다.</span>
+      <div class="rus-sentence">Сын беспокоился, что могила матери может быть унесена водой.</div>
+    </div>
+
+    <!-- Предложение 39 -->
+    <div class="story-block">
+      <span class="kor-tooltip">그래서 잠을<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V + 을/ㄹ 수 없다</div><div class="tooltip-expl">Эта конструкция выражает способность или возможность. Когда кто-то или что-то может сделать что-то (или что-то возможно), используется форма -(으)ㄹ 수 있다, а когда не может (или что-то невозможно) - -(으)ㄹ 수 없다. В английском языке это соответствует слову "can" (могу/может).</div><div class="tooltip-ex">Пример: 저는 춤을 출 수 없어요. (Я не умею танцевать.)</div>'>잘
+          수 가 없었</span> 습니다.</span>
+      <div class="rus-sentence">Поэтому он не мог спать.</div>
+    </div>
+
+    <!-- Предложение 40 -->
+    <div class="story-block">
+      <span class="kor-tooltip">아들은 비를 맞<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">V/A + (으)면서</div><div class="tooltip-expl">Одновременные действия (пока, в то же время). Окончание -면서 употребляется и с прил: показывает, что объект обладает одним свойством и при этом еще и вторым. </div><div class="tooltip-ex">Пример: 음악을 들으면서 공부해요 (Я учусь, слушая музыку.)</div>'>으면서</span>
+        엄마 무덤 옆<span class="grammar-highlight"
+          data-tooltip='<div class="tooltip-main-grammar">N + 에서</div><div class="tooltip-expl">Дательно-местный падеж образуется путем присоединения к основе существительного окончания -에서. </div><div class="tooltip-ex">Пример: 도서관에서 공부해요. (Учусь в библиотеке.)</div>'>에서</span>
+        슬프게 울었습니다.</span>
+      <div class="rus-sentence">Сын, стоя под дождём, навзрыд плакал рядом с могилой матери.</div>
+    </div>
+
+    <!-- Предложение 41 -->
+    <div class="story-block">
+      <span class="kor-tooltip">"개굴개굴."</span>
+      <div class="rus-sentence">«Ква-ква».</div>
+    </div>
+
+    <!-- Предложение 42 -->
+    <div class="story-block">
+      <span class="kor-tooltip">지금도 개구리는 비가 올 때마다 엄마 무덤이 떠내려갈까 봐 슬프게 웁니다.</span>
+      <div class="rus-sentence">С тех пор лягушки грустно квакают, когда идет дождь, боясь, что могилы их матерей смоет
+        водой.</div>
+    </div>
+
+    <!-- Предложение 43 -->
+    <div class="story-block">
+      <span class="kor-tooltip">"개굴개굴 개굴개굴."</span>
+      <div class="rus-sentence">«Ква-ква, ква-ква».</div>
+    </div>
+    </div>
+
+    <button id="scrollToTop" class="scroll-to-top" onclick="scrollToTop()">↑</button>
+
+    <section class="frog-grammar-section" id="grammar-section">
+      <div class="frog-tabs">
+        <button class="frog-tab active" data-tab="grammar">Грамматика</button>
+        <button class="frog-tab" data-tab="words">Сложные слова</button>
+      </div>
+
+
+      <div class="frog-tabs-content">
+        <div class="frog-tab-panel" id="tab-grammar" style="display:block;">
+
+
+          <div class="frog-card">
+            <div class="frog-card-title">N + 에</div>
+            <div class="frog-card-desc">
+              <p class="intro">Дательный падеж в корейском языке</p>
+              <p class="explanation">Дательный падеж неодушевленных имен образуется путем присоединения к корню
+                окончания - 에.</p>
+
+              <div class="rule-block">
+                <p class="subtitle"><span class="keyword-highlight">Значения:</span></p>
+                <p class="rule">1) Времени действия (когда?)</p>
+                <p class="rule">2) Направления движения (куда?)</p>
+                <p class="rule">3) Местонахождения предмета (где?)</p>
+              </div>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">В тексте:</span> <span class="example">연못에</span> —
+                  "в пруду" (местонахождение)</p>
+              </div>
+            </div>
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">밖에 사람이
+                  많습니다.</span> (На улице много людей.)</p>
+            </div>
+          </div>
+
+          <div class="frog-card">
+            <div class="frog-card-title">A + (으)ㄴ + N</div>
+            <div class="frog-card-desc">
+              <p class="intro">Определительная форма прилагательных</p>
+              <p class="explanation">Определительная форма предикативных прилагательных настоящего времени образуется
+                при помощи окончаний -ㄴ / -은.</p>
+
+              <div class="rule-block">
+                <p class="rule"><span class="keyword-highlight">ㄴ</span> — после гласных и ㄹ</p>
+                <p class="rule"><span class="keyword-highlight">은</span> — после согласных (кроме ㄹ)</p>
+              </div>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">В тексте:</span> <span class="example">아주 큰
+                    연못</span> — "очень большой пруд" (크다 → 큰)</p>
+              </div>
+            </div>
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">밝은 옷</span> (Cветлая одежда)</p>
+            </div>
+          </div>
+
+
+          <div class="frog-card">
+            <div class="frog-card-title">N + 와/하고/과 + N</div>
+            <div class="frog-card-desc">
+              <p class="intro">Совместный падеж в корейском языке</p>
+              <p class="explanation">Совместный падеж служит для того, чтобы соединять два или более имен, являющихся
+                однородными членами предложения. Форма этого падежа образуется путем присоединения окончания -하고 к
+                первому
+                имени в ряду. </p>
+
+              <div class="rule-block">
+                <p class="subtitle"><span class="keyword-highlight">Значения:</span></p>
+                <p class="rule">1) Соединение однородных членов</p>
+                <p class="rule">2) Совместное совершение действия</p>
+              </div>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">В тексте:</span> <span class="example">청개구리와
+                    홀어머니</span> — "зелёная лягушка и мать-вдова"</p>
+              </div>
+            </div>
+
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">친구와 영화를
+                  봤어요.</span> (С другом посмотрел фильм.)</p>
+            </div>
+          </div>
+
+          <div class="frog-card">
+            <div class="frog-card-title">V + 고 있다</div>
+            <div class="frog-card-desc">
+              <p class="intro">Продолженное действие</p>
+              <p class="explanation">Данная грамматическая конструкция выражает прогрессию или продолжение действия и
+                эквивалентен английскому окончанию "-ing" (в процессе какого-либо действия). Он образуется путём
+                добавления -고 있다 к основе глагола. Чтобы выразить продолжение действия, которое происходило в прошлом,
+                используется форма -고 있었다.</p>
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">В тексте:</span> <span class="example">살고
+                    있었습니다</span> — "проживали"</p>
+              </div>
+            </div>
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">책을 읽고
+                  있어요.</span> (Сейчас читаю книгу.)</p>
+            </div>
+          </div>
+
+
+          <div class="frog-card">
+            <div class="frog-card-title">V/A + ㅂ니다/습니다</div>
+            <div class="frog-card-desc">
+              <p class="intro">Официально-вежливый стиль</p>
+              <p class="explanation">Образуется при помощи окончаний -ㅂ니다/-습니다.</p>
+              <div class="rule-block">
+                <p class="rule"><span class="keyword-highlight">ㅂ니다</span> — после гласных</p>
+                <p class="rule"><span class="keyword-highlight">습니다</span> — после согласных</p>
+              </div>
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">В тексте:</span> <span class="example">있었습니다</span>
+                  — "было" (прош. форма 있다)</p>
+              </div>
+            </div>
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">어제는 비가
+                  왔습니다.</span> (Вчера шёл дождь.)</p>
+            </div>
+          </div>
+
+
+
+
+
+          <div class="frog-card">
+            <div class="frog-card-title">N + 은/는</div>
+            <div class="frog-card-desc">
+              <p class="intro">Тематические частицы 은/는 в корейском языке</p>
+              <p class="explanation">은/는 обозначают тему предложения или объект обсуждения. Они эквивалентны английским
+                оборотам "as for..." или "regarding...".</p>
+
+              <div class="rule-block">
+                <p class="rule"><span class="keyword-highlight">는</span> — добавляется к словам, оканчивающимся на
+                  гласную
+                  (<span class="example">예: 나는</span>)</p>
+                <p class="rule"><span class="keyword-highlight">은</span> — добавляется к словам, оканчивающимся на
+                  согласную (<span class="example">예: 책은</span>)</p>
+              </div>
+
+              <div class="usage-section">
+                <p class="subtitle"><span class="keyword-highlight">Основные функции 은/는:</span></p>
+
+                <div class="function-block">
+                  <p class="function-title">1. Указание на известную информацию:</p>
+                  <p class="function-desc">은/는 используется, когда речь идёт о чём-то, уже упоминавшемся в разговоре,
+                    или
+                    о чём-то, что известно обоим собеседникам. То есть, 은/는 вводит "старую информацию".</p>
+                  <div class="function-example">
+                    <p class="example-text">Пример: <span class="example">저 사람은 제 친구예요.</span> → Что касается того
+                      человека – он мой друг. (Уже обсуждалось или известно.)</p>
+                  </div>
+                </div>
+
+                <div class="function-block">
+                  <p class="function-title">2. Сравнение или противопоставление:</p>
+                  <p class="function-desc">은/는 может подчеркивать контраст между двумя объектами. В таких случаях
+                    частица
+                    может добавляться не только к подлежащему, но и к дополнению или другим частям предложения.</p>
+                </div>
+                <div class="function-example">
+                  <p class="example-text">Пример: <span class="example">저는 커피는 좋아해요, 하지만 차는 안 마셔요.</span> → Кофе я
+                    люблю, а чай не пью. (Сравнение двух объектов.)</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="important-note">
+              <p class="subtitle"><span class="keyword-highlight">Таким образом, 은/는 помогает:</span></p>
+              <ul class="summary-list">
+                <li>выделить тему разговора</li>
+                <li>противопоставить идеи</li>
+                <li>указать на уже известную информацию</li>
+              </ul>
+              <div class="text-usage">
+                <p class="subtitle"><span class="keyword-highlight">В тексте:</span></p>
+                <p class="example-text"><span class="example">아들 개구리는</span> — "что касается сына-лягушки, …"</p>
+              </div>
+            </div>
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">저는 학생입니다.</span> (Что касается меня, я — студент.)</p>
+            </div>
+          </div>
+
+
+
+
+
+
+          <div class="frog-card">
+            <div class="frog-card-title">N + 을/를</div>
+            <div class="frog-card-desc">
+              <p class="intro">Объектная частица 을/를 в корейском языке</p>
+              <p class="explanation">을/를 добавляется к существительному, чтобы показать, что оно является прямым
+                дополнением (объектом действия) в предложении.</p>
+
+              <div class="rule-block">
+                <p class="rule"><span class="keyword-highlight">를</span> — используется после гласных (<span
+                    class="example">예: 사과를</span>).</p>
+                <p class="rule"><span class="keyword-highlight">을</span> — используется после согласных (<span
+                    class="example">예: 책을</span>).</p>
+              </div>
+
+              <p class="subtitle">Основные глаголы, требующие 을/를:</p>
+              <p class="hint">Частица часто встречается с глаголами, связанными с воздействием на объект:</p>
+
+              <ul class="verb-list">
+                <li><span class="verb">먹다</span> (есть)</li>
+                <li><span class="verb">마시다</span> (пить)</li>
+                <li><span class="verb">좋아하다</span> (нравиться, любить)</li>
+                <li><span class="verb">읽다</span> (читать)</li>
+                <li><span class="verb">보다</span> (смотреть, видеть)</li>
+                <li><span class="verb">만나다</span> (встречать)</li>
+                <li><span class="verb">사다</span> (покупать)</li>
+                <li><span class="verb">가르치다</span> (учить, преподавать)</li>
+                <li><span class="verb">배우다</span> (учиться)</li>
+                <li><span class="verb">쓰다</span> (писать)</li>
+              </ul>
+
+              <div class="usage-tips">
+                <p class="subtitle"><span class="keyword-highlight">Особенности употребления:</span></p>
+                <p class="tip">1. В разговорной речи 을/를 часто опускается, если контекст понятен. <span
+                    class="example">"사과
+                    먹어요"</span> (вместо <span class="example">"사과를 먹어요"</span>).</p>
+                <p class="tip">2. Однако в официальной речи или для уточнения частицу обычно сохраняют.</p>
+              </div>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">Важно:</span></p>
+                <p>을/를 указывает именно на прямое дополнение, в отличие от 은/는 (тема предложения) или 이/가 (подлежащее).
+                </p>
+                <p class="example-text"><span class="keyword-highlight">В тексте:</span> <span class="example">엄마
+                    말을</span> — "мамины слова" (объект "не слушал").</p>
+              </div>
+            </div>
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">밥을 먹어요.</span> (Ем рис.)</p>
+            </div>
+          </div>
+
+
+
+
+
+          <div class="frog-card">
+            <div class="frog-card-title">A/V + 지 않다</div>
+            <div class="frog-card-desc">
+              <p class="intro">Отрицательная конструкция 지 않다</p>
+              <p class="explanation">Конструкция используется для отрицания прилагательных и глаголов. Это эквивалентно
+                отрицанию на русском языке с помощью "не", например, "не делать", "не хороший" и т.д.</p>
+
+              <div class="construction-block">
+                <p class="subtitle"><span class="keyword-highlight">Образование:</span></p>
+                <p class="construction">Основа глагола/прилагательного + 지 않다</p>
+              </div>
+
+              <div class="transformation-example">
+                <p class="subtitle"><span class="keyword-highlight">Пример преобразования:</span></p>
+                <div class="transformation">
+                  <span class="original">듣다</span>
+                  <span class="arrow">→</span>
+                  <span class="transformed">듣지 않다</span>
+                  <span class="arrow">+</span>
+                  <span class="tense">прош. -았습니다</span>
+                </div>
+              </div>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">В тексте:</span></p>
+                <p class="example-text"><span class="example">듣지 않았습니다</span> — "не слушал"</p>
+              </div>
+
+              <div class="usage-tips">
+                <p class="subtitle"><span class="keyword-highlight">Особенности использования:</span></p>
+                <p class="tip">1. Стандартный способ отрицания для глаголов и прилагательных</p>
+                <p class="tip">2. Более формальный вариант по сравнению с сокращенной формой 안 + глагол</p>
+              </div>
+            </div>
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">집에 가지 않아요.</span> (Не иду домой.)</p>
+            </div>
+          </div>
+
+
+
+
+
+          <div class="frog-card">
+            <div class="frog-card-title">N + 이/가</div>
+            <div class="frog-card-desc">
+              <p class="intro">Именительный падеж в корейском языке</p>
+              <p class="explanation">Именительный падеж указывает на то, что данное существительное является в
+                предложении подлежащим.</p>
+
+              <div class="rule-block">
+                <p class="rule"><span class="keyword-highlight">이</span> — присоединяется к существительным,
+                  оканчивающимся на согласную.</p>
+                <p class="rule"><span class="keyword-highlight">가</span> — присоединяется к существительным,
+                  оканчивающимся на гласную.</p>
+              </div>
+
+              <div class="usage-tips">
+                <p class="subtitle"><span class="keyword-highlight">Особенности употребления:</span></p>
+                <p class="tip">1. Указывает на ранее неизвестное подлежащее, новый предмет высказывания.</p>
+                <p class="tip">2. Такое подлежащее не может быть опущено (в отличие от подлежащего с частицей 은/는).</p>
+              </div>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">В тексте:</span> <span class="example">엄마가</span> —
+                  "мама (подлежащее)".</p>
+              </div>
+            </div>
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">고양이가
+                  있어요.</span> (Кот есть.)</p>
+            </div>
+          </div>
+
+
+
+
+
+
+          <div class="frog-card">
+            <div class="frog-card-title">V + (으)면</div>
+            <div class="frog-card-desc">
+              <p class="intro">Условное окончание в корейском языке</p>
+              <p class="explanation">Выражает условные отношения: первая часть содержит условие, вторая — следствие или
+                результат.</p>
+
+              <div class="rule-block">
+                <p class="rule"><span class="keyword-highlight">면</span> — присоединяется к основе, оканчивающейся на
+                  гласную или - ㄹ.</p>
+                <p class="rule"><span class="keyword-highlight">으면</span> — присоединяется к основе, оканчивающейся на
+                  согласную.</p>
+              </div>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">В тексте:</span> <span class="example">말을 하면</span>
+                  — "если говорит".</p>
+              </div>
+            </div>
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight"> 비가 오면 우산을 써요.</span> (Если идёт дождь, беру зонт.)
+              </p>
+            </div>
+          </div>
+
+
+
+          <div class="frog-card">
+            <div class="frog-card-title">N + (으)로</div>
+            <div class="frog-card-desc">
+              <p class="intro">Творительный падеж (으)로 в корейском языке</p>
+              <p class="explanation">Образуется путем присоединения к имени параллельных окончаний -로 или -으로.</p>
+
+              <div class="rule-block">
+                <p class="rule"><span class="keyword-highlight">로</span> — присоединяется к именам, оканчивающимся на
+                  гласную или на ㄹ.</p>
+                <p class="rule"><span class="keyword-highlight">으로</span> — присоединяется к именам, оканчивающимся на
+                  согласную (кроме ㄹ).</p>
+              </div>
+
+              <div class="usage-tips">
+                <p class="subtitle"><span class="keyword-highlight">Творительный падеж используется для
+                    обозначения:</span></p>
+                <div class="usage-tips">
+                  <p class="subtitle"><span class="keyword-highlight">Особенности использования:</span></p>
+                  <p class="tip">1. Направления движения (в отличие от дательного падежа, который указывает на конечный
+                    пункт движения, творительный падеж обозначает лишь общее направление)</p>
+                  <p class="tip">2. Орудия или средства, с помощью которого совершается действие</p>
+                  <p class="tip">3. Материала, из которого что-либо сделано</p>
+                  <p class="tip">4. «В качестве кого, чего»</p>
+                </div>
+              </div>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">В тексте:</span></p>
+                <p><span class="example">산으로 가고</span> — "ходит в гору".</p>
+                <p><span class="example">강으로 가고</span> — "ходит к реке".</p>
+              </div>
+            </div>
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">버스로 학교에 가요.</span> (Еду в школу на автобусе.)</p>
+            </div>
+          </div>
+
+
+
+
+          <div class="frog-card">
+            <div class="frog-card-title">V/A + (으)라고 하다</div>
+            <div class="frog-card-desc">
+              <p class="intro">Конструкция косвенной речи (으)라고 하다</p>
+              <p class="explanation">Используется для передачи высказывая чужой речи. Для формирования косвенной речи с
+                глаголом связкой 이다 в настоящем времени необходимо заменить 다 на 라고. </p>
+
+              <div class="rule-block">
+                <p class="subtitle"><span class="keyword-highlight">Формы образования:</span></p>
+
+                <div class="speech-rule">
+                  <p class="rule-title">1. С глаголом-связкой 이다 в настоящем времени:</p>
+                  <p class="rule-desc">Необходимо заменить 다 на 라고</p>
+                </div>
+
+                <div class="speech-rule">
+                  <p class="rule-title">2. В прошедшем времени:</p>
+                  <p class="rule-desc">Добавляется -고 к спряжению прошедшего времени 이다 в простой форме</p>
+                </div>
+
+                <div class="speech-rule">
+                  <p class="rule-title">3. В будущем времени:</p>
+                  <p class="rule-desc">Используется форма -일 것이다, а затем конструкция -일 거라고 하다</p>
+                </div>
+              </div>
+
+              <div class="text-examples">
+                <p class="subtitle"><span class="keyword-highlight">В тексте:</span></p>
+                <div class="text-example">
+                  <p class="example-text"><span class="example">산으로 가라고 하면</span> — "если (она) сказала 'иди в гору'"
+                  </p>
+                </div>
+                <div class="text-example">
+                  <p class="example-text"><span class="example">강으로 가라고 하면</span> — "если (она) сказала 'иди к реке'"
+                  </p>
+                </div>
+              </div>
+
+              <div class="usage-tips">
+                <p class="subtitle"><span class="keyword-highlight">Особенности использования:</span></p>
+                <p class="tip">1. Основная конструкция для передачи чужой речи в повелительном наклонении</p>
+                <p class="tip">2. Часто используется при передаче приказов, просьб или советов</p>
+              </div>
+            </div>
+
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">선생님이 "조용히 하라고" 했어요.</span> (Учитель сказал: «Ведите
+                себя
+                тихо».)</p>
+            </div>
+          </div>
+
+
+
+
+          <div class="frog-card">
+            <div class="frog-card-title">V/A + 고</div>
+            <div class="frog-card-desc">
+              <p class="intro">Соединительное окончание 고</p>
+              <p class="explanation">Два предикатива в предложении могут быть связаны соединительным окончанием -고. </p>
+            </div>
+
+            <div class="usage-tips">
+              <p class="subtitle"><span class="keyword-highlight">Служит для:</span></p>
+
+              <div class="usage-block">
+                <div class="usage-block">
+                  <p class="usage">1. Связи двух глаголов или прилагательных, являющихся однородными членами
+                    предложения.
+                  </p>
+                </div>
+
+                <div class="usage-block">
+                  <p class="usage">2. Связи двух глаголов. При этом глагол с окончанием -고 обозначает действие,
+                    совершенное раньше, чем действие, выраженное конечным предикативом. Значение предшествования -고
+                    обнаруживается только у переходных глаголов (т.е. требующих прямого дополнения).</p>
+                </div>
+
+                <div class="usage-block">
+                  <p class="usage">3. Обозначения сопоставительных отношений. Сопоставляемые члены предложения
+                    оформляются
+                    выделительной частицей -은 / -는.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-examples">
+              <p class="subtitle"><span class="keyword-highlight">В тексте:</span></p>
+              <div class="text-example">
+                <p class="example-text"><span class="example">강으로 가고</span> — "ходит в гору"</p>
+              </div>
+            </div>
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">밥을 먹고 공부해요.</span> (Поел, а затем учусь.)</p>
+            </div>
+          </div>
+
+
+
+
+          <div class="frog-card">
+            <div class="frog-card-title">N + 도</div>
+            <div class="frog-card-desc">
+              <p class="intro">Частица 도 в корейском языке</p>
+              <p class="explanation">Частица -도 имеет значение «тоже, также, даже» и присоединяется к падежным формам
+                имени,
+                за исключением именительного и винительного падежей.</p>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">В тексте:</span> <span class="example">다른
+                    아이들도</span>
+                  —
+                  "и другие дети тоже".</p>
+              </div>
+            </div>
+
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">나도 가고 싶어요.</span> (Я тоже хочу пойти.)</p>
+            </div>
+          </div>
+
+          <div class="frog-card">
+            <div class="frog-card-title">V/A + 는데</div>
+            <div class="frog-card-desc">
+              <p class="intro">Окончание 는데 в корейском языке</p>
+              <p class="explanation">Окончание -는데, соединяющее части одного предложения, выполняет следующие функции:
+              </p>
+
+              <div class="rule-block">
+                <p class="rule">1) Задает контекст (объясняет причину) для предложения, просьбы сделать что-либо или
+                  вопроса, следующих во второй части предложения.</p>
+                <p class="rule">2) Имеет противительное значение, однако при этом, с точки зрения говорящего, два
+                  указанных
+                  обстоятельства не исключают одно другое, в отличие от -지만.</p>
+                <p class="rule">3) Соединяет две части сложного предложения, где вторая часть поясняет или
+                  конкретизирует
+                  содержание первой части.</p>
+              </div>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">В тексте:</span> <span class="example">듣는데</span> —
+                  "слушаются, а...".</p>
+              </div>
+            </div>
+
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">영화를 보는데 전화가 왔어요.</span> (Смотрел фильм, когда позвонил
+                телефон.)</p>
+            </div>
+          </div>
+
+          <div class="frog-card">
+            <div class="frog-card-title">안 + V</div>
+            <div class="frog-card-desc">
+              <p class="intro">Отрицание 안 в корейском языке</p>
+              <p class="explanation">Данный тип отрицания употребляется с глаголами и прилагательными для констатации
+                того,
+                что некоторое положение вещей не имеет место быть, вне зависимости от того, чем это обусловлено.</p>
+
+              <div class="rule-block">
+                <p class="rule">1) Препозиционный способ</p>
+                <p class="rule">2) Постпозиционный способ</p>
+              </div>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">В тексте:</span> <span class="example">안 듣는
+                    걸까?</span>
+                  (Не слушаешься?)</p>
+              </div>
+            </div>
+
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">가: 순대를 먹어요? 니: 아니요, 안 먹어요.</span> (Ты ешь сунде? Нет,
+                не
+                ем.)</p>
+            </div>
+          </div>
+
+          <div class="frog-card">
+            <div class="frog-card-title">V/A + 아/어/여서</div>
+            <div class="frog-card-desc">
+              <p class="intro">Окончание 아/어/여서 в корейском языке</p>
+              <p class="explanation">Выражает причинно-следственную связь между первой и второй частью предложения, где
+                первая часть с окончанием -아서 выражает причину, а вторая часть — следствие. Субъекты действий могут быть
+                разные.</p>
+              <p class="explanation">2. Указывает на то, что данное действие предшествует тому, что указано во второй
+                части
+                предложения. Второе действие невозможно — объективно! — без совершения первого.</p>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">Важно:</span></p>
+                <p>Субъект обоих действий один и тот же. Например: 꽃을 사서 엄마에게 주었어요.</p>
+              </div>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">В тексте:</span> <span class="example">듣지 않아서
+                    속상했습니다</span> — "(она) расстраивалась, потому что он не слушался".</p>
+              </div>
+            </div>
+
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">비가 와서 우산을 써요.</span> (Из-за дождя беру зонт.)</p>
+            </div>
+          </div>
+
+          <div class="frog-card">
+            <div class="frog-card-title">N + 에게/한테/께</div>
+            <div class="frog-card-desc">
+              <p class="intro">Дательные частицы 에게/한테/께</p>
+              <p class="explanation">Указывает, кому направлено действие (дательный падеж). используется для обозначения
+                адресата действия или того, кому что-то делается/даётся ("кому", "для кого" или "к кому"). 에게
+                используется
+                в
+                официальной и письменной речи, 한테 - в разговорной речи, а 께 - самый вежливый вариант, используемый для
+                старших, уважаемых людей.</p>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">В тексте:</span> <span class="example">아들 개구리에게
+                    말했습니다</span> — "сказала сыну-лягушке".</p>
+              </div>
+            </div>
+
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">친구에게 편지를 썼어요.</span> (Написал письмо другу.)</p>
+              <p class="example">Пример: <span class="highlight">저는 부장님께 그 사실을 말할 거예요.</span> (Я скажу эту информацию
+                начальнику)</p>
+              <p class="example">Пример: <span class="highlight">나는 학생들한테 한국어를 가르쳤어.</span> (Я учил корейский язык
+                ученикам)
+              </p>
+            </div>
+          </div>
+
+          <div class="frog-card">
+            <div class="frog-card-title">V + 나요?</div>
+            <div class="frog-card-desc">
+              <p class="intro">Вопросительная форма 나요? в корейском языке</p>
+              <p class="explanation">Конструкция используется для выражения вежливых вопросов. Эта форма считается более
+                уважительной и вежливой, чем простое -아요/어요. Она применяется, чтобы спросить о чём-то, что может быть
+                неизвестным и неопределенным, и обычно используется в ситуациях, где важно проявить уважение или быть
+                более
+                формальным в общении.</p>
+              <p class="explanation">V + 니? (ni?) – более формальная и/или менее вежливая форма. Может использоваться в
+                некоторых ситуациях, например, когда вопрос задается близкому человеку или в менее формальной
+                обстановке.
+              </p>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">В тексте:</span> <span class="example">듣지 않니?</span>
+                  —
+                  "не слушаешь?"</p>
+              </div>
+            </div>
+
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">밥을 먹나요?</span> (Ты ешь?)</p>
+            </div>
+          </div>
+
+          <div class="frog-card">
+            <div class="frog-card-title">V + 는 것</div>
+            <div class="frog-card-desc">
+              <p class="intro">Субстантивированная форма 는 것</p>
+              <p class="explanation">Субстантивированная форма предикативов, которая образуется с помощью
+                определительной
+                формы предикатива и служебного имени 것. Субстантивированная форма выполняет в предложении те же
+                синтаксические функции, что и существительные.</p>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">В тексте:</span> <span class="example">말하는 것</span>
+                  —
+                  "то, как (я) говорю".</p>
+              </div>
+            </div>
+
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">책을 읽는 것이 좋아요.</span> (То, что читаю книгу, мне
+                нравится.)
+              </p>
+            </div>
+          </div>
+
+          <div class="frog-card">
+            <div class="frog-card-title">A/V-(으)ㄹ 테니까</div>
+            <div class="frog-card-desc">
+              <p class="intro">Форма (으)ㄹ 테니까</p>
+              <p class="explanation">Эта форма выражает предположение или намерение говорящего (1-я часть предложения),
+                которое становится причиной или условием для просьбы или совета слушателю (2-я часть предложения)</p>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">В тексте:</span> <span class="example">가르쳐 줄
+                    테니까</span>
+                  — "Я тебя научу"</p>
+              </div>
+            </div>
+
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">이제 출발할 테니까 준비해 주세요.</span> (Мы скоро уезжаем, так что,
+                пожалуйста, приготовьтесь.)</p>
+            </div>
+          </div>
+
+          <div class="frog-card">
+            <div class="frog-card-title">V/A + 았/었/였다</div>
+            <div class="frog-card-desc">
+              <p class="intro">Прошедшее время 았/었/였다</p>
+              <p class="explanation">В корейском языке прошедшее время образуется суффиксальным способом — путем
+                присоединения к основе предикатива одного из трех суффиксов.</p>
+
+              <div class="rule-block">
+                <p class="rule">1) Глаголы и прилагательные.</p>
+                <p class="rule">-았 – к основам, последний слог которых содержит гласные ㅏ, ㅑ, ㅗ.</p>
+                <p class="rule">-었 – к основам с остальными гласными.</p>
+                <p class="rule">-었 – к основе глагола 하다 всех предикативов, образованных с помощью 하다.</p>
+              </div>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">В тексте:</span> <span class="example">말했습니다</span>
+                  —
+                  "сказал" (прошедшее от 말하다).</p>
+              </div>
+            </div>
+
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">공부했어요.</span> (Я учился.)</p>
+            </div>
+          </div>
+
+          <div class="frog-card">
+            <div class="frog-card-title">N + 만</div>
+            <div class="frog-card-desc">
+              <p class="intro">Частица 만</p>
+              <p class="explanation">Чтобы сказать, что вам нравится только одна вещь, нужно использовать частицу
+                –만(только). Частица присоединяется к основе имен и, как правило, вытесняет падежи за исключением
+                творительного, дательного, дательно-местного, дательного одушевленных имен и совместного падежей.</p>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">В тексте:</span> <span class="example">이것만은</span> —
+                  "только это (уступи одному условию)".</p>
+              </div>
+            </div>
+
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">나만 알겠어.</span> (Только я знаю.)</p>
+            </div>
+          </div>
+
+          <div class="frog-card">
+            <div class="frog-card-title">V/A + (으)니까</div>
+            <div class="frog-card-desc">
+              <p class="intro">Окончание (으)니까 в корейском языке</p>
+              <p class="explanation">1. Окончание указывает на аргумент, основание для заключения, вывода. Употребляется
+                с
+                глаголами, прилагательными и связками 이다/아니다.</p>
+              <p class="explanation">2. Помимо значения причины имеет еще одно значение – указание на обстоятельство
+                (вторая
+                часть предложения), которое обнаружилось в результате некого действия (первая часть предложения).
+                Употребляется исключительно с глаголами. К основам, оканчивающимся на гласный или ㄹ, присоединяется –니까,
+                к
+                основам, оканчивающимся на согласный (кроме ㄹ) -으니까. Даже если то, о чем идет речь, произошло в прошлом,
+                окончание присоединяется к основе настоящего времени.</p>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">В тексте:</span> <span class="example">살고
+                    있으니까</span>
+                  —
+                  "так как (там) живут змеи...".</p>
+              </div>
+            </div>
+
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">배가 고프니까 밥을 먹었어요.</span> (Так как был голоден, поел.)
+              </p>
+            </div>
+          </div>
+
+          <div class="frog-card">
+            <div class="frog-card-title">V + 는지 알다/모르다</div>
+            <div class="frog-card-desc">
+              <p class="intro">Конструкция 는지 알다/모르다</p>
+              <p class="explanation">Вопросительное придаточное предложение в сложном предложении оформляется окончанием
+                -(으)ㄴ지 / -는지 / -(으)ㄹ지, которое присоединяется к сказуемому придаточного. Такого рода предложения
+                соответствуют в рус. языке сложноподчиненным предложениям с вопросительными словами или частицей ли.
+                Вместо
+                알다 / 모르다 могут также употребляться слова 기억하다, 기억이 나다, 느끼다, 생각하다, 이해하다, 확인하다 и др.</p>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">В тексте:</span> <span class="example">살고 있는지
+                    궁금했습니다</span> — "хотел узнать, живут ли яр змеи".</p>
+              </div>
+            </div>
+
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">그가 어디에 가는지 몰라요.</span> (Я не знаю, куда он идёт.)</p>
+            </div>
+          </div>
+
+          <div class="frog-card">
+            <div class="frog-card-title">V + (으)ㄹ 때</div>
+            <div class="frog-card-desc">
+              <p class="intro">Конструкция (으)ㄹ 때</p>
+              <p class="explanation">Для указания на определенный момент времени используют служебное слово 때 (букв.
+                момент,
+                время, период); употребляется и с существительными, и с предикативами.</p>
+              <p class="explanation">С существительными 때 образует словосочетание значением «когда». Как правило, не
+                употребляется со словами, которые и так указывают на временной промежуток: 아침, 저녁, 주말, 오전, 오후, 주, 요일.
+              </p>
+              <p class="explanation">C глаголами, прилагательными и связками 이다/ 아니다, слово 때 образует словосочетание, в
+                котором предикатив ставится в определительную форму с окончанием -(으)ㄹ.</p>
+              <p class="explanation">Когда речь идет о ситуации, которая уже изменилась к настоящему моменту, или же
+                действие, обозначенное глаголом с 때, закончилось к моменту в прошлом предикатив употребляется с
+                суффиксом
+                прошедшего времени и окончанием -을.</p>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">Пример из текста:</span> <span class="example">돌아왔을
+                    때</span> (Когда мама вернулась)</p>
+              </div>
+            </div>
+
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">나갈 때 쓰레기도 좀 가지고 가서 버려 줘요.</span> (Когда будешь
+                выходить,
+                захвати мусор и выбрось его, пожалуйста.)</p>
+            </div>
+          </div>
+
+          <div class="frog-card">
+            <div class="frog-card-title">못 + V</div>
+            <div class="frog-card-desc">
+              <p class="intro">Отрицание 못 в корейском языке</p>
+              <p class="explanation">Данный тип отрицания употребляется с глаг. и обозначает, что данное действие не
+                совершается в силу каких-то обстоятельств. Причина, как правило, имеет объективный характер.</p>
+              <p class="explanation">1. Препозиционный;</p>
+              <p class="explanation">2. Постпозиционный.</p>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">В тексте:</span> <span class="example">못 봤니?</span>
+                  —
+                  "не смог(ли) увидеть?"</p>
+              </div>
+            </div>
+
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">저는 한국어를 못 말해요.</span> (Я не умею говорить по-корейски.)
+              </p>
+            </div>
+          </div>
+
+          <div class="frog-card">
+            <div class="frog-card-title">V + (으)려고 하다</div>
+            <div class="frog-card-desc">
+              <p class="intro">Конструкция (으)려고</p>
+              <p class="explanation">Конструкцию -려고 하다 употребляют для того, чтобы выразить намерение что-либо сделать.
+                Используется только с глаголами.</p>
+              <p class="explanation">Конструкция означает намерение совершить действие («собираться, хотеть, иметь
+                намерение
+                сделать что-либо»):</p>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">В тексте:</span> <span class="example">잡아먹으려고</span>
+                  —
+                  "собираться съесть".</p>
+              </div>
+            </div>
+
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">밥을 먹으려고 식당에 갔어요.</span> (Пошёл в ресторан, чтобы
+                поесть.)
+              </p>
+            </div>
+          </div>
+
+          <div class="frog-card">
+            <div class="frog-card-title">N + 의</div>
+            <div class="frog-card-desc">
+              <p class="intro">Родительный падеж 의</p>
+              <p class="explanation">Родительный падеж связывает два (или более) сущ. для выражения притяжательных
+                отношений, т.е. отношений принадлежности.</p>
+              <p class="explanation">«Хозяин» 의 + «предмет, принадлежащий ему или имеющий к нему отношение»</p>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">В тексте:</span> <span class="example">엄마 개구리의
+                    다리</span>
+                  — "нога мамы-лягушки".</p>
+              </div>
+            </div>
+
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">우리집의 고양이.</span> (Кошка нашего дома.)</p>
+            </div>
+          </div>
+
+          <div class="frog-card">
+            <div class="frog-card-title">V + 아/어/여 주다</div>
+            <div class="frog-card-desc">
+              <p class="intro">Конструкция 아/어/여 주다</p>
+              <p class="explanation">Категория направленности действия, которая указывает на то, что данное действие
+                совершается не в собственных интересах, а в интересах или для другого человека. Образуется путем
+                добавления
+                к основе глагола окончания -아/-어/-여 и служебного глагола 주다/드리다. Выбор служебного глагола (주시다/주다/드리다)
+                зависит от возраста и положения говорящих и участников действия.</p>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">Пример из текста:</span> <span class="example">엄마
+                    개구리를
+                    구해 주었습니다.</span> (Спасли маму лягушку)</p>
+              </div>
+            </div>
+
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">지난 번에 아나 씨가 저에게 커피를 사 줬어요. 이번에는 제가 사 줄게요.</span> (В
+                прошлый
+                раз ты купила мне кофе. На этот раз я куплю тебе.)</p>
+            </div>
+          </div>
+
+          <div class="frog-card">
+            <div class="frog-card-title">V/A + 기 때문에</div>
+            <div class="frog-card-desc">
+              <p class="intro">Конструкция 기 때문에</p>
+              <p class="explanation">Конструкции 때문에 и -기 때문에 указывают на причину или основание ситуации, описанной во
+                второй части предложения, и соответствуют английскому слову "because" (потому что).</p>
+              <p class="explanation">-기 때문에 используется для выражения ясной причины и является более книжным/формальным
+                вариантом по сравнению с -아/어서 и -(으)니까.</p>
+              <p class="explanation">После существительных добавляется 때문에.</p>
+              <p class="explanation">После глаголов и прилагательных к основе слова добавляется -기 때문에.</p>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">В тексте:</span> <span class="example">물렸기
+                    때문에</span>
+                  —
+                  "потому что была укушена".</p>
+              </div>
+            </div>
+
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">피곤하기 때문에 일찍 잤어요.</span> (Потому что устал, лёг спать
+                рано.)
+              </p>
+            </div>
+          </div>
+
+          <div class="frog-card">
+            <div class="frog-card-title">A/V+지만</div>
+            <div class="frog-card-desc">
+              <p class="intro">Конструкция 지만</p>
+              <p class="explanation">Присоединяется к временной основе предикатива. Используется для выражения: 1)
+                противопоставления двух действий, состояний; 2) уступительных отношений. Подразумевается, что факт,
+                обозначенный во второй части предложения, стал возможен, несмотря на обстоятельства, указанные в первой
+                части предложения.</p>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">Пример из текста:</span> <span
+                    class="example">그렇지만</span> — "Однако"</p>
+              </div>
+            </div>
+
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">저는 해산물을 먹지만 어머니는 안 드셔요.</span> (Я ем морепродукты, но
+                мама
+                не ест.)</p>
+            </div>
+          </div>
+
+          <div class="frog-card">
+            <div class="frog-card-title">V/A + 아/어/여야 하다</div>
+            <div class="frog-card-desc">
+              <p class="intro">Конструкция 아/어/여야 하다</p>
+              <p class="explanation">Для обозначения обязательного характера действия или обязательного условия в
+                корейском
+                языке есть конструкция -아 /어/여야 하다 / 되다 — так называемая конструкция долженствования. Она состоит из
+                основного предикатива с окончанием -아 /어/여야 и служебного глагола 하다 или 되다. Означает необходимость
+                совершения действия.</p>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">В тексте:</span> <span class="example">묻어야
+                    하는데</span>
+                  —
+                  "надо похоронить".</p>
+              </div>
+            </div>
+
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">지금 약을 먹어야 해요.</span> (Сейчас нужно принять лекарство.)
+              </p>
+            </div>
+          </div>
+
+          <div class="frog-card">
+            <div class="frog-card-title">N + (이)까지</div>
+            <div class="frog-card-desc">
+              <p class="intro">Частица 까지</p>
+              <p class="explanation">Послелоги -부터 и -까지 присоединяются к именам: -부터 обозначает «отправной момент (с
+                какого
+                времени)», -까지 «конечный момент».</p>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">В тексте:</span> <span class="example">지금까지</span> —
+                  "до
+                  сих пор".</p>
+              </div>
+            </div>
+
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">다음 주까지 숙제해 오세요.</span> (Сделайте домашнее задание к
+                следующей неделе.)</p>
+            </div>
+          </div>
+
+          <div class="frog-card">
+            <div class="frog-card-title">V + 고 싶다</div>
+            <div class="frog-card-desc">
+              <p class="intro">Конструкция 고 싶다</p>
+              <p class="explanation">Категория желания -고 싶다 присоединяется к основе глагола. Выражает желание сделать
+                что-либо. Отрицание возможно исключительно постпозиционное.</p>
+              <p class="explanation">Не употребляется с прилагательными и связками 이다 / 아니다.</p>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">В тексте:</span> <span class="example">듣고
+                    싶었습니다</span>
+                  —
+                  "хотел услышать/послушаться".</p>
+              </div>
+            </div>
+
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">저는 여행을 가고 싶어요.</span> (Я хочу поехать в путешествие.)
+              </p>
+            </div>
+          </div>
+
+          <div class="frog-card">
+            <div class="frog-card-title">V + 을/ㄹ 수 없다</div>
+            <div class="frog-card-desc">
+              <p class="intro">Конструкция 을/ㄹ 수 없다</p>
+              <p class="explanation">Эта конструкция выражает способность или возможность. Когда кто-то или что-то может
+                сделать что-то (или что-то возможно), используется форма -(으)ㄹ 수 있다, а когда не может (или что-то
+                невозможно) - -(으)ㄹ 수 없다. В английском языке это соответствует слову "can" (могу/может).</p>
+
+              <div class="rule-block">
+                <p class="rule">1. Если основа глагола оканчивается на гласную или ㄹ, добавляется -ㄹ 수 있다/없다.</p>
+                <p class="example">가다 → 갈 수 있다 (можно пойти)</p>
+                <p class="example">먹다 → 먹을 수 있다 (можно есть)</p>
+                <p class="rule">2. Если основа глагола оканчивается на согласную (кроме ㄹ), добавляется -을 수 있다/없다.</p>
+                <p class="example">읽다 → 읽을 수 있다 (можно читать)</p>
+                <p class="example">잡다 → 잡을 수 있다 (можно поймать)</p>
+              </div>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">В тексте:</span> <span class="example">잘 수가
+                    없었습니다</span>
+                  — "не мог спать".</p>
+              </div>
+            </div>
+
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">저는 춤을 출 수 없어요.</span> (Я не умею танцевать.)</p>
+            </div>
+          </div>
+
+          <div class="frog-card">
+            <div class="frog-card-title">V/A + (으)면서</div>
+            <div class="frog-card-desc">
+              <p class="intro">Конструкция (으)면서</p>
+              <p class="explanation">Соединительное окончание -면서 означает одновременность действий. К основе глагола,
+                оканчивающейся на гласную или ㄹ, присоединяется окончание -면서; к основе, оканчивающейся на согласную
+                (кроме
+                ㄹ)- окончание -으면서. Подлежащее для двух действий, как правило, одно.</p>
+              <p class="explanation">Окончание -면서 употребляется и с прилагательными: показывает, что объект обладает
+                одним
+                свойством и при этом еще и вторым. В отличие от окончания -고, которое констатирует наличие качеств,
+                окончание указывает на то, что подобное сочетание нехарактерно и даже неожиданно. Во второй части
+                предложения может стоять глагол.</p>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">В тексте:</span> <span class="example">맞으면서
+                    울었습니다</span>
+                  — "плакал, стоя под дождём" (делал два действия одновременно).</p>
+              </div>
+            </div>
+
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">음악을 들으면서 공부해요.</span> (Слушаю музыку, одновременно
+                учусь.)
+              </p>
+            </div>
+          </div>
+
+          <div class="frog-card">
+            <div class="frog-card-title">N + 에서</div>
+            <div class="frog-card-desc">
+              <p class="intro">Частица 에서</p>
+              <p class="explanation">Дательно-местный падеж образуется путем присоединения к основе существительного
+                окончания -에서. Этот падеж выполняет следующие функции:</p>
+              <p class="explanation">1) место совершения действия</p>
+              <p class="explanation">2) исходный пункт перемещения</p>
+
+              <div class="important-note">
+                <p class="subtitle"><span class="keyword-highlight">В тексте:</span> <span class="example">무덤 옆에서</span>
+                  —
+                  "у могилы".</p>
+              </div>
+            </div>
+
+            <div class="frog-card-ex">
+              <p class="example">Пример: <span class="highlight">도서관에서 공부해요.</span> (Учусь в библиотеке.)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="frog-tab-panel" id="tab-words" style="display:none;">
+        <div class="frog-card">
+          <div class="frog-card-title">옛날</div>
+          <div class="frog-card-desc">Давным-давно</div>
+          <div class="frog-card-ex">옛날 이야기 (Старинная история)</div>
+        </div>
+        <div class="frog-card">
+          <div class="frog-card-title">연못</div>
+          <div class="frog-card-desc">Пруд</div>
+          <div class="frog-card-ex">큰 연못 (Большой пруд)</div>
+        </div>
+        <div class="frog-card">
+          <div class="frog-card-title">청개구리</div>
+          <div class="frog-card-desc">Зелёная лягушка</div>
+          <div class="frog-card-ex">아들 청개구리 (Сын-лягушка)</div>
+        </div>
+        <div class="frog-card">
+          <div class="frog-card-title">홀어머니</div>
+          <div class="frog-card-desc">Мать-вдова</div>
+          <div class="frog-card-ex">홀어머니가 슬퍼요 (Мать-вдова грустит)</div>
+        </div>
+        <div class="frog-card">
+          <div class="frog-card-title">늘</div>
+          <div class="frog-card-desc">Всегда</div>
+          <div class="frog-card-ex">늘 반대로 하다 (Всегда делать наоборот)</div>
+        </div>
+        <div class="frog-card">
+          <div class="frog-card-title">반대로</div>
+          <div class="frog-card-desc">Наоборот</div>
+          <div class="frog-card-ex">반대로 행동하다 (Вести себя наоборот)</div>
+        </div>
+        <div class="frog-card">
+          <div class="frog-card-title">속상하다</div>
+          <div class="frog-card-desc">Расстраиваться</div>
+          <div class="frog-card-ex">속상해 하다 (Быть расстроенным)</div>
+        </div>
+        <div class="frog-card">
+          <div class="frog-card-title">똑바로</div>
+          <div class="frog-card-desc">Правильно</div>
+          <div class="frog-card-ex">똑바로 말하다 (Говорить правильно)</div>
+        </div>
+        <div class="frog-card">
+          <div class="frog-card-title">개굴개굴</div>
+          <div class="frog-card-desc">Ква-ква</div>
+          <div class="frog-card-ex">개구리가 개굴개굴 울다 (Лягушка квакает)</div>
+        </div>
+        <div class="frog-card">
+          <div class="frog-card-title">굴개굴개</div>
+          <div class="frog-card-desc">Ква-ква</div>
+          <div class="frog-card-ex">굴개굴개 소리 (Звук квакания)</div>
+        </div>
+        <div class="frog-card">
+          <div class="frog-card-title">한숨</div>
+          <div class="frog-card-desc">Вздох</div>
+          <div class="frog-card-ex">한숨을 쉬다 (Вздыхать)</div>
+        </div>
+        <div class="frog-card">
+          <div class="frog-card-title">뱀</div>
+          <div class="frog-card-desc">Змея</div>
+          <div class="frog-card-ex">큰 뱀 (Большая змея)</div>
+        </div>
+        <div class="frog-card">
+          <div class="frog-card-title">궁금하다</div>
+          <div class="frog-card-desc">Любопытствовать</div>
+          <div class="frog-card-ex">궁금해 하다 (Быть любопытным)</div>
+        </div>
+        <div class="frog-card">
+          <div class="frog-card-title">몰래</div>
+          <div class="frog-card-desc">Тайком</div>
+          <div class="frog-card-ex">몰래 가다 (Идти тайком)</div>
+        </div>
+        <div class="frog-card">
+          <div class="frog-card-title">깜짝</div>
+          <div class="frog-card-desc">Внезапно</div>
+          <div class="frog-card-ex">깜짝 놀라다 (Испугаться)</div>
+        </div>
+        <div class="frog-card">
+          <div class="frog-card-title">잡아먹다</div>
+          <div class="frog-card-desc">Съесть</div>
+          <div class="frog-card-ex">뱀이 잡아먹다 (Змея съела)</div>
+        </div>
+        <div class="frog-card">
+          <div class="frog-card-title">독</div>
+          <div class="frog-card-desc">Яд</div>
+          <div class="frog-card-ex">뱀의 독 (Змеиный яд)</div>
+        </div>
+        <div class="frog-card">
+          <div class="frog-card-title">퍼지다</div>
+          <div class="frog-card-desc">Распространяться</div>
+          <div class="frog-card-ex">독이 퍼지다 (Яд распространяется)</div>
+        </div>
+        <div class="frog-card">
+          <div class="frog-card-title">묻다</div>
+          <div class="frog-card-desc">Хоронить</div>
+          <div class="frog-card-ex">산에 묻다 (Похоронить в горах)</div>
+        </div>
+        <div class="frog-card">
+          <div class="frog-card-title">강가</div>
+          <div class="frog-card-desc">Берег реки</div>
+          <div class="frog-card-ex">강가에 묻다 (Похоронить у реки)</div>
+        </div>
+        <div class="frog-card">
+          <div class="frog-card-title">후회되다</div>
+          <div class="frog-card-desc">Сожалеть</div>
+          <div class="frog-card-ex">후회가 되다 (Испытывать сожаление)</div>
+        </div>
+        <div class="frog-card">
+          <div class="frog-card-title">떠내려가다</div>
+          <div class="frog-card-desc">Уноситься течением</div>
+          <div class="frog-card-ex">무덤이 떠내려가다 (Могилу уносит водой)</div>
+        </div>
+        <div class="frog-card">
+          <div class="frog-card-title">무덤</div>
+          <div class="frog-card-desc">Могила</div>
+          <div class="frog-card-ex">엄마 무덤 (Мамина могила)</div>
+        </div>
+      </div>
+
+
+
+
+      <div class="frog-test-container">
+        <h2 class="frog-test-title">Тест на самопроверку</h2>
+        <p class="frog-test-description">Вставьте пропущенные грамматические конструкции. После заполнения нажмите
+          "Проверить" для проверки ответа.</p>
+        <section class="frog-quiz-section" id="quiz-section">
+          <div class="frog-test-item">
+            <div class="frog-question">
+              <span class="frog-korean">저는 학교<input type="text" class="frog-answer-input" data-answer="에">
+                가요.</span>
+              <span class="frog-translation">Я иду в школу.</span>
+            </div>
+            <button class="frog-check-btn">Проверить</button>
+            <div class="frog-answer-result"></div>
+          </div>
+
+          <div class="frog-test-item">
+            <div class="frog-question">
+              <span class="frog-korean">저는 <input type="text" class="frog-answer-input" data-answer="큰"> 집을
+                좋아해요.</span>
+              <span class="frog-translation">Мне нравятся большие дома.</span>
+            </div>
+            <button class="frog-check-btn">Проверить</button>
+            <div class="frog-answer-result"></div>
+          </div>
+
+          <div class="frog-test-item">
+            <div class="frog-question">
+              <span class="frog-korean">저는 사과<input type="text" class="frog-answer-input" data-answer="와"> 바나나를
+                먹어요.</span>
+              <span class="frog-translation">Я ем яблоки и бананы.</span>
+            </div>
+            <button class="frog-check-btn">Проверить</button>
+            <div class="frog-answer-result"></div>
+          </div>
+
+          <div class="frog-test-item">
+            <div class="frog-question">
+              <span class="frog-korean">저는 책을 <input type="text" class="frog-answer-input" data-answer="읽고">
+                있어요.</span>
+              <span class="frog-translation">Я читаю книгу.</span>
+            </div>
+            <button class="frog-check-btn">Проверить</button>
+            <div class="frog-answer-result"></div>
+          </div>
+
+          <div class="frog-test-item">
+            <div class="frog-question">
+              <span class="frog-korean">저는 선생님께 <input type="text" class="frog-answer-input" data-answer="인사합니다">
+                .</span>
+              <span class="frog-translation">Я приветствую учителя (формальный стиль).</span>
+            </div>
+            <button class="frog-check-btn">Проверить</button>
+            <div class="frog-answer-result"></div>
+          </div>
+
+          <div class="frog-test-item">
+            <div class="frog-question">
+              <span class="frog-korean">이 책<input type="text" class="frog-answer-input" data-answer="은">
+                재미있다.</span>
+              <span class="frog-translation">Эта книга интересная.</span>
+            </div>
+            <button class="frog-check-btn">Проверить</button>
+            <div class="frog-answer-result"></div>
+          </div>
+
+          <div class="frog-test-item">
+            <div class="frog-question">
+              <span class="frog-korean">저는 밥<input type="text" class="frog-answer-input" data-answer="을">
+                먹어요.</span>
+              <span class="frog-translation">Я ем рис.</span>
+            </div>
+            <button class="frog-check-btn">Проверить</button>
+            <div class="frog-answer-result"></div>
+          </div>
+
+          <div class="frog-test-item">
+            <div class="frog-question">
+              <span class="frog-korean">저는 학교에 <input type="text" class="frog-answer-input" data-answer="가지">
+                않아요.</span>
+              <span class="frog-translation">Я не хожу в школу.</span>
+            </div>
+            <button class="frog-check-btn">Проверить</button>
+            <div class="frog-answer-result"></div>
+          </div>
+
+          <div class="frog-test-item">
+            <div class="frog-question">
+              <span class="frog-korean"><input type="text" class="frog-answer-input" data-answer="비가"> 오고
+                있어요.</span>
+              <span class="frog-translation">Идёт дождь.</span>
+            </div>
+            <button class="frog-check-btn">Проверить</button>
+            <div class="frog-answer-result"></div>
+          </div>
+
+          <div class="frog-test-item">
+            <div class="frog-question">
+              <span class="frog-korean">너는 공부 <input type="text" class="frog-answer-input" data-answer="하면"> 시험을 잘 볼
+                거야.</span>
+              <span class="frog-translation">Если будешь учиться, сдашь экзамен хорошо.</span>
+            </div>
+            <button class="frog-check-btn">Проверить</button>
+            <div class="frog-answer-result"></div>
+          </div>
+
+          <div class="frog-test-item">
+            <div class="frog-question">
+              <span class="frog-korean">저는 책을 읽<input type="text" class="frog-answer-input" data-answer="고"> 영화보러
+                갔어요.</span>
+              <span class="frog-translation">Я прочитал книгу и пошёл смотреть фильм.</span>
+            </div>
+            <button class="frog-check-btn">Проверить</button>
+            <div class="frog-answer-result"></div>
+          </div>
+
+          <div class="frog-test-item">
+            <div class="frog-question">
+              <span class="frog-korean">엄마가 저에게 <input type="text" class="frog-answer-input" data-answer="오라고">
+                했어요.</span>
+              <span class="frog-translation">Мама сказала мне прийти.</span>
+            </div>
+            <button class="frog-check-btn">Проверить</button>
+            <div class="frog-answer-result"></div>
+          </div>
+
+          <div class="frog-test-item">
+            <div class="frog-question">
+              <span class="frog-korean">저는 버스<input type="text" class="frog-answer-input" data-answer="로"> 학교에
+                가요.</span>
+              <span class="frog-translation">Я еду в школу на автобусе.</span>
+            </div>
+            <button class="frog-check-btn">Проверить</button>
+            <div class="frog-answer-result"></div>
+          </div>
+
+          <div class="frog-test-item">
+            <div class="frog-question">
+              <span class="frog-korean">저는 사과<input type="text" class="frog-answer-input" data-answer="도">
+                먹었어요.</span>
+              <span class="frog-translation">Я съел также яблоко.</span>
+            </div>
+            <button class="frog-check-btn">Проверить</button>
+            <div class="frog-answer-result"></div>
+          </div>
+
+          <div class="frog-test-item">
+            <div class="frog-question">
+              <span class="frog-korean">저는 피곤한<input type="text" class="frog-answer-input" data-answer="데"> 밥을
+                먹었어요.</span>
+              <span class="frog-translation">Я устал, но поел.</span>
+            </div>
+            <button class="frog-check-btn">Проверить</button>
+            <div class="frog-answer-result"></div>
+          </div>
+
+          <div class="frog-test-item">
+            <div class="frog-question">
+              <span class="frog-korean">저는 아침을 <input type="text" class="frog-answer-input" data-answer="먹어서"> 배가
+                불러요.</span>
+              <span class="frog-translation">Я позавтракал, поэтому сыт.</span>
+            </div>
+            <button class="frog-check-btn">Проверить</button>
+            <div class="frog-answer-result"></div>
+          </div>
+
+          <div class="frog-test-item">
+            <div class="frog-question">
+              <span class="frog-korean">저는 친구<input type="text" class="frog-answer-input" data-answer="에게"> 선물을
+                줬어요.</span>
+              <span class="frog-translation">Я подарил подарок другу.</span>
+            </div>
+            <button class="frog-check-btn">Проверить</button>
+            <div class="frog-answer-result"></div>
+          </div>
+
+          <div class="frog-test-item">
+            <div class="frog-question">
+              <span class="frog-korean">너는 밥 <input type="text" class="frog-answer-input" data-answer="먹었나요">?</span>
+              <span class="frog-translation">Ты поел?</span>
+            </div>
+            <button class="frog-check-btn">Проверить</button>
+            <div class="frog-answer-result"></div>
+          </div>
+
+          <div class="frog-test-item">
+            <div class="frog-question">
+              <span class="frog-korean">저는 <input type="text" class="frog-answer-input" data-answer="공부하는 것">이
+                좋아요.</span>
+              <span class="frog-translation">Мне нравится учеба.</span>
+            </div>
+            <button class="frog-check-btn">Проверить</button>
+            <div class="frog-answer-result"></div>
+          </div>
+
+          <div class="frog-test-item">
+            <div class="frog-question">
+              <span class="frog-korean">저는 TV를 <input type="text" class="frog-answer-input" data-answer="보면서"> 음악을
+                들었어요.</span>
+              <span class="frog-translation">Я слушал музыку, смотря телевизор.</span>
+            </div>
+            <button class="frog-check-btn">Проверить</button>
+            <div class="frog-answer-result"></div>
+          </div>
+
+          <div class="frog-test-item">
+            <div class="frog-question">
+              <span class="frog-korean">저는 어제 공원에서 <input type="text" class="frog-answer-input" data-answer="놀았어요">
+                .</span>
+              <span class="frog-translation">Я вчера играл в парке.</span>
+            </div>
+            <button class="frog-check-btn">Проверить</button>
+            <div class="frog-answer-result"></div>
+          </div>
+
+          <div class="frog-test-item">
+            <div class="frog-question">
+              <span class="frog-korean">저는 밥을 <input type="text" class="frog-answer-input" data-answer="못 먹어요">
+                .</span>
+              <span class="frog-translation">Я не могу есть рис.</span>
+            </div>
+            <button class="frog-check-btn">Проверить</button>
+            <div class="frog-answer-result"></div>
+          </div>
+
+          <div class="frog-test-item">
+            <div class="frog-question">
+              <span class="frog-korean">저는 친구를 <input type="text" class="frog-answer-input" data-answer="만나려고"> 카페에
+                갔어요.</span>
+              <span class="frog-translation">Я пошёл в кафе, чтобы встретиться с другом.</span>
+            </div>
+            <button class="frog-check-btn">Проверить</button>
+            <div class="frog-answer-result"></div>
+          </div>
+
+          <div class="frog-test-item">
+            <div class="frog-question">
+              <span class="frog-korean">비가 <input type="text" class="frog-answer-input" data-answer="오기 때문에"> 우산을
+                가져갔어요.</span>
+              <span class="frog-translation">Я взял зонт, потому что идёт дождь.</span>
+            </div>
+            <button class="frog-check-btn">Проверить</button>
+            <div class="frog-answer-result"></div>
+          </div>
+
+          <div class="frog-test-item">
+            <div class="frog-question">
+              <span class="frog-korean">저는 한국에 <input type="text" class="frog-answer-input" data-answer="가게">
+                되었어요.</span>
+              <span class="frog-translation">Так получилось, что я поехал в Корею.</span>
+            </div>
+            <button class="frog-check-btn">Проверить</button>
+            <div class="frog-answer-result"></div>
+          </div>
+
+          <div class="frog-test-item">
+            <div class="frog-question">
+              <span class="frog-korean">저는 피자를 <input type="text" class="frog-answer-input" data-answer="먹고 싶어요">
+                .</span>
+              <span class="frog-translation">Я хочу есть пиццу.</span>
+            </div>
+            <button class="frog-check-btn">Проверить</button>
+            <div class="frog-answer-result"></div>
+          </div>
+
+          <div class="frog-test-item">
+            <div class="frog-question">
+              <span class="frog-korean">너는 그걸 <input type="text" class="frog-answer-input" data-answer="하지 마">
+                .</span>
+              <span class="frog-translation">Не делай этого.</span>
+            </div>
+            <button class="frog-check-btn">Проверить</button>
+            <div class="frog-answer-result"></div>
+          </div>
+        </section>
+
+
+        <style>
+          .frog-test-container {
+            font-family: 'Arial', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f8f0;
+            border-radius: 15px;
+            border: 2px solid #4CAF50;
+          }
+
+          .frog-test-title {
+            color: #2E8B57;
+            text-align: center;
+            margin-bottom: 20px;
+          }
+
+          .frog-test-description {
+            color: #555;
+            text-align: center;
+            margin-bottom: 30px;
+          }
+
+          .frog-test-item {
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          }
+
+          .frog-question {
+            margin-bottom: 10px;
+            line-height: 1.6;
+          }
+
+          .frog-korean {
+            font-size: 18px;
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+          }
+
+          .frog-translation {
+            font-size: 14px;
+            color: #666;
+            display: block;
+            font-style: italic;
+          }
+
+          .frog-answer-input {
+            border: 1px solid #4CAF50;
+            border-radius: 4px;
+            padding: 5px;
+            width: 80px;
+            text-align: center;
+          }
+
+          .frog-check-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+          }
+
+          .frog-check-btn:hover {
+            background-color: #3e8e41;
+          }
+
+          .frog-answer-result {
+            margin-top: 10px;
+            padding: 8px;
+            border-radius: 5px;
+            display: none;
+          }
+        </style>
+
+        <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            // Проверка отдельных ответов
+            const checkButtons = document.querySelectorAll('.frog-check-btn');
+            checkButtons.forEach(button => {
+              button.addEventListener('click', function () {
+                const testItem = this.closest('.frog-test-item');
+                const input = testItem.querySelector('.frog-answer-input');
+                const resultDiv = testItem.querySelector('.frog-answer-result');
+
+                if (input.value.trim().toLowerCase() === input.dataset.answer.toLowerCase()) {
+                  resultDiv.textContent = 'Правильно! 🎉';
+                  resultDiv.style.backgroundColor = '#dff0d8';
+                  resultDiv.style.color = '#3c763d';
+                } else {
+                  resultDiv.textContent = 'Попробуйте ещё раз';
+                  resultDiv.style.backgroundColor = '#f2dede';
+                  resultDiv.style.color = '#a94442';
+                }
+                resultDiv.style.display = 'block';
+              });
+            });
+
+            // Проверка при нажатии Enter
+            const inputs = document.querySelectorAll('.frog-answer-input');
+            inputs.forEach(input => {
+              input.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                  this.closest('.frog-test-item').querySelector('.frog-check-btn').click();
+                }
+              });
+            });
+          });
+        </script>
+      </div>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          // ===== Подсказки по грамматике =====
+          const tooltips = [];
+
+          document.querySelectorAll('.grammar-highlight').forEach(el => {
+            const tooltip = document.createElement('div');
+            tooltip.className = 'kor-tooltip-popup';
+            tooltip.innerHTML = el.dataset.tooltip;
+            tooltip.style.position = 'fixed';
+            tooltip.style.display = 'none';
+            document.body.appendChild(tooltip);
+            tooltips.push({ el, tooltip });
+
+            el.addEventListener('mouseenter', (e) => {
+              tooltip.style.display = 'block';
+              updateTooltipPosition(e, tooltip);
+            });
+
+            el.addEventListener('mouseleave', () => {
+              tooltip.style.display = 'none';
+            });
+
+            el.addEventListener('mousemove', (e) => {
+              updateTooltipPosition(e, tooltip);
+            });
+          });
+
+          function updateTooltipPosition(e, tooltip) {
+            const x = e.clientX + 15;
+            const y = e.clientY + 15;
+
+            // Проверка, чтобы не выходило за правый край
+            const rightEdge = window.innerWidth - tooltip.offsetWidth - 10;
+            const finalX = x > rightEdge ? rightEdge : x;
+
+            tooltip.style.left = finalX + 'px';
+            tooltip.style.top = y + 'px';
+          }
+
+          // ===== Показ/скрытие переводов =====
+          document.querySelectorAll('.story-block').forEach(block => {
+            const translation = block.querySelector('.rus-sentence');
+            if (!translation) return;
+
+            translation.style.display = 'none';
+
+            block.addEventListener('click', function (e) {
+              // Не срабатывает при клике на подсвеченную грамматику
+              if (e.target.classList.contains('grammar-highlight')) return;
+
+              translation.style.display = translation.style.display === 'none' ? 'block' : 'none';
+            });
+          });
+
+          // Закрываем все подсказки при прокрутке
+          window.addEventListener('scroll', () => {
+            tooltips.forEach(({ tooltip }) => {
+              tooltip.style.display = 'none';
+            });
+          });
+        });
+      </script>
+
+
+      <script>
+        // JS Tooltip for kor-tooltip
+        document.querySelectorAll('.kor-tooltip').forEach(function (el) {
+          const tooltipContent = el.getAttribute('data-tooltip');
+          // Only add tooltip functionality if there's actual content
+          if (tooltipContent && tooltipContent.trim() !== '') {
+            el.addEventListener('mouseenter', function (e) {
+              let tooltip = document.createElement('div');
+              tooltip.className = 'kor-tooltip-popup';
+              tooltip.innerHTML = el.getAttribute('data-tooltip');
+              document.body.appendChild(tooltip);
+              // Position
+              const rect = el.getBoundingClientRect();
+              tooltip.style.position = 'absolute';
+              tooltip.style.left = (window.scrollX + rect.left + rect.width / 2 - tooltip.offsetWidth / 2) + 'px';
+              tooltip.style.top = (window.scrollY + rect.bottom + 8) + 'px';
+              tooltip.style.zIndex = 9999;
+              // Save ref
+              el._tooltip = tooltip;
+            });
+            el.addEventListener('mouseleave', function () {
+              if (el._tooltip) {
+                el._tooltip.remove();
+                el._tooltip = null;
+              }
+            });
+            el.addEventListener('mousemove', function (e) {
+              if (el._tooltip) {
+                const rect = el.getBoundingClientRect();
+                el._tooltip.style.left = (window.scrollX + rect.left + rect.width / 2 - el._tooltip.offsetWidth / 2) + 'px';
+                el._tooltip.style.top = (window.scrollY + rect.bottom + 8) + 'px';
+              }
+            });
+          }
+        });
+
+        // Russian text visibility toggle
+        document.querySelectorAll('.story-block').forEach(function (block) {
+          const rusText = block.querySelector('.rus-sentence');
+          const toggleBtn = document.createElement('button');
+          toggleBtn.className = 'toggle-rus';
+          toggleBtn.title = 'Показать/скрыть перевод';
+          block.querySelector('.kor-tooltip').after(toggleBtn);
+
+          toggleBtn.addEventListener('click', function () {
+            rusText.classList.toggle('visible');
+            // Change button appearance when text is visible
+            if (rusText.classList.contains('visible')) {
+              toggleBtn.style.color = '#e76f51';
+            } else {
+              toggleBtn.style.color = '#388e3c';
+            }
+          });
+        });
+      </script>
+
+
+      <script>
+        // Frog tabs interactivity
+        document.querySelectorAll('.frog-tab').forEach(function (tab) {
+          tab.addEventListener('click', function () {
+            document.querySelectorAll('.frog-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            document.querySelectorAll('.frog-tab-panel').forEach(panel => panel.style.display = 'none');
+            document.getElementById('tab-' + tab.dataset.tab).style.display = 'block';
+          });
+        });
+      </script>
+
+      <script>
+        function scrollToTop() {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        }
+
+        // Скрипт для скрытия header при прокрутке
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
+        const scrollThreshold = 100;
+
+        window.addEventListener('scroll', () => {
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+          if (scrollTop > lastScrollTop && scrollTop > scrollThreshold) {
+            header.classList.add('hidden');
+          } else {
+            header.classList.remove('hidden');
+          }
+
+          lastScrollTop = scrollTop;
+
+          // Показывать/скрывать кнопку прокрутки наверх
+          const scrollButton = document.getElementById('scrollToTop');
+          if (scrollTop > 20) {
+            scrollButton.style.display = 'block';
+          } else {
+            scrollButton.style.display = 'none';
+          }
+        });
+      </script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          // Закрытие всех popups при клике на страницу
+          document.addEventListener('click', function (e) {
+            // Проверяем, что клик был не по элементу с грамматической подсказкой
+            if (!e.target.closest('.grammar-highlight')) {
+              // Скрываем все открытые popups
+              document.querySelectorAll('.kor-tooltip-popup').forEach(popup => {
+                popup.style.display = 'none';
+              });
+            }
+          });
+
+          // Остальной существующий код для работы popups...
+          const tooltips = [];
+
+          document.querySelectorAll('.grammar-highlight').forEach(el => {
+            const tooltip = document.createElement('div');
+            tooltip.className = 'kor-tooltip-popup';
+            tooltip.innerHTML = el.dataset.tooltip;
+            tooltip.style.position = 'fixed';
+            tooltip.style.display = 'none';
+            document.body.appendChild(tooltip);
+            tooltips.push({ el, tooltip });
+
+            el.addEventListener('mouseenter', (e) => {
+              tooltip.style.display = 'block';
+              updateTooltipPosition(e, tooltip);
+            });
+
+            el.addEventListener('mouseleave', () => {
+              tooltip.style.display = 'none';
+            });
+
+            el.addEventListener('mousemove', (e) => {
+              updateTooltipPosition(e, tooltip);
+            });
+          });
+
+          function updateTooltipPosition(e, tooltip) {
+            const x = e.clientX + 15;
+            const y = e.clientY + 15;
+
+            // Проверка, чтобы не выходило за правый край
+            const rightEdge = window.innerWidth - tooltip.offsetWidth - 10;
+            const finalX = x > rightEdge ? rightEdge : x;
+
+            tooltip.style.left = finalX + 'px';
+            tooltip.style.top = y + 'px';
+          }
+
+          // Закрываем все подсказки при прокрутке
+          window.addEventListener('scroll', () => {
+            tooltips.forEach(({ tooltip }) => {
+              tooltip.style.display = 'none';
+            });
+          });
+        });
+      </script>
+
+
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          // Добавляем обработчики клика на грамматические выделения
+          document.querySelectorAll('.grammar-highlight').forEach(highlight => {
+            highlight.addEventListener('click', function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+
+              // Получаем название грамматики из tooltip
+              const tooltipContent = this.getAttribute('data-tooltip');
+              const parser = new DOMParser();
+              const doc = parser.parseFromString(tooltipContent, 'text/html');
+              const grammarTitle = doc.querySelector('.tooltip-main-grammar').textContent.trim();
+
+              // Находим соответствующую карточку с грамматикой
+              const grammarCards = document.querySelectorAll('.frog-card-title');
+              let targetCard = null;
+
+              grammarCards.forEach(card => {
+                if (card.textContent.trim() === grammarTitle) {
+                  targetCard = card.closest('.frog-card');
+                }
+              });
+
+              // Если нашли карточку, скроллим к ней
+              if (targetCard) {
+                // Переключаем вкладку на грамматику, если она не активна
+                const grammarTab = document.querySelector('.frog-tab[data-tab="grammar"]');
+                if (!grammarTab.classList.contains('active')) {
+                  grammarTab.click();
+                }
+
+                // Прокручиваем к карточке с плавной анимацией
+                targetCard.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'center'
+                });
+
+                // Добавляем временное выделение карточки
+                targetCard.style.boxShadow = '0 0 0 3px #e53935';
+                setTimeout(() => {
+                  targetCard.style.boxShadow = '';
+                }, 2000);
+              }
+            });
+          });
+
+          // Остальной существующий код...
+        });
+      </script>
+
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          // Создаем карту соответствий грамматик
+          const grammarMap = new Map();
+
+          // 1. Собираем все грамматические выделения в тексте
+          document.querySelectorAll('.grammar-highlight').forEach((highlight, index) => {
+            const tooltipContent = highlight.getAttribute('data-tooltip');
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(tooltipContent, 'text/html');
+            const grammarTitle = doc.querySelector('.tooltip-main-grammar').textContent.trim();
+
+            // Сохраняем в карту
+            if (!grammarMap.has(grammarTitle)) {
+              grammarMap.set(grammarTitle, []);
+            }
+            grammarMap.get(grammarTitle).push(highlight);
+
+            // Добавляем ID для быстрого поиска
+            highlight.id = `grammar-highlight-${grammarTitle.replace(/\s+/g, '-')}-${index}`;
+
+            // Обработчик клика - прокрутка к грамматике в списке
+            highlight.addEventListener('click', function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+              scrollToGrammarCard(grammarTitle);
+            });
+          });
+
+          // 2. Добавляем обработчики для карточек грамматик
+          document.querySelectorAll('.frog-card').forEach(card => {
+            const titleElement = card.querySelector('.frog-card-title');
+            if (titleElement) {
+              const grammarTitle = titleElement.textContent.trim();
+
+              // Добавляем курсор-указатель
+              titleElement.style.cursor = 'pointer';
+
+              // Обработчик клика - прокрутка к выделениям в тексте
+              titleElement.addEventListener('click', function () {
+                if (grammarMap.has(grammarTitle)) {
+                  // Находим первое вхождение этой грамматики в тексте
+                  const firstHighlight = grammarMap.get(grammarTitle)[0];
+
+                  // Прокручиваем к нему
+                  firstHighlight.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                  });
+
+                  // Временно выделяем
+                  highlightElement(firstHighlight);
+
+                  // Подсвечиваем все вхождения этой грамматики
+                  grammarMap.get(grammarTitle).forEach(h => {
+                    h.style.backgroundColor = '#ffeaea';
+                    setTimeout(() => {
+                      h.style.backgroundColor = '';
+                    }, 2000);
+                  });
+                }
+              });
+            }
+          });
+
+          // Функция для прокрутки к карточке грамматики
+          function scrollToGrammarCard(grammarTitle) {
+            const grammarCards = document.querySelectorAll('.frog-card-title');
+            let targetCard = null;
+
+            grammarCards.forEach(card => {
+              if (card.textContent.trim() === grammarTitle) {
+                targetCard = card.closest('.frog-card');
+              }
+            });
+
+            if (targetCard) {
+              // Активируем вкладку грамматики
+              const grammarTab = document.querySelector('.frog-tab[data-tab="grammar"]');
+              if (!grammarTab.classList.contains('active')) {
+                grammarTab.click();
+              }
+
+              // Прокручиваем
+              targetCard.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+              });
+
+              // Временно выделяем
+              highlightElement(targetCard);
+            }
+          }
+
+          // Функция для временного выделения элемента
+          function highlightElement(element) {
+            element.style.boxShadow = '0 0 0 3px #e53935';
+            setTimeout(() => {
+              element.style.boxShadow = '';
+            }, 2000);
+          }
+
+          // Остальной существующий код...
+        });
+      </script>
+
+
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          // Добавляем обработчики для подсветки грамматик в списке
+          const grammarCards = document.querySelectorAll('.frog-card');
+
+          grammarCards.forEach(card => {
+            const title = card.querySelector('.frog-card-title');
+
+            // Подсветка при наведении
+            title.addEventListener('mouseenter', function () {
+              this.style.backgroundColor = '#ffeaea';
+              this.style.color = '#e53935';
+            });
+
+            title.addEventListener('mouseleave', function () {
+              this.style.backgroundColor = '';
+              this.style.color = '';
+            });
+
+            // Добавляем возможность клика для прокрутки к соответствующей грамматике в тексте
+            title.addEventListener('click', function () {
+              const grammarTitle = this.textContent.trim();
+              highlightGrammarInText(grammarTitle);
+            });
+          });
+
+          // Функция для подсветки грамматики в тексте
+          function highlightGrammarInText(grammarTitle) {
+            // Сначала убираем все предыдущие подсветки
+            document.querySelectorAll('.grammar-highlight').forEach(el => {
+              el.style.backgroundColor = '';
+              el.style.color = '';
+            });
+
+            // Находим все элементы с этой грамматикой в тексте
+            const grammarElements = Array.from(document.querySelectorAll('.grammar-highlight'))
+              .filter(el => {
+                const tooltipContent = el.dataset.tooltip;
+                return tooltipContent.includes(grammarTitle);
+              });
+
+            if (grammarElements.length > 0) {
+              // Подсвечиваем элементы
+              grammarElements.forEach(el => {
+                el.style.backgroundColor = '#ffeaea';
+                el.style.color = '#e53935';
+              });
+
+              // Прокручиваем к первому элементу
+              grammarElements[0].scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+              });
+
+              // Убираем подсветку через 3 секунды
+              setTimeout(() => {
+                grammarElements.forEach(el => {
+                  el.style.backgroundColor = '';
+                  el.style.color = '';
+                });
+              }, 3000);
+            }
+          }
+
+          // Остальной код для работы с popups...
+        });
+      </script>
+
+
+</body>
+
+</html>
