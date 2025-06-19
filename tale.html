@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>K-Study: Легенда о Тангуне</title>
+	<link rel="stylesheet" href="styles.css">
+	<style>
+		body {
+			background: linear-gradient(135deg, #f8f0f0 0%, #f8f0f0 50%, #f8f0f0 100%);
+			min-height: 100vh;
+			margin: 0;
+			padding: 0;
+		}
+
+		header {
+			background: linear-gradient(135deg, #8b0000 0%, #8b0000 50%, #8b0000 100%);
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			z-index: 1000;
+			transition: transform 0.3s ease;
+			box-shadow: 0 4px 12px rgba(139, 0, 0, 0.2);
+		}
+
+		header.hidden {
+			transform: translateY(-100%);
+		}
+
+		main {
+			margin-top: 80px;
+			position: relative;
+		}
+
+		main::before {
+			content: '';
+			position: absolute;
+			top: -50px;
+			left: 0;
+			right: 0;
+			height: 50px;
+			background: linear-gradient(to bottom, #8b0000, #f8f0f0);
+			pointer-events: none;
+		}
+
+		footer {
+			background: linear-gradient(135deg, #8b0000 0%, #8b0000 50%, #8b0000 100%);
+			margin-top: 0;
+			padding: 2rem 0;
+			position: relative;
+		}
+
+		footer::before {
+			content: '';
+			position: absolute;
+			top: -50px;
+			left: 0;
+			right: 0;
+			height: 50px;
+			background: linear-gradient(to bottom, #f8f0f0, #8b0000);
+			pointer-events: none;
+		}
+
+		.scroll-to-top {
+			background: linear-gradient(135deg, #d82e2e 0%, #d82e2e 100%);
+			color: #fff;
+			border: none;
+			border-radius: 50%;
+			width: 50px;
+			height: 50px;
+			font-size: 24px;
+			cursor: pointer;
+			position: fixed;
+			bottom: 30px;
+			right: 30px;
+			display: none;
+			transition: all 0.3s ease;
+			z-index: 1000;
+		}
+
+		.scroll-to-top:hover {
+			transform: translateY(-3px);
+			background: linear-gradient(135deg, #8b0000 0%, #8b0000 100%);
+		}
+
+		.logo span {
+			color: #fff !important;
+			text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+			font-weight: 900;
+			font-size: 1.4rem;
+			letter-spacing: 0.5px;
+		}
+
+		.tab-panel {
+			transition: opacity 0.3s ease, transform 0.3s ease;
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		.tab {
+			position: relative;
+			overflow: hidden;
+		}
+
+		.tab::after {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			width: 0;
+			height: 2px;
+			transition: all 0.3s ease;
+			transform: translateX(-50%);
+		}
+
+		.tab:hover::after {
+			width: 100%;
+		}
+
+		.tab.active::after {
+			width: 100%;
+		}
+
+		/* Grammar highlighting styles */
+		.grammar-highlight {
+			background-color: rgba(139, 0, 0, 0.2);
+			border-bottom: 1px dashed #8b0000;
+			cursor: pointer;
+			transition: all 0.2s;
+		}
+
+		.grammar-highlight:hover {
+			background-color: rgba(139, 0, 0, 0.3);
+		}
+
+		/* Tooltip styles */
+		.kor-tooltip-popup {
+			position: absolute;
+			background: white;
+			border-radius: 8px;
+			padding: 12px;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+			max-width: 300px;
+			z-index: 1000;
+			font-size: 14px;
+			line-height: 1.5;
+		}
+
+		.tooltip-grammar {
+			font-weight: bold;
+			color: #8b0000;
+			margin-top: 8px;
+		}
+
+		.tooltip-main-grammar {
+			font-weight: bold;
+			color: #8b0000;
+			font-size: 16px;
+			margin-bottom: 6px;
+		}
+
+		.tooltip-expl {
+			color: #636e72;
+		}
+
+		.tooltip-ex {
+			color: #006400;
+			font-style: italic;
+			margin-top: 4px;
+		}
+
+		.tooltip-divider {
+			height: 1px;
+			background: #eee;
+			margin: 8px 0;
+		}
+
+		/* Russian text toggle button */
+		.toggle-rus {
+			background: none;
+			border: none;
+			color: #006400;
+			cursor: pointer;
+			font-size: 12px;
+			margin-left: 8px;
+			padding: 2px 6px;
+			border-radius: 4px;
+			transition: all 0.2s;
+		}
+
+		.toggle-rus:hover {
+			background: rgba(0, 100, 0, 0.1);
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<nav class="navbar">
+			<div class="logo">
+				<span>K-Study</span>
+			</div>
+			<ul class="nav-links">
+				<li><a href="index.html">Главная</a></li>
+				<li><a href="#grammar-section">Грамматика/Слова</a></li>
+				<li><a href="#quiz-section">Тест</a></li>
+		</ul>
+	</nav>
+	</header>
+	<main
+		style="max-width: 700px; margin: 3rem auto 2rem auto; background: #fff; border-radius: 18px; box-shadow: 0 2px 12px; padding: 2.5rem 2rem;">
+		<div style="text-align:center; margin-bottom: 1.5rem;">
+			<svg class="myth-cartoon-img" width="120" height="100" viewBox="0 0 120 100" fill="none"
+				xmlns="http://www.w3.org/2000/svg">
+				<path d="M60 10 L90 50 L60 90 L30 50 Z" fill="#8b0000" />
+				<circle cx="60" cy="50" r="20" fill="#ffd700" />
+				<path d="M55 45 L65 45 L65 55 L55 55 Z" fill="#000" />
+			</svg>
+				</div>
+		<h1 style="color: #8b0000; text-align: center;">Легенда о Тангуне<p>(단군 이야기)</p></h1>
+		<div class="story">
+			<div class="story-block">
+				<span class="kor-tooltip">옛날<span class="grammar-highlight"
+						data-tooltip='<div class="tooltip-main-grammar">N + 에</div><div class="tooltip-expl">Дательный падеж неодушевленных имен образуется путем присоединения к корню окончания -에. Имеет несколько значений:<br>1. Времени действия (когда?)<br>2. Направления движения (куда?)<br>3. Местонахождения предмета (где?)</div><div class="tooltip-ex">Пример: 밖에 사람이 많습니다. (На улице много людей. (Где? Местонахождение))</div>'>에</span>
+					아주 <span class="grammar-highlight"
+						data-tooltip='<div class="tooltip-main-grammar">A + (으)ㄴ + N</div><div class="tooltip-expl">Определительная форма предикативных прилагательных настоящего времени образуется при помощи окончаний -ㄴ / -은.</div><div class="tooltip-ex">Пример: 밝은 옷. (Светлая одежда.)</div>'>먼</span>
+					옛날<span class="grammar-highlight"
+						data-tooltip='<div class="tooltip-main-grammar">N + 에</div><div class="tooltip-expl">Дательный падеж неодушевленных имен образуется путем присоединения к корню окончания -에. Имеет несколько значений:<br>1. Времени действия (когда?)<br>2. Направления движения (куда?)<br>3. Местонахождения предмета (где?)</div><div class="tooltip-ex">Пример: 밖에 사람이 많습니다. (На улице много людей. (Где? Местонахождение))</div>'>에</span>
+					환인<span class="grammar-highlight"
+						data-tooltip='<div class="tooltip-main-grammar">N + (이)라고 하다</div><div class="tooltip-expl">Конструкция для названий.</div><div class="tooltip-ex">Пример: 이것은 한강이라고 합니다. (Это называют Ханган.)</div>'>이라는</span>
+					하늘나라 임금님<span class="grammar-highlight"
+						data-tooltip='<div class="tooltip-main-grammar">N + 이/가</div><div class="tooltip-expl">Выделяет подлежащее.</div><div class="tooltip-ex">Пример: 학생이 교실에 들어왔어요. (Студент вошёл в класс.)</div>'>이</span>
+					<span class="grammar-highlight"
+						data-tooltip='<div class="tooltip-main-grammar">V/A + ㅂ니다/습니다</div><div class="tooltip-expl">Официально-вежливый стиль образуется при помощи прибавления окончания -ㅂ니다 после гласных и -습니다 после согласных.</div><div class="tooltip-ex">Пример: 어제는 비가 왔습니다. (Вчера шёл дождь.)</div>'>있었습니다</span>.</span>
+				<div class="rus-sentence">Давным-давно в очень-преочень-далёком прошлом жил-был властитель небесного
+					царства по имени Хванин.</div>
+				</div>
+			</div>
+			<!-- Предложение 2 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					환인<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + 에게/한테/께</div><div class="tooltip-expl">Частицы 에게, 한테, 께 указывают на дателя или адресата действия: «кому/для кого». 에게 — нейтральная, 한테 — разговорная, 께 — уважительная форма.</div><div class="tooltip-ex">Пример: 친구에게 편지를 썼습니다. (Я другу написал письмо.)</div>'>에게는</span>
+					여러 명의 왕자들이 있었<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V/A + 는데</div><div class="tooltip-expl">Окончание -는데 соединяет части сложного предложения, задаёт контекст, объясняет причину или противопоставляет части. В отличие от -지만, не исключает одно другое.</div><div class="tooltip-ex">Пример: 비가 오는데 우산을 가져가세요. (Идёт дождь, так что возьмите зонт.)</div>'>는데</span>
+					환웅<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + 은/는</div><div class="tooltip-expl">은/는 — тема предложения, выделяет известную информацию или противопоставляет объекты. 은 после согласной, 는 после гласной.</div><div class="tooltip-ex">Пример: 저녁에는 밥을 먹었습니다. (Что касается вечера, я поужинал.)</div>'>은</span>
+					다른 형제들<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + 하고/와/과 + N</div><div class="tooltip-expl">Частицы 하고, 와/과 соединяют однородные члены предложения, означают «и/с». 와 после гласной, 과 после согласной, 하고 — универсально.</div><div class="tooltip-ex">Пример: 엄마와 아빠가 시장에 갔어요. (Мама и папа пошли на рынок.)</div>'>과는</span>
+					좀 달랐습니다.
+				</span>
+				<div class="rus-sentence">У Хванина было несколько сыновей-принцев, но Хванун был от них немного не такой, как остальные.</div>
+				</div>
+			<!-- Предложение 3 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					환웅<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + 은/는</div><div class="tooltip-expl">은/는 — тема предложения, выделяет известную информацию или противопоставляет объекты. 은 после согласной, 는 после гласной.</div><div class="tooltip-ex">Пример: 저녁에는 밥을 먹었습니다. (Что касается вечера, я поужинал.)</div>'>은</span>
+					자신이 살고 <span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V + 는 + N</div><div class="tooltip-expl">Глагол с окончанием -는 перед существительным образует причастие настоящего времени, указывает на характеристику или действие, выполняемое этим существительным.</div><div class="tooltip-ex">Пример: 읽는 책 (Книга, которую читают.)</div>'>있는</span> 하늘나라에는
+					별로 관심이 <span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">A/V + 지 않다</div><div class="tooltip-expl">Конструкция 지 않다 используется для отрицания глаголов и прилагательных, эквивалентна русскому «не».</div><div class="tooltip-ex">Пример: 숙제를 하지 않아요. (Не делаю домашнее задание.)</div>'>없고</span>
+					하늘 밑 인간 세상<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + 에만</div><div class="tooltip-expl">Частица -만 означает «только», присоединяется к существительным, вытесняя другие падежные окончания (кроме некоторых).</div><div class="tooltip-ex">Пример: 저만 볼 수 있어요. (Вижу только я.)</div>'>에만</span>
+					관심이 있었습니다.
+				</span>
+				<div class="rus-sentence">Хванун же совсем не интересовался тем, как живётся в небесном царстве, а лишь единственно беспокоился о земном мире под небом.</div>
+				</div>
+			<!-- Предложение 4 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					인간 세상<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + 은/는</div><div class="tooltip-expl">은/는 — тема предложения, выделяет известную информацию или противопоставляет объекты. 은 после согласной, 는 после гласной.</div><div class="tooltip-ex">Пример: 저녁에는 밥을 먹었습니다. (Что касается вечера, я поужинал.)</div>'>은</span>
+					하늘나라처럼 평화롭지 않아 보였습니다.
+				</span>
+				<div class="rus-sentence">Земной мир не выглядел столь же мирным, как небесное царство.</div>
+			</div>
+			<!-- Предложение 5 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					인간 세상<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + 에서</div><div class="tooltip-expl">Дательно-местный падеж -에서 указывает на место совершения действия или исходный пункт перемещения.</div><div class="tooltip-ex">Пример: 도서관에서 책을 읽어요. (Читаю книгу в библиотеке.)</div>'>에서는</span>
+					힘 <span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">A + (으)ㄴ + N</div><div class="tooltip-expl">Определительная форма прилагательных настоящего времени образуется с помощью -ㄴ/-은, превращая прилагательное в определение к существительному.</div><div class="tooltip-ex">Пример: 맛있는 음식 (Вкусная еда.)</div>'>있는</span> 사람이
+					힘없는 사람을 괴롭히고 사람들은 서로 다투거나 나쁜 짓을 하기도 했습니다.
+				</span>
+				<div class="rus-sentence">В земном мире сильные обижали слабых, люди ссорились и иногда совершали злодеяния.</div>
+				</div>
+			<!-- Предложение 6 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					그것<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + 을/를</div><div class="tooltip-expl">Объектная частица 을/를 указывает на прямое дополнение (объект действия) в предложении. 을 после согласной, 를 после гласной.</div><div class="tooltip-ex">Пример: 밥을 먹어요. (Ем рис.)</div>'>을</span> 보며
+					환웅은 안타깝게 생각하고 있었습니다.
+				</span>
+				<div class="rus-sentence">Видя это, Хванун глубоко сожалел.</div>
+				</div>
+			<!-- Предложение 7 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					그래서 하늘나라 임금님은 환웅에게 아주 신비한 물건을 주<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V/A + (으)면서</div><div class="tooltip-expl">Соединительное окончание -면서 выражает одновременность действий или сочетание качеств. Присоединяется к основе глагола или прилагательного.</div><div class="tooltip-ex">Пример: 음악을 들으면서 공부해요. (Слушая музыку, учусь.)</div>'>면서</span>
+					인간 세상에 내려가서 인간을 다스리라고 했습니다.
+				</span>
+				<div class="rus-sentence">Поэтому владыка небесного царства дал Хвануну очень таинственный предмет и велел ему спуститься в человеческий мир и управлять людьми.</div>
+			</div>
+			<!-- Предложение 8 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					그 신비한 물건은 '천부인'<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + (이)라고 하다</div><div class="tooltip-expl">Используется для передачи высказывания чужой речи или названия. Для формирования косвенной речи с глаголом-связкой 이다 в настоящем времени необходимо заменить 다 на 라고.</div><div class="tooltip-ex">Пример: 그 산은 '지리산'이라고 불려요. (Эту гору называют "Чирисан".)</div>이라는</span> 물건인데 바로 거울, 칼, 방울<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + 입니다</div><div class="tooltip-expl">Формальная вежливая связка "есть/является".</div><div class="tooltip-ex">Пример: 저는 학생입니다. (Я – студент.)</div>'>입니다</span>.
+				</span>
+				<div class="rus-sentence">Этот таинственный предмет зовётся "Чхонбугин", и это – прямо же зеркало, меч и колокольчик.</div>
+				</div>
+			<!-- Предложение 9 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					환웅은 바람을 맡은 신<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + 하고/와/과 + N</div><div class="tooltip-expl">Частицы 하고, 와/과 соединяют однородные члены предложения, означают "и/с".</div><div class="tooltip-ex">Пример: 엄마와 아빠가 집에 있어요. (Мама и папа дома.)</div>'>과</span> 비를 맡은 신, 그리고 구름을 맡은 신<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + 하고/와/과 + N</div><div class="tooltip-expl">Частицы 하고, 와/과 соединяют однородные члены предложения, означают "и/с".</div><div class="tooltip-ex">Пример: 엄마와 아빠가 집에 있어요. (Мама и папа дома.)</div>'>과</span> 3천 명<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + 의</div><div class="tooltip-expl">Родительный падеж связывает два (или более) сущ. для выражения притяжательных отношений, т.е. отношений принадлежности.</div><div class="tooltip-ex">Пример: 우리집의 고양이. (Кошка моего дома.)</div>'>의</span> 무리를 데리고 인간 세상인 땅<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + (으)로</div><div class="tooltip-expl">Творительный падеж используется для обозначения направления движения, орудия, материала или роли.</div><div class="tooltip-ex">Пример: 버스로 학교에 갔어요. (Поехал на автобусе в школу.)</div>'>으로</span> 내려왔습니다.
+				</span>
+				<div class="rus-sentence">Хванун, взяв с собой божество ветра и божество дождя, а также божество облаков и три тысячи человек, спустился на землю – в мир людей.</div>
+				</div>
+			<!-- Предложение 10 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					땅<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + (으)로</div><div class="tooltip-expl">Творительный падеж используется для обозначения направления движения, орудия, материала или роли.</div><div class="tooltip-ex">Пример: 버스로 학교에 갔어요. (Поехал на автобусе в школу.)</div>'>으로</span> 내려오자마자 하늘나라에 제사를 지낼 수 <span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V + 을/ㄹ 수 있다</div><div class="tooltip-expl">Конструкция -(으)ㄹ 수 있다 выражает возможность или способность совершить действие.</div><div class="tooltip-ex">Пример: 저는 한국어를 읽을 수 있어요. (Я могу читать по-корейски.)</div>'>있는</span> 높은 곳에 제단을 만들었습니다.
+				</span>
+				<div class="rus-sentence">Как только он спустился на землю, сразу же построил жертвенник на высокой горе, где можно было бы совершать обряды в честь небесных.</div>
+			</div>
+			<!-- Предложение 11 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					그리고 그 아래쪽에 마을을 만들었습니다.
+				</span>
+				<div class="rus-sentence">И прямо под этим жертвенником он основал деревню.</div>
+				</div>
+			<!-- Предложение 12 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					사람들은 그를 '환웅천왕'<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + (이)라고 하다</div><div class="tooltip-expl">Используется для передачи высказывания чужой речи или названия. Для формирования косвенной речи с глаголом-связкой 이다 в настоящем времени необходимо заменить 다 на 라고.</div><div class="tooltip-ex">Пример: 그 산은 '지리산'이라고 불려요. (Эту гору называют "Чирисан".)</div>이라고</span> 불렀습니다.
+				</span>
+				<div class="rus-sentence">Люди называли его «Хванунчхонван».</div>
+				</div>
+			<!-- Предложение 13 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					환웅천왕은 사람들에게 농사를 짓게 했습니다.
+				</span>
+				<div class="rus-sentence">Хванунчхонван заставил (научил) людей заниматься земледелием.</div>
+			</div>
+			<!-- Предложение 14 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					그리고 병을 낫게 해 <span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V + 아/어/여 주다</div><div class="tooltip-expl">Категория направленности действия, которая указывает на то, что данное действие совершается не в собственных интересах, а в интересах или для другого человека. Образуется путем добавления к основе глагола окончания -아/-어/-여 и служебного глагола 주다/드리다.</div><div class="tooltip-ex">Пример: 엄마가 저에게 밥을 해 주었어요. (Мама приготовила для меня еду.)</div>'>주었습니다</span>.
+				</span>
+				<div class="rus-sentence">И лечил (делал так, чтобы болезнь прошла).</div>
+				</div>
+			<!-- Предложение 15 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					좋은 일을 하는 사람에게는 상을 주고 나쁜 일을 하는 사람에게는 벌을 주었습니다.
+				</span>
+				<div class="rus-sentence">Тому, кто творил добро, он давал награду, а тому, кто поступал плохо, – он налагал наказание.</div>
+				</div>
+			<!-- Предложение 16 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					환웅이 사람들을 위해 맡은 일은 360여 가지나 되었습니다.
+				</span>
+				<div class="rus-sentence">У Хвануна было поручено более 360 различных дел на благо людей.</div>
+			</div>
+			<!-- Предложение 17 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					환웅이 다스리는 곳에는 어떤 동굴이 있었<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V + 고 있다</div><div class="tooltip-expl">Данная грамматическая конструкция выражает прогрессию или продолжение действия и эквивалентен английскому окончанию "-ing". Он образуется путём добавления -고 있다 к основе глагола.</div><div class="tooltip-ex">Пример: 친구가 영화를 보고 있어요. (Друг смотрит фильм.)</div>'>고 있었습니다</span>.
+				</span>
+				<div class="rus-sentence">В тех землях, где царил Хванун, была одна пещера, и в той пещере жили по одному медведю и тигру.</div>
+				</div>
+			<!-- Предложение 18 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					이 곰과 호랑이는 두 발로 서서 걸어 다니는 사람들이 부러웠습니다.
+				</span>
+				<div class="rus-sentence">Этот медведь и тигр завидовали людям, которые ходят, опираясь на две ноги.</div>
+				</div>
+			<!-- Предложение 19 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					그리고 사람들이 다른 동물들과는 비교할 수 <span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V + 을/ㄹ 수 없다</div><div class="tooltip-expl">Конструкция -(으)ㄹ 수 없다 выражает невозможность или неспособность совершить действие.</div><div class="tooltip-ex">Пример: 저는 한국어를 읽을 줄 알지만 쓰기는 할 수 없어요. (Я могу читать корейский, но не могу писать.)</div>'>없을</span> 정도로 똑똑한 것이 부러웠습니다.
+				</span>
+				<div class="rus-sentence">И они завидовали людям, потому что люди были настолько умны, что не сравняться ни с одним другим зверем.</div>
+			</div>
+			<!-- Предложение 20 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					그래서 환웅천왕을 찾아가 사람이 되게 해 달라고 부탁했습니다.
+				</span>
+				<div class="rus-sentence">Поэтому они обратились к Хванунчхонвану с просьбой: «Пожалуйста, сделай нас людьми».</div>
+				</div>
+			<!-- Предложение 21 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					환웅은 이들에게 신비한 쑥과 마늘을 주면서 말했습니다.
+				</span>
+				<div class="rus-sentence">Хванун дал им волшебные полынь и чеснок и при этом сказал:</div>
+				</div>
+			<!-- Предложение 22 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					너희들은 100일 <span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + 동안</div><div class="tooltip-expl">Для обозначения временной протяженности используется служебное имя 동안. Оно стоит после слов, обозначающих период, в течение которого совершалось действие или длилось некое состояние.</div><div class="tooltip-ex">Пример: 일주일 동안 여행했어요. (Путешествовал в течение недели.)</div>'>동안</span> 햇빛을 보지 <span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V + 지 말다</div><div class="tooltip-expl">В повелительных и побудительных отрицательных предложениях употребляется отрицание -지 말다. Окончание -지 присоединяется к основе глагола.</div><div class="tooltip-ex">Пример: 여기서 뛰지 말아요. (Не бегите здесь.)</div>'>말고</span> 동굴 속에서 이 쑥과 마늘<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + 만</div><div class="tooltip-expl">Чтобы сказать, что вам нравится только одна вещь, нужно использовать частицу -만.</div><div class="tooltip-ex">Пример: 저만 볼 수 있어요. (Вижу только я.)</div>'>만</span> 먹으며 기다려<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V/A + 아/어/여야 하다</div><div class="tooltip-expl">Для обозначения обязательного характера действия или обязательного условия в корейском языке есть конструкция -아 /어/여야 하다 / 되다 — так называемая конструкция долженствования.</div><div class="tooltip-ex">Пример: 지금 약을 먹어야 해요. (Сейчас нужно принять лекарство.)</div>'>야 한다</span>.
+				</span>
+				<div class="rus-sentence">«Вы 100 дней не показывайте лицу солнечного света, оставайтесь в пещере и ешьте только эту полынь и чеснок — и ждите».</div>
+			</div>
+			<!-- Предложение 23 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					그러면 소원대로 사람이 될 수 있을 것이다.
+				</span>
+				<div class="rus-sentence">«Тогда, в соответствии с желанием, вы сможете стать людьми».</div>
+				</div>
+			<!-- Предложение 24 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					곰과 호랑이는 그렇게 하겠다고 자신 있게 대답한 후 쑥과 마늘을 가지고 동굴 속으로 들어갔습니다.
+				</span>
+				<div class="rus-sentence">Медведь и тигр уверенно согласились и, взяв полынь и чеснок, вошли в пещеру.</div>
+				</div>
+			<!-- Предложение 25 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					동굴 속에서 며칠이 지나자 호랑이는 이런 생활이 싫증이 났습니다.
+				</span>
+				<div class="rus-sentence">Через несколько дней, проведённых в пещере, тигр устал от такого образа жизни.</div>
+			</div>
+			<!-- Предложение 26 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					곰은 호랑이를 달래며 조금만 참자고 했습니다.
+				</span>
+				<div class="rus-sentence">Медведь успокаивал тигра и просил его подождать ещё немного.</div>
+					</div>
+			<!-- Предложение 27 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					그러나 호랑이는 고기<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + 도</div><div class="tooltip-expl">Частица -도 имеет значение «тоже, также» и присоединяется к падежным формам имени, за исключением именительного и винительного падежей.</div><div class="tooltip-ex">Пример: 저도 가고 싶어요. (Я тоже хочу пойти.)</div>'>도</span> 먹고 싶고 산과 들<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + 도</div><div class="tooltip-expl">Частица -도 имеет значение «тоже, также» и присоединяется к падежным формам имени, за исключением именительного и винительного падежей.</div><div class="tooltip-ex">Пример: 저도 가고 싶어요. (Я тоже хочу пойти.)</div>'>도</span> 마음껏 뛰어다니고 <span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V + 고 싶다</div><div class="tooltip-expl">Категория желания -고 싶다 присоединяется к основе глагола. Выражает желание сделать что-либо.</div><div class="tooltip-ex">Пример: 저는 여행을 가고 싶어요. (Я хочу поехать в путешествие.)</div>'>싶었습니다</span>.
+				</span>
+				<div class="rus-sentence">Но тигру хотелось есть мясо, а ещё он хотел свободно бегать по горам и долинам.</div>
+					</div>
+			<!-- Предложение 28 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					결국 호랑이는 동굴 밖으로 나오고 말았습니다.
+				</span>
+				<div class="rus-sentence">В конце концов тигр всё-таки вышел из пещеры.</div>
+				</div>
+			<!-- Предложение 29 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					호랑이도 없는 동굴 속에서 곰은 외로웠<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V/A + 지만</div><div class="tooltip-expl">Присоединяется к временной основе предикатива. Используется для выражения противопоставления двух действий, состояний или уступительных отношений.</div><div class="tooltip-ex">Пример: 가고 싶지만 시간이 없어요. (Хочу пойти, но нет времени.)</div>'>지만</span> 인간이 되겠다는 희망으로 참고 또 참았습니다.
+				</span>
+				<div class="rus-sentence">В пещере, где не было тигра, медведь, несмотря на одиночество, терпел, преодолевая себя, потому что надеялся стать человеком.</div>
+					</div>
+			<!-- Предложение 30 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					100일이 되는 날 곰은 동굴 밖으로 나왔습니다.
+				</span>
+				<div class="rus-sentence">В день, когда исполнилось сто дней, медведь вышел из пещеры.</div>
+				</div>
+			<!-- Предложение 31 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					그런데 곰의 모습은 이미 인간 여자의 모습으로 변해 있었습니다.
+				</span>
+				<div class="rus-sentence">Однако облик медведя уже изменился – он превратился в облик женщины-человека.</div>
+			</div>
+			<!-- Предложение 32 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					이 여자가 바로 웅녀입니다.
+				</span>
+				<div class="rus-sentence">Этой женщиной оказалась именно Уннё.</div>
+				</div>
+			<!-- Предложение 33 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					웅녀는 보통의 여자처럼 결혼해서 아이를 낳고 싶었습니다.
+				</span>
+				<div class="rus-sentence">Уннё, как обычная женщина, хотела выйти замуж и родить ребёнка.</div>
+				</div>
+			<!-- Предложение 34 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					그래서 매일 제단으로 가서 아이를 낳게 해 달라고 정성껏 기도했습니다.
+				</span>
+				<div class="rus-sentence">Поэтому она ежедневно шла к жертвеннику и с непрерывной преданностью молила «даруй мне рождение ребёнка».</div>
+			</div>
+			<!-- Предложение 35 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					하루도 빠짐없이 기도하는 모습을 본 환웅은 감동했습니다.
+				</span>
+				<div class="rus-sentence">Хванун был тронут: он увидел, что она молилась без единого пропуска.</div>
+				</div>
+			<!-- Предложение 36 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					환웅은 인간 남자의 모습으로 변해 웅녀와 결혼했습니다.
+				</span>
+				<div class="rus-sentence">Хванун превратился в человеческого мужчину и женился на Уннё.</div>
+				</div>
+			<!-- Предложение 37 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					웅녀는 소원대로 아이를 갖게 <span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">V + 게 되다</div><div class="tooltip-expl">Конструкция -게 되다 используется для обозначения того, что действие или ситуация стало возможным, произошло случайно, неожиданно или было результатом изменения обстоятельств.</div><div class="tooltip-ex">Пример: 어제 한국에 오게 되었습니다. (Вчера получилось, что я приехал в Корею.)</div>'>되었습니다</span> 아주 건강한 남자아이를 낳았습니다.
+				</span>
+				<div class="rus-sentence">Уннё, согласно желанию, забеременела и родила очень здорового мальчика.</div>
+			</div>
+			<!-- Предложение 38 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					이 아이는 자라면서 점점 환웅을 닮아 아주 슬기롭고 용감하게 자랐습니다.
+				</span>
+				<div class="rus-sentence">Этот ребёнок, растя, становился всё больше похожим на Хвануна и рос очень мудрым и отважным.</div>
+				</div>
+			<!-- Предложение 39 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					세월이 흘러 이 아이는 환웅의 뒤를 이어 인간 세상을 다스렸습니다.
+				</span>
+				<div class="rus-sentence">Со временем этот ребёнок сменил Хвануна и стал управлять миром людей.</div>
+				</div>
+			<!-- Предложение 40 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					그가 곧 단군왕검입니다.
+				</span>
+				<div class="rus-sentence">Этот человек и был тем самым Тангу́ном Ванге́мом.</div>
+			</div>
+			<!-- Предложение 41 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					단군은 평양성에 도읍을 정하고 나라를 세웠습니다.
+				</span>
+				<div class="rus-sentence">Тангун основал столицу в Пхеньяне и учредил своё государство.</div>
+				</div>
+			<!-- Предложение 42 -->
+			<div class="story-block">
+				<span class="kor-tooltip">
+					이 나라가 바로 한민족이 처음으로 세운 나라인 '고조선'<span class="grammar-highlight" data-tooltip='<div class="tooltip-main-grammar">N + 입니다</div><div class="tooltip-expl">Формальная вежливая связка "есть/является".</div><div class="tooltip-ex">Пример: 저는 학생입니다. (Я – студент.)</div>'>입니다</span>.
+				</span>
+				<div class="rus-sentence">Это государство и было Первым государством ханмина, именуемым «Коджо́сон».</div>
+			</div>
+			</div>
+
+		<section class="grammar-section" id="grammar-section"
+			style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 3rem 2rem; border-radius: 24px; margin: 2rem 0;">
+			<h2 style="text-align: center; color: #2d3436; font-size: 2rem; margin-bottom: 2rem; font-weight: 700;">
+				Грамматика
+				и Слова</h2>
+			<div class="tabs" style="display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 3rem;">
+				<button class="tab active" data-tab="grammar"
+					style="background: linear-gradient(135deg, #8b0000 0%, #d82e2e 100%); color: white; border: none; padding: 1.2rem 2.5rem; border-radius: 16px; cursor: pointer; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(139, 0, 0, 0.2); font-size: 1.1rem;">Грамматика</button>
+				<button class="tab" data-tab="words"
+					style="background: white; color: #2d3436; border: 2px solid #d82e2e; padding: 1.2rem 2.5rem; border-radius: 16px; cursor: pointer; font-weight: 600; transition: all 0.3s ease; font-size: 1.1rem;">Сложные
+					слова</button>
+				</div>
+			<div class="tabs-content" style="max-width: 800px; margin: 0 auto;">
+				<div class="tab-panel" id="tab-grammar" style="display:block;">
+					<!-- Грамматические карточки -->
+					<div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+						<div class="card-title" style="color: #8b0000; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">N + 에</div>
+						<div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Дательный падеж неодушевленных имен образуется путем присоединения к корню окончания -에. Имеет несколько значений: 1. Времени действия (когда?) 2. Направления движения (куда?) 3. Местонахождения предмета (где?)</div>
+						<div class="card-ex" style="color: #006400; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 밖에 사람이 많습니다. (На улице много людей. (Где? Местонахождение))</div>
+					</div>
+					<div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+						<div class="card-title" style="color: #8b0000; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">A + (으)ㄴ + N</div>
+						<div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Определительная форма предикативных прилагательных настоящего времени образуется при помощи окончаний -ㄴ / -은.</div>
+						<div class="card-ex" style="color: #006400; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 밝은 옷. (Светлая одежда.)</div>
+					</div>
+					<div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+						<div class="card-title" style="color: #8b0000; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">N + (이)라고 하다</div>
+						<div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Конструкция для названий.</div>
+						<div class="card-ex" style="color: #006400; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 이것은 한강이라고 합니다. (Это называют Ханган.)</div>
+					</div>
+					<div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+						<div class="card-title" style="color: #8b0000; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">N + 이/가</div>
+						<div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Выделяет подлежащее.</div>
+						<div class="card-ex" style="color: #006400; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 학생이 교실에 들어왔어요. (Студент вошёл в класс.)</div>
+					</div>
+					<div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+						<div class="card-title" style="color: #8b0000; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">V/A + ㅂ니다/습니다</div>
+						<div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Официально-вежливый стиль образуется при помощи прибавления окончания -ㅂ니다 после гласных и -습니다 после согласных.</div>
+						<div class="card-ex" style="color: #006400; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 어제는 비가 왔습니다. (Вчера шёл дождь.)</div>
+					</div>
+					<div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+						<div class="card-title" style="color: #8b0000; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">N + 에게/한테/께</div>
+						<div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Частицы 에게, 한테, 께 указывают на дателя или адресата действия: «кому/для кого». 에게 — нейтральная, 한те — разговорная, 께 — уважительная форма.</div>
+						<div class="card-ex" style="color: #006400; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 친구에게 편지를 썼습니다. (Я другу написал письмо.)</div>
+					</div>
+					<div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+						<div class="card-title" style="color: #8b0000; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">V/A + (으)면서</div>
+						<div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Соединительное окончание -면서 выражает одновременность действий или сочетание качеств.</div>
+						<div class="card-ex" style="color: #006400; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 음악을 들으면서 공부해요. (Слушая музыку, учусь.)</div>
+					</div>
+					<div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+						<div class="card-title" style="color: #8b0000; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">N + (이)라고 하다</div>
+						<div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Используется для передачи высказывания чужой речи или названия.</div>
+						<div class="card-ex" style="color: #006400; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 그 산은 '지리산'이라고 불려요. (Эту гору называют "Чирисан".)</div>
+					</div>
+					<div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+						<div class="card-title" style="color: #8b0000; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">N + 은/는</div>
+						<div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">은/는 — тема предложения, выделяет известную информацию или противопоставляет объекты.</div>
+						<div class="card-ex" style="color: #006400; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 저녁에는 밥을 먹었습니다. (Что касается вечера, я поужинал.)</div>
+					</div>
+					<div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+						<div class="card-title" style="color: #8b0000; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">N + 하고/와/과 + N</div>
+						<div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Частицы 하고, 와/과 соединяют однородные члены предложения, означают «и/с».</div>
+						<div class="card-ex" style="color: #006400; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 엄마와 아빠가 시장에 갔어요. (Мама и папа пошли на рынок.)</div>
+					</div>
+					<div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+						<div class="card-title" style="color: #8b0000; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">N + 의</div>
+						<div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Родительный падеж связывает два (или более) сущ. для выражения притяжательных отношений.</div>
+						<div class="card-ex" style="color: #006400; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 우리집의 고양이. (Кошка моего дома.)</div>
+					</div>
+					<div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+						<div class="card-title" style="color: #8b0000; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">N + (으)로</div>
+						<div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Творительный падеж используется для обозначения направления движения, орудия, материала или роли.</div>
+						<div class="card-ex" style="color: #006400; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 버스로 학교에 갔어요. (Поехал на автобусе в школу.)</div>
+					</div>
+					<div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+						<div class="card-title" style="color: #8b0000; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">V + 을/ㄹ 수 있다</div>
+						<div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Конструкция -(으)ㄹ 수 있다 выражает возможность или способность совершить действие.</div>
+						<div class="card-ex" style="color: #006400; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 저는 한국어를 읽을 수 있어요. (Я могу читать по-корейски.)</div>
+					</div>
+					<div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+						<div class="card-title" style="color: #8b0000; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">V + 을/ㄹ 수 없다</div>
+						<div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Конструкция -(으)ㄹ 수 없다 выражает невозможность или неспособность совершить действие.</div>
+						<div class="card-ex" style="color: #006400; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 저는 한국어를 읽을 줄 알지만 쓰기는 할 수 없어요. (Я могу читать корейский, но не могу писать.)</div>
+					</div>
+					<div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+						<div class="card-title" style="color: #8b0000; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">V/A + 는데</div>
+						<div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Окончание -는데 соединяет части сложного предложения, задаёт контекст, объясняет причину или противопоставляет части.</div>
+						<div class="card-ex" style="color: #006400; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 비가 오는데 우산을 가져가세요. (Идёт дождь, так что возьмите зонт.)</div>
+					</div>
+					<div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+						<div class="card-title" style="color: #8b0000; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">N + 에서</div>
+						<div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Дательно-местный падеж -에서 указывает на место совершения действия или исходный пункт перемещения.</div>
+						<div class="card-ex" style="color: #006400; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 도서관에서 책을 읽어요. (Читаю книгу в библиотеке.)</div>
+					</div>
+					<div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+						<div class="card-title" style="color: #8b0000; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">A + (으)ㄴ + N</div>
+						<div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Определительная форма прилагательных настоящего времени образуется с помощью -ㄴ/-은, превращая прилагательное в определение к существительному.</div>
+						<div class="card-ex" style="color: #006400; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 맛있는 음식 (Вкусная еда.)</div>
+					</div>
+					<div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+						<div class="card-title" style="color: #8b0000; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">N + 을/를</div>
+						<div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Объектная частица 을/를 указывает на прямое дополнение (объект действия) в предложении.</div>
+						<div class="card-ex" style="color: #006400; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 밥을 먹어요. (Ем рис.)</div>
+					</div>
+					<div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+						<div class="card-title" style="color: #8b0000; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">V/A + (으)ㄴ + N</div>
+						<div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Определительная форма предикативных прилагательных настоящего времени образуется при помощи окончаний -ㄴ / -은.</div>
+						<div class="card-ex" style="color: #006400; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 밝은 옷. (Светлая одежда.)</div>
+					</div>
+					<div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+						<div class="card-title" style="color: #8b0000; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">V/A + 고 있다</div>
+						<div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Данная грамматическая конструкция выражает прогрессию или продолжение действия и эквивалентен английскому окончанию "-ing".</div>
+						<div class="card-ex" style="color: #006400; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 친구가 영화를 보고 있어요. (Друг смотрит фильм.)</div>
+					</div>
+					<div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+						<div class="card-title" style="color: #8b0000; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">N + 만</div>
+						<div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Частица -만 означает «только», присоединяется к существительным, вытесняя другие падежные окончания (кроме некоторых).</div>
+						<div class="card-ex" style="color: #006400; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 저만 볼 수 있어요. (Вижу только я.)</div>
+					</div>
+					<div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+						<div class="card-title" style="color: #8b0000; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">V/A + 아/어/여야 하다</div>
+						<div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Для обозначения обязательного характера действия или обязательного условия в корейском языке есть конструкция -아 /어/여야 하다 / 되다 — так называемая конструкция долженствования.</div>
+						<div class="card-ex" style="color: #006400; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 지금 약을 먹어야 해요. (Сейчас нужно принять лекарство.)</div>
+					</div>
+					<div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+						<div class="card-title" style="color: #8b0000; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">V + 지 말다</div>
+						<div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">В повелительных и побудительных отрицательных предложениях употребляется отрицание -지 말다. Окончание -지 присоединяется к основе глагола.</div>
+						<div class="card-ex" style="color: #006400; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 여기서 뛰지 말아요. (Не бегите здесь.)</div>
+					</div>
+					<div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+						<div class="card-title" style="color: #8b0000; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">V + 고 싶다</div>
+						<div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Категория желания -고 싶다 присоединяется к основе глагола. Выражает желание сделать что-либо.</div>
+						<div class="card-ex" style="color: #006400; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 저는 여행을 가고 싶어요. (Я хочу поехать в путешествие.)</div>
+					</div>
+					<div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+						<div class="card-title" style="color: #8b0000; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">V/A + 지만</div>
+						<div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Присоединяется к временной основе предикатива. Используется для выражения противопоставления двух действий, состояний или уступительных отношений.</div>
+						<div class="card-ex" style="color: #006400; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">Пример: 가고 싶지만 시간이 없어요. (Хочу пойти, но нет времени.)</div>
+					</div>
+				</div>
+				<div class="tab-panel" id="tab-words" style="display:none;">
+					<!-- Лексические карточки -->
+					<div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+						<div class="card-title" style="color: #8b0000; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">환인</div>
+						<div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">Хванин (мифический небесный царь)</div>
+						<div class="card-ex" style="color: #006400; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">환인이라는 하늘나라 임금님 (небесный царь по имени Хванин)</div>
+					</div>
+					<div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+						<div class="card-title" style="color: #8b0000; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">하늘나라</div>
+						<div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">небесное царство</div>
+						<div class="card-ex" style="color: #006400; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">하늘나라 임금님이 있었습니다 (был царь небесного царства)</div>
+					</div>
+					<div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+						<div class="card-title" style="color: #8b0000; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">임금님</div>
+						<div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">царь, король</div>
+						<div class="card-ex" style="color: #006400; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">하늘나라 임금님 (небесный царь)</div>
+					</div>
+					<div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+						<div class="card-title" style="color: #8b0000; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">옛날</div>
+						<div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">давным-давно, в старину</div>
+						<div class="card-ex" style="color: #006400; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">옛날에 (давным-давно)</div>
+					</div>
+					<div class="card" style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+						<div class="card-title" style="color: #8b0000; font-weight: 700; margin-bottom: 1rem; font-size: 1.2rem;">먼</div>
+						<div class="card-desc" style="color: #636e72; margin-bottom: 1rem; line-height: 1.6;">далёкий</div>
+						<div class="card-ex" style="color: #006400; font-style: italic; background: #f8f9fa; padding: 1rem; border-radius: 8px;">아주 먼 옛날 (очень далёкое прошлое)</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="quiz-section" id="quiz-section">
+			<h2 style="text-align:center;color:#8b0000;margin-bottom:1.5rem;">Проверь себя: fill in the gap</h2>
+			<form id="quiz-form">
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">저는 학생<input type="text" name="q1" style="width: 40px; text-align:center;"> 한국어를 공부해요.<br><span style="font-size:0.95em;color:#888;">(Я, как студент, изучаю корейский.)</span></div>
+				</div>
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">저는 사과<input type="text" name="q2" style="width: 40px; text-align:center;"> 먹었어요.<br><span style="font-size:0.95em;color:#888;">(Я съел яблоко.)</span></div>
+				</div>
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">누구<input type="text" name="q3" style="width: 40px; text-align:center;"> 선생님이에요?<br><span style="font-size:0.95em;color:#888;">(Кто является учителем?)</span></div>
+				</div>
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">저는 학생<input type="text" name="q4" style="width: 60px; text-align:center;">.<br><span style="font-size:0.95em;color:#888;">(Я — студент.)</span></div>
+				</div>
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">엄마<input type="text" name="q5" style="width: 40px; text-align:center;"> 아빠가 같이 시장에 갔어요.<br><span style="font-size:0.95em;color:#888;">(Мама и папа вместе пошли на рынок.)</span></div>
+				</div>
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">매일 아침에 운동합<input type="text" name="q6" style="width: 40px; text-align:center;">.<br><span style="font-size:0.95em;color:#888;">(Каждое утро я занимаюсь спортом.)</span></div>
+				</div>
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">집<input type="text" name="q7" style="width: 40px; text-align:center;"> 공부해요.<br><span style="font-size:0.95em;color:#888;">(Я учусь дома.)</span></div>
+				</div>
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">저는 도서관<input type="text" name="q8" style="width: 40px; text-align:center;"> 갔어요.<br><span style="font-size:0.95em;color:#888;">(Я пошёл в библиотеку.)</span></div>
+				</div>
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">저는 매운 음식을 좋<input type="text" name="q9" style="width: 40px; text-align:center;"> 않아요.<br><span style="font-size:0.95em;color:#888;">(Я не люблю острую еду.)</span></div>
+				</div>
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">방에 창문<input type="text" name="q10" style="width: 40px; text-align:center;"> 있어요.<br><span style="font-size:0.95em;color:#888;">(В комнате есть окно.)</span></div>
+				</div>
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">한국어 공부는 재미있<input type="text" name="q11" style="width: 40px; text-align:center;"> 유용해요.<br><span style="font-size:0.95em;color:#888;">(Изучение корейского интересно и полезно.)</span></div>
+				</div>
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">저는 어제 시장에 갔<input type="text" name="q12" style="width: 60px; text-align:center;">.<br><span style="font-size:0.95em;color:#888;">(Вчера я ходил на рынок.)</span></div>
+				</div>
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">저<input type="text" name="q13" style="width: 40px; text-align:center;"> 한국어를 공부해요.<br><span style="font-size:0.95em;color:#888;">(Я тоже изучаю корейский.)</span></div>
+				</div>
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">여기서 커피<input type="text" name="q14" style="width: 40px; text-align:center;"> 있어요.<br><span style="font-size:0.95em;color:#888;">(Здесь есть только кофе.)</span></div>
+				</div>
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">저는 피자는 좋아하<input type="text" name="q15" style="width: 40px; text-align:center;"> 라면은 싫어해요.<br><span style="font-size:0.95em;color:#888;">(Я люблю пиццу, но не люблю рамен.)</span></div>
+				</div>
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">수업 중에 핸드폰을 사용<input type="text" name="q16" style="width: 40px; text-align:center;"> 말아야 해요.<br><span style="font-size:0.95em;color:#888;">(Во время урока нельзя пользоваться телефоном.)</span></div>
+				</div>
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">지금 학교에서 수업을 듣<input type="text" name="q17" style="width: 40px; text-align:center;"> 있어요.<br><span style="font-size:0.95em;color:#888;">(Сейчас я слушаю урок в школе.)</span></div>
+				</div>
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">저는 새 차를 사<input type="text" name="q18" style="width: 40px; text-align:center;"> 싶어요.<br><span style="font-size:0.95em;color:#888;">(Я хочу купить новую машину.)</span></div>
+				</div>
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">내일까지 과제를 제출<input type="text" name="q19" style="width: 40px; text-align:center;"> 해요.<br><span style="font-size:0.95em;color:#888;">(Мне нужно сдать задание до завтра.)</span></div>
+				</div>
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">친구가 편지를 써<input type="text" name="q20" style="width: 40px; text-align:center;"> 줬어요.<br><span style="font-size:0.95em;color:#888;">(Друг написал письмо для меня.)</span></div>
+				</div>
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">버스로 학교<input type="text" name="q21" style="width: 40px; text-align:center;"> 왔어요.<br><span style="font-size:0.95em;color:#888;">(Я приехал в школу на автобусе.)</span></div>
+				</div>
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">저는 이 책을 선생님<input type="text" name="q22" style="width: 40px; text-align:center;"> 주었어요.<br><span style="font-size:0.95em;color:#888;">(Я дал эту книгу учителю.)</span></div>
+				</div>
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">친구의 이름<input type="text" name="q23" style="width: 40px; text-align:center;"> 뭐예요?<br><span style="font-size:0.95em;color:#888;">(Как зовут (имя) друга?)</span></div>
+				</div>
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">저는 운동하<input type="text" name="q24" style="width: 40px; text-align:center;"> 시간이 없어요.<br><span style="font-size:0.95em;color:#888;">(У меня нет времени, чтобы заниматься спортом.)</span></div>
+				</div>
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">예쁜<input type="text" name="q25" style="width: 40px; text-align:center;"> 꽃을 샀어요.<br><span style="font-size:0.95em;color:#888;">(Я купил красивые цветы.)</span></div>
+				</div>
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">저는 한국어를 잘 말<input type="text" name="q26" style="width: 40px; text-align:center;"> 수 있어요.<br><span style="font-size:0.95em;color:#888;">(Я могу хорошо говорить по-корейски.)</span></div>
+				</div>
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">저는 춤을 출<input type="text" name="q27" style="width: 40px; text-align:center;"> 수 없어요.<br><span style="font-size:0.95em;color:#888;">(Я не умею танцевать.)</span></div>
+				</div>
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">음악을 들으<input type="text" name="q28" style="width: 60px; text-align:center;"> 공부해요.<br><span style="font-size:0.95em;color:#888;">(Я слушаю музыку, пока учусь.)</span></div>
+				</div>
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">그는 '안녕하세요'<input type="text" name="q29" style="width: 60px; text-align:center;"> 인사했다고 해요.<br><span style="font-size:0.95em;color:#888;">(Говорят, что он поприветствовал словами «안녕하세요».)</span></div>
+				</div>
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">선생님이 학생에게 '책을 읽으<input type="text" name="q30" style="width: 40px; text-align:center;">' 라고 하셨어요.<br><span style="font-size:0.95em;color:#888;">(Учитель сказал ученику: «Прочитай книгу».)</span></div>
+				</div>
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">저는 방학<input type="text" name="q31" style="width: 40px; text-align:center;"> 동안 공부를 많이 했어요.<br><span style="font-size:0.95em;color:#888;">(Во время каникул я много учился.)</span></div>
+				</div>
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">밖에 비가 오<input type="text" name="q32" style="width: 40px; text-align:center;"> 우산을 가져가세요.<br><span style="font-size:0.95em;color:#888;">(На улице идёт дождь, возьмите зонт.)</span></div>
+				</div>
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">너무 배고파<input type="text" name="q33" style="width: 40px; text-align:center;"> 밥을 먹었어요.<br><span style="font-size:0.95em;color:#888;">(Потому что я сильно проголодался, я поел.)</span></div>
+				</div>
+				<div class="quiz-card" style="background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+					<div class="quiz-q" style="color: #666; margin-bottom: 1rem;">저는 장학금을 받아서 내년에 한국에 가<input type="text" name="q34" style="width: 40px; text-align:center;"> 되었습니다.<br><span style="font-size:0.95em;color:#888;">(Я получил стипендию, поэтому в следующем году смогу поехать в Корею.)</span></div>
+				</div>
+				<button type="button" class="cta-btn" id="quiz-check" style="background: linear-gradient(135deg, #8b0000 0%, #8b0000 100%); color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 600; margin-top: 1.2rem; transition: all 0.3s ease;">Проверить</button>
+			</form>
+			<div id="quiz-result" style="text-align:center;font-weight:bold;margin-top:1.2rem;color:#8b0000;"></div>
+		</section>
+	</main>
+	<footer>
+		<div class="footer-content">
+			<div class="footer-links">
+				<a href="#">О нас</a>
+			</div>
+			<p>&copy; 2024 K-Study.</p>
+		</div>
+	</footer>
+	<button id="scrollToTop" class="scroll-to-top" onclick="scrollToTop()">↑</button>
+
+	<script>
+		// JS Tooltip for kor-tooltip
+		document.querySelectorAll('.kor-tooltip').forEach(function (el) {
+			const tooltipContent = el.getAttribute('data-tooltip');
+			// Only add tooltip functionality if there's actual content
+			if (tooltipContent && tooltipContent.trim() !== '') {
+				el.addEventListener('mouseenter', function (e) {
+					let tooltip = document.createElement('div');
+					tooltip.className = 'kor-tooltip-popup';
+					tooltip.innerHTML = el.getAttribute('data-tooltip');
+					document.body.appendChild(tooltip);
+					// Position
+					const rect = el.getBoundingClientRect();
+					tooltip.style.position = 'absolute';
+					tooltip.style.left = (window.scrollX + rect.left + rect.width / 2 - tooltip.offsetWidth / 2) + 'px';
+					tooltip.style.top = (window.scrollY + rect.bottom + 8) + 'px';
+					tooltip.style.zIndex = 9999;
+					// Save ref
+					el._tooltip = tooltip;
+				});
+				el.addEventListener('mouseleave', function () {
+					if (el._tooltip) {
+						el._tooltip.remove();
+						el._tooltip = null;
+					}
+				});
+				el.addEventListener('mousemove', function (e) {
+					if (el._tooltip) {
+						const rect = el.getBoundingClientRect();
+						el._tooltip.style.left = (window.scrollX + rect.left + rect.width / 2 - el._tooltip.offsetWidth / 2) + 'px';
+						el._tooltip.style.top = (window.scrollY + rect.bottom + 8) + 'px';
+					}
+				});
+
+				// Click handler to scroll to grammar section
+				el.addEventListener('click', function () {
+					document.getElementById('grammar-section').scrollIntoView({
+						behavior: 'smooth'
+					});
+				});
+			}
+		});
+
+		// Russian text visibility toggle
+		document.querySelectorAll('.story-block').forEach(function (block) {
+			const rusText = block.querySelector('.rus-sentence');
+			const toggleBtn = document.createElement('button');
+			toggleBtn.className = 'toggle-rus';
+			toggleBtn.title = 'Показать/скрыть перевод';
+			block.querySelector('.kor-tooltip').after(toggleBtn);
+
+			toggleBtn.addEventListener('click', function () {
+				rusText.classList.toggle('visible');
+				// Change button appearance when text is visible
+				if (rusText.classList.contains('visible')) {
+					toggleBtn.style.color = '#8b0000';
+				} else {
+					toggleBtn.style.color = '#006400';
+				}
+			});
+		});
+
+		// Make grammar cards clickable to scroll to corresponding sentences
+		document.querySelectorAll('.card').forEach(card => {
+			const grammarTitle = card.querySelector('.card-title').textContent.trim();
+
+			card.style.cursor = 'pointer';
+
+			card.addEventListener('click', function () {
+				// Find all elements with this grammar
+				const grammarElements = document.querySelectorAll(`.grammar-highlight[data-tooltip*="${grammarTitle}"]`);
+
+				if (grammarElements.length > 0) {
+					// Scroll to the first occurrence
+					grammarElements[0].scrollIntoView({
+							behavior: 'smooth',
+							block: 'center'
+						});
+
+					// Highlight all occurrences temporarily
+					grammarElements.forEach(el => {
+						el.style.backgroundColor = 'rgba(139, 0, 0, 0.4)';
+						setTimeout(() => {
+							el.style.backgroundColor = '';
+						}, 2000);
+					});
+					}
+				});
+		});
+
+		// JS Tooltip for grammar-highlight
+		document.querySelectorAll('.grammar-highlight').forEach(function (el) {
+			const tooltipContent = el.getAttribute('data-tooltip');
+			if (tooltipContent && tooltipContent.trim() !== '') {
+				el.addEventListener('mouseenter', function (e) {
+					let tooltip = document.createElement('div');
+				tooltip.className = 'kor-tooltip-popup';
+					tooltip.innerHTML = tooltipContent;
+				document.body.appendChild(tooltip);
+					// Position
+					const rect = el.getBoundingClientRect();
+					tooltip.style.position = 'absolute';
+					tooltip.style.left = (window.scrollX + rect.left + rect.width / 2 - tooltip.offsetWidth / 2) + 'px';
+					tooltip.style.top = (window.scrollY + rect.bottom + 8) + 'px';
+					tooltip.style.zIndex = 9999;
+					el._tooltip = tooltip;
+				});
+				el.addEventListener('mouseleave', function () {
+					if (el._tooltip) {
+						el._tooltip.remove();
+						el._tooltip = null;
+					}
+				});
+				el.addEventListener('mousemove', function (e) {
+					if (el._tooltip) {
+						const rect = el.getBoundingClientRect();
+						el._tooltip.style.left = (window.scrollX + rect.left + rect.width / 2 - el._tooltip.offsetWidth / 2) + 'px';
+						el._tooltip.style.top = (window.scrollY + rect.bottom + 8) + 'px';
+					}
+				});
+				// Click handler to scroll to grammar section
+				el.addEventListener('click', function () {
+					document.getElementById('grammar-section').scrollIntoView({
+						behavior: 'smooth'
+			});
+		});
+			}
+		});
+	</script>
+	<script>
+		// Tabs interactivity
+		document.querySelectorAll('.tab').forEach(function (tab) {
+			tab.addEventListener('click', function () {
+				// Remove active class from all tabs
+				document.querySelectorAll('.tab').forEach(t => {
+					t.classList.remove('active');
+					t.style.background = 'white';
+					t.style.color = '#2d3436';
+					t.style.border = '2px solid #d82e2e';
+					t.style.boxShadow = 'none';
+				});
+
+				// Add active class to clicked tab
+				tab.classList.add('active');
+				tab.style.background = 'linear-gradient(135deg, #8b0000 0%, #d82e2e 100%)';
+				tab.style.color = 'white';
+				tab.style.border = 'none';
+				tab.style.boxShadow = '0 4px 15px rgba(139, 0, 0, 0.2)';
+
+				// Hide all panels with fade out
+				document.querySelectorAll('.tab-panel').forEach(panel => {
+					panel.style.opacity = '0';
+					panel.style.transform = 'translateY(10px)';
+					setTimeout(() => {
+						panel.style.display = 'none';
+					}, 300);
+				});
+
+				// Show selected panel with fade in
+				const selectedPanel = document.getElementById('tab-' + tab.dataset.tab);
+								setTimeout(() => {
+					selectedPanel.style.display = 'block';
+					setTimeout(() => {
+						selectedPanel.style.opacity = '1';
+						selectedPanel.style.transform = 'translateY(0)';
+					}, 50);
+				}, 300);
+			});
+		});
+
+		// Card hover effects
+		document.querySelectorAll('.card').forEach(card => {
+			card.addEventListener('mouseenter', function () {
+				this.style.transform = 'translateY(-5px)';
+				this.style.boxShadow = '0 8px 25px rgba(0,0,0,0.1)';
+			});
+
+			card.addEventListener('mouseleave', function () {
+				this.style.transform = 'translateY(0)';
+				this.style.boxShadow = '0 4px 20px rgba(0,0,0,0.05)';
+			});
+		});
+	</script>
+	<script>
+		// Quiz interactivity
+		document.getElementById('quiz-check').addEventListener('click', function () {
+			let score = 0;
+			const answers = {
+				q1: '은',
+				q2: '를',
+				q3: '가',
+				q4: '입니다',
+				q5: '하고',
+				q6: '합니다',
+				q7: '에서',
+				q8: '에',
+				q9: '지',
+				q10: '이',
+				q11: '고',
+				q12: '갔어요',
+				q13: '도',
+				q14: '만',
+				q15: '지만',
+				q16: '지',
+				q17: '고',
+				q18: '고',
+				q19: '해야',
+				q20: '써',
+				q21: '로',
+				q22: '에게',
+				q23: '이',
+				q24: '는',
+				q25: 'ㄴ',
+				q26: 'ㄹ',
+				q27: 'ㄹ',
+				q28: '으면서',
+				q29: '라고',
+				q30: '라고',
+				q31: '동안',
+				q32: '는데',
+				q33: '서',
+				q34: '게'
+			};
+
+			Object.keys(answers).forEach(question => {
+				const input = document.querySelector(`input[name="${question}"]`);
+				if (input) {
+					const userAnswer = input.value.replace(/\s+/g, '').toLowerCase();
+					const correctAnswer = answers[question].replace(/\s+/g, '').toLowerCase();
+					if (userAnswer === correctAnswer) {
+						score++;
+						input.style.background = '#e6ffe6';
+					} else {
+						input.style.background = '#ffe6e6';
+					}
+				}
+			});
+			document.getElementById('quiz-result').textContent = 'Вы ответили правильно на ' + score + ' из 34 вопросов!';
+		});
+	</script>
+	<script>
+		function scrollToTop() {
+			window.scrollTo({
+				top: 0,
+				behavior: 'smooth'
+			});
+		}
+
+		// Скрипт для скрытия header при прокрутке
+		let lastScrollTop = 0;
+		const header = document.querySelector('header');
+		const scrollThreshold = 100;
+
+		window.addEventListener('scroll', () => {
+			const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+			if (scrollTop > lastScrollTop && scrollTop > scrollThreshold) {
+				header.classList.add('hidden');
+			} else {
+				header.classList.remove('hidden');
+			}
+
+			lastScrollTop = scrollTop;
+
+			// Показывать/скрывать кнопку прокрутки наверх
+			const scrollButton = document.getElementById('scrollToTop');
+			if (scrollTop > 20) {
+				scrollButton.style.display = 'block';
+			} else {
+				scrollButton.style.display = 'none';
+			}
+		});
+	</script>
+</body>
+
+</html>
