@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>K-Study: 용감한 토끼 토토의 모험</title>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+		rel="stylesheet">
+	<style>
+		body {
+			background: linear-gradient(135deg, #f5f5dc 0%, #e6e6d5 100%);
+			min-height: 100vh;
+			margin: 0;
+			padding: 0;
+			font-family: 'Noto Sans KR', 'Segoe UI', Arial, sans-serif;
+		}
+
+		header {
+			background: linear-gradient(135deg, #5a4a3a 0%, #a89a8a 100%);
+			position: fixed;
+			top: 0; left: 0; right: 0;
+			z-index: 1000;
+			transition: transform 0.3s ease;
+			box-shadow: 0 4px 12px rgba(139, 90, 43, 0.12);
+		}
+
+		header.hidden {
+			transform: translateY(-100%);
+		}
+
+		.navbar {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			max-width: 1100px;
+			margin: 0 auto;
+			padding: 0.7rem 2rem;
+		}
+
+		.logo span {
+			color: #fff !important;
+			text-shadow: 0 2px 4px rgba(0,0,0,0.08);
+			font-weight: 900;
+			font-size: 1.4rem;
+			letter-spacing: 0.5px;
+		}
+
+		.nav-links {
+			list-style: none;
+			display: flex;
+			gap: 2rem;
+			margin: 0;
+			padding: 0;
+		}
+
+		.nav-links a {
+			color: #fff;
+			text-decoration: none;
+			font-weight: 500;
+			font-size: 1.08rem;
+			transition: color 0.2s;
+		}
+
+		.nav-links a:hover {
+			color: #f5e6c8;
+		}
+
+		main {
+			margin-top: 100px;
+			max-width: 700px;
+			margin-left: auto;
+			margin-right: auto;
+			background: #fff;
+			border-radius: 18px;
+			box-shadow: 0 2px 12px rgba(139, 90, 43, 0.08);
+			padding: 2.5rem 2rem 2rem 2rem;
+			position: relative;
+		}
+
+		.rabbit-header {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-bottom: 1.5rem;
+		}
+
+		.rabbit-header svg {
+			margin-bottom: 10px;
+		}
+
+		h1 {
+			color: #8b5a2b;
+			text-align: center;
+			font-size: 2.1rem;
+			font-weight: 700;
+			margin: 0 0 0.5rem 0;
+			letter-spacing: 1px;
+		}
+
+		.story-block {
+			background: rgba(255, 253, 245, 0.9);
+			border-radius: 12px;
+			border-left: 6px solid #c8b6a6;
+			margin-bottom: 32px;
+			padding: 24px 20px 20px 20px;
+			position: relative;
+			font-size: 1.18em;
+			transition: box-shadow 0.3s;
+		}
+
+		.kor-tooltip {
+			font-size: 1.13em;
+			line-height: 2.1;
+			word-break: keep-all;
+		}
+
+		.grammar-highlight {
+			background-color: rgba(139, 90, 43, 0.13);
+			border-bottom: 1px dashed #a67c52;
+			color: #a67c52;
+			font-weight: 600;
+			cursor: pointer;
+			padding: 0 2px;
+			border-radius: 3px;
+			transition: background 0.2s;
+			position: relative;
+		}
+
+		.grammar-highlight:hover {
+			background-color: rgba(139, 90, 43, 0.22);
+		}
+
+		.kor-tooltip-popup {
+			position: absolute;
+			background: #fff9e6;
+			border-radius: 4px;
+			padding: 5px 8px;
+			box-shadow: 0 2px 8px rgba(139, 90, 43, 0.13);
+			max-width: 160px;
+			z-index: 1000;
+			font-size: 0.82em;
+			line-height: 1.4;
+			color: #5a4a3a;
+			border: 1px solid #e6d6b8;
+			left: 50%;
+			transform: translateX(-50%);
+			top: 120%;
+			display: none;
+			pointer-events: none;
+		}
+
+		.grammar-highlight.active .kor-tooltip-popup,
+		.grammar-highlight:focus .kor-tooltip-popup {
+			display: block;
+			pointer-events: auto;
+		}
+
+		.toggle-rus {
+			background: none;
+			border: none;
+			color: #8b5a2b;
+			cursor: pointer;
+			font-size: 13px;
+			margin-left: 8px;
+			padding: 2px 8px;
+			border-radius: 4px;
+			transition: all 0.2s;
+			font-weight: 600;
+			letter-spacing: 1px;
+		}
+
+		.toggle-rus:hover {
+			background: #f5e6c8;
+			color: #5a4a3a;
+		}
+
+		.rus-sentence {
+			display: none;
+			margin-top: 18px;
+			padding: 12px 16px;
+			background: #f0e6d2;
+			border-radius: 7px;
+			color: #5a4a3a;
+			font-style: italic;
+			font-size: 1.08em;
+			animation: fadeIn 0.5s;
+			clear: both;
+		}
+
+		.rus-sentence.visible {
+			display: block;
+		}
+
+		.grammar-section {
+			background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+			padding: 2.5rem 2rem;
+			border-radius: 24px;
+			margin: 2rem 0;
+		}
+
+		.grammar-section h2 {
+			text-align: center;
+			color: #8b5a2b;
+			font-size: 2rem;
+			margin-bottom: 2rem;
+			font-weight: 700;
+		}
+
+		.grammar-cards {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 1.5rem;
+			justify-content: center;
+		}
+
+		.card {
+			background: #fff;
+			border-radius: 14px;
+			padding: 1.5rem 1.2rem;
+			margin-bottom: 1.5rem;
+			box-shadow: 0 4px 20px rgba(139, 90, 43, 0.07);
+			transition: transform 0.3s, box-shadow 0.3s;
+			min-width: 220px;
+			max-width: 320px;
+			flex: 1 1 220px;
+			cursor: pointer;
+		}
+
+		.card:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 8px 25px rgba(139, 90, 43, 0.13);
+		}
+
+		.card-title {
+			color: #a67c52;
+			font-weight: 700;
+			margin-bottom: 0.7rem;
+			font-size: 1.13rem;
+		}
+
+		.card-desc {
+			color: #636e72;
+			margin-bottom: 0.7rem;
+			line-height: 1.6;
+		}
+
+		.card-ex {
+			color: #388e3c;
+			font-style: italic;
+			background: #f8f9fa;
+			padding: 0.7rem 1rem;
+			border-radius: 8px;
+			font-size: 0.98em;
+		}
+
+		@media (max-width: 700px) {
+			main { padding: 1.2rem 0.5rem; }
+			.grammar-cards { flex-direction: column; gap: 1rem; }
+			.card { min-width: 0; }
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<nav class="navbar">
+			<div class="logo">
+				<span>K-Study</span>
+			</div>
+			<ul class="nav-links">
+				<li><a href="index.html">Главная</a></li>
+				<li><a href="#grammar-section">Грамматика/Слова</a></li>
+				<li><a href="#quiz-section">Тест</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<div class="rabbit-header">
+			<svg id="rabbit-anim" width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<ellipse cx="20" cy="18" rx="6" ry="18" fill="#f5f5dc" stroke="#c8b6a6" stroke-width="2"/>
+				<ellipse cx="44" cy="18" rx="6" ry="18" fill="#f5f5dc" stroke="#c8b6a6" stroke-width="2"/>
+				<ellipse cx="32" cy="38" rx="22" ry="20" fill="#f5f5dc" stroke="#c8b6a6" stroke-width="2"/>
+				<ellipse cx="18" cy="48" rx="5" ry="3" fill="#ede7d1"/>
+				<ellipse cx="46" cy="48" rx="5" ry="3" fill="#ede7d1"/>
+				<ellipse id="eye-left" cx="24" cy="38" rx="2.2" ry="3" fill="#6b4e2e"/>
+				<ellipse id="eye-right" cx="40" cy="38" rx="2.2" ry="3" fill="#6b4e2e"/>
+				<ellipse cx="32" cy="44" rx="2.2" ry="1.2" fill="#c8b6a6"/>
+				<path d="M30 48 Q32 50 34 48" stroke="#c8b6a6" stroke-width="1.2" fill="none"/>
+			</svg>
+			<h1>Кролик ТоТо<p>(용감한 토끼 토토의 모험)</p></h1>
+		</div>
+		<div class="story-block">
+			<span class="kor-tooltip">
+				옛날 옛적<span class="grammar-highlight" tabindex="0" data-tooltip="N + 에. Дательный падеж неодушевленных имен образуется путем присоединения к корню окончания -에. Имеет значения: времени действия, направления движения, местонахождения предмета. Пример: 밖에 사람이 많습니다.">에<span class="kor-tooltip-popup"></span></span> 토토<span class="grammar-highlight" tabindex="0" data-tooltip="N + 라는. Представление имени или названия. Пример: 민수라는 친구가 있어요.">라는<span class="kor-tooltip-popup"></span></span> <span class="grammar-highlight" tabindex="0" data-tooltip="A + (으)ㄴ + N. Определительная форма прилагательных настоящего времени. Пример: 밝은 옷.">작은<span class="kor-tooltip-popup"></span></span> 토끼<span class="grammar-highlight" tabindex="0" data-tooltip="N + 이/가. Именительный падеж. Пример: 학생이 책을 읽어요.">가<span class="kor-tooltip-popup"></span></span> <span class="grammar-highlight" tabindex="0" data-tooltip="V/A + 았/었/였다. Прошедшее время. Пример: 어제 비가 왔어요.">살았어요<span class="kor-tooltip-popup"></span></span>.
+			</span>
+			<button class="toggle-rus">...</button>
+			<div class="rus-sentence">Давным-давно жил-был маленький кролик по имени Тото.</div>
+		</div>
+		<div class="story-block">
+			<span class="kor-tooltip">
+				토토<span class="grammar-highlight" tabindex="0" data-tooltip="N + 은/는. Тема предложения. Пример: 저는 학생입니다.">는<span class="kor-tooltip-popup"></span></span> 아주 <span class="grammar-highlight" tabindex="0" data-tooltip="A + (으)ㄴ데요. Ожидание реакции, смягчение. Пример: 날씨가 좋은데요.">용감한데요<span class="kor-tooltip-popup"></span></span>, 새로운 것을 <span class="grammar-highlight" tabindex="0" data-tooltip="V + 았/었/였다. Прошедшее время.">좋아했어요<span class="kor-tooltip-popup"></span></span>.
+			</span>
+			<button class="toggle-rus">...</button>
+			<div class="rus-sentence">Тото был очень смелым, ему нравилось всё новое.</div>
+		</div>
+		<div class="story-block">
+			<span class="kor-tooltip">
+				어느 날, 토토<span class="grammar-highlight" tabindex="0" data-tooltip="N + 은/는. Тема предложения.">는<span class="kor-tooltip-popup"></span></span> 숲<span class="grammar-highlight" tabindex="0" data-tooltip="N + 으로. Творительный падеж направления. Пример: 학교로 가요.">으로<span class="kor-tooltip-popup"></span></span> 모험을 <span class="grammar-highlight" tabindex="0" data-tooltip="V + 기로 하다. Решить что-то сделать. Пример: 일찍 일어나기로 했어요.">가기로 했어요<span class="kor-tooltip-popup"></span></span>.
+			</span>
+			<button class="toggle-rus">...</button>
+			<div class="rus-sentence">Однажды Тото решил отправиться в лес на приключение.</div>
+		</div>
+		<div class="story-block">
+			<span class="kor-tooltip">
+				"여기는 정말 신비하네요! 그런데 이곳 이름이 <span class="grammar-highlight" tabindex="0" data-tooltip="N + 입니까?. Вежливый вопрос. Пример: 이름이 뭐예요?">뭡니까<span class="kor-tooltip-popup"></span></span>?"
+			</span>
+			<button class="toggle-rus">...</button>
+			<div class="rus-sentence">"Здесь действительно удивительно! А как называется это место?"</div>
+		</div>
+		<div class="story-block">
+			<span class="kor-tooltip">
+				다람쥐가 대답했어요. "여기는 <span class="grammar-highlight" tabindex="0" data-tooltip="N + 입니다. Вежливо-официальная связка. Пример: 저는 학생입니다.">별숲입니다<span class="kor-tooltip-popup"></span></span>."
+			</span>
+			<button class="toggle-rus">...</button>
+			<div class="rus-sentence">Белка ответила: "Это — Лес звёзд."</div>
+		</div>
+		<div class="story-block">
+			<span class="kor-tooltip">
+				토토<span class="grammar-highlight" tabindex="0" data-tooltip="N + 은/는. Тема предложения.">는<span class="kor-tooltip-popup"></span></span> <span class="grammar-highlight" tabindex="0" data-tooltip="V + 았/었/였다. Прошедшее время.">놀랐어요<span class="kor-tooltip-popup"></span></span>.
+			</span>
+			<button class="toggle-rus">...</button>
+			<div class="rus-sentence">Тото удивился.</div>
+		</div>
+		<div class="story-block">
+			<span class="kor-tooltip">
+				"별숲<span class="grammar-highlight" tabindex="0" data-tooltip="N + (이)라서. Причина. Пример: 날씨가 좋아서 기분이 좋아요.">이라서<span class="kor-tooltip-popup"></span></span> 그런지 공기가 참 맑네요."
+			</span>
+			<button class="toggle-rus">...</button>
+			<div class="rus-sentence">Похоже, из‑за того, что это «Лес звёзд», воздух действительно чист.</div>
+		</div>
+		<div class="story-block">
+			<span class="kor-tooltip">
+				하지만 여우가 <span class="grammar-highlight" tabindex="0" data-tooltip="V + 았/었/였다. Прошедшее время.">말했어요<span class="kor-tooltip-popup"></span></span>.
+			</span>
+			<button class="toggle-rus">...</button>
+			<div class="rus-sentence">Но лиса сказала.</div>
+		</div>
+		<div class="story-block">
+			<span class="kor-tooltip">
+				그 숲<span class="grammar-highlight" tabindex="0" data-tooltip="N + 은/는. Тема предложения.">은<span class="kor-tooltip-popup"></span></span> 안전한 곳<span class="grammar-highlight" tabindex="0" data-tooltip="N + 이/가 아니에요. Отрицательная форма именного сказуемого. Пример: 학생이 아니에요.">이 아니에요<span class="kor-tooltip-popup"></span></span>.
+			</span>
+			<button class="toggle-rus">...</button>
+			<div class="rus-sentence">Этот лес — не безопасное место.</div>
+		</div>
+		<div class="story-block">
+			<span class="kor-tooltip">
+				무서운 동물들이 <span class="grammar-highlight" tabindex="0" data-tooltip="V + 이/가 있다. Есть, имеется.">있어요<span class="kor-tooltip-popup"></span></span>.
+			</span>
+			<button class="toggle-rus">...</button>
+			<div class="rus-sentence">Есть страшные животные.</div>
+		</div>
+		<div class="story-block">
+			<span class="kor-tooltip">
+				토토가 <span class="grammar-highlight" tabindex="0" data-tooltip="V + 았/었/였다. Прошедшее время.">대답했어요<span class="kor-tooltip-popup"></span></span>.
+			</span>
+			<button class="toggle-rus">...</button>
+			<div class="rus-sentence">Тото ответил.</div>
+		</div>
+		<div class="story-block">
+			<span class="kor-tooltip">
+				나는 <span class="grammar-highlight" tabindex="0" data-tooltip="V/A + 지 않다. Отрицание. Пример: 가지 않아요.">무서워하지 않아요<span class="kor-tooltip-popup"></span></span>.
+			</span>
+			<button class="toggle-rus">...</button>
+			<div class="rus-sentence">Я не боюсь.</div>
+		</div>
+		<div class="story-block">
+			<span class="kor-tooltip">
+				같이 <span class="grammar-highlight" tabindex="0" data-tooltip="V + 아/어/여요. Разговорная форма настоящего времени вежливого стиля.">가요<span class="kor-tooltip-popup"></span></span>.
+			</span>
+			<button class="toggle-rus">...</button>
+			<div class="rus-sentence">Пойдём вместе.</div>
+		</div>
+		<section class="grammar-section" id="grammar-section">
+			<h2>Грамматика и слова</h2>
+			<div class="tabs" style="display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 2rem;">
+				<button class="tab active" data-tab="grammar"
+					style="background: linear-gradient(135deg, #a67c52 0%, #c8b6a6 100%); color: white; border: none; padding: 1.1rem 2.2rem; border-radius: 14px; cursor: pointer; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(139, 90, 43, 0.10); font-size: 1.08rem;">Грамматика</button>
+				<button class="tab" data-tab="words"
+					style="background: white; color: #8b5a2b; border: 2px solid #c8b6a6; padding: 1.1rem 2.2rem; border-radius: 14px; cursor: pointer; font-weight: 600; transition: all 0.3s ease; font-size: 1.08rem;">Сложные слова</button>
+			</div>
+			<div class="tabs-content" style="max-width: 800px; margin: 0 auto;">
+				<div class="tab-panel" id="tab-grammar" style="display:block;">
+					<div class="grammar-cards">
+						<div class="card" data-grammar="N + 에"><div class="card-title">N + 에</div><div class="card-desc">Дательный падеж неодушевленных имен. Присоединяется к корню существительного. Значения: 1) время действия (когда?), 2) направление движения (куда?), 3) местонахождение (где?).</div><div class="card-ex">밖에 사람이 많습니다. (На улице много людей.)</div></div>
+						<div class="card" data-grammar="N + 라는"><div class="card-title">N + 라는</div><div class="card-desc">Конструкция для представления имени или названия. Эквивалентна русскому "по имени" или "называемый".</div><div class="card-ex">민수라는 친구가 있어요. (Есть друг по имени Минсу.)</div></div>
+						<div class="card" data-grammar="A + (으)ㄴ + N"><div class="card-title">A + (으)ㄴ + N</div><div class="card-desc">Определительная форма прилагательных настоящего времени. -ㄴ/-은 присоединяется к основе прилагательного.</div><div class="card-ex">밝은 옷. (Светлая одежда.)</div></div>
+						<div class="card" data-grammar="N + 이/가"><div class="card-title">N + 이/가</div><div class="card-desc">Именительный падеж. Указывает на подлежащее. -이 после согласной, -가 после гласной.</div><div class="card-ex">학생이 책을 읽어요. (Студент читает книгу.)</div></div>
+						<div class="card" data-grammar="V/A + 았/었/였다"><div class="card-title">V/A + 았/었/였다</div><div class="card-desc">Прошедшее время. Суффиксы -았/었/였다 присоединяются к основе глагола/прилагательного.</div><div class="card-ex">어제 비가 왔어요. (Вчера шёл дождь.)</div></div>
+						<div class="card" data-grammar="N + 은/는"><div class="card-title">N + 은/는</div><div class="card-desc">Тематический падеж. Выделяет тему предложения.</div><div class="card-ex">저는 학생입니다. (Что касается меня, я студент.)</div></div>
+						<div class="card" data-grammar="A + (으)ㄴ데요"><div class="card-title">A + (으)ㄴ데요</div><div class="card-desc">Окончание для ожидания реакции, смягчения, выражения несогласия.</div><div class="card-ex">날씨가 좋은데요. (Погода хорошая, знаете.)</div></div>
+						<div class="card" data-grammar="N + 으로"><div class="card-title">N + 으로</div><div class="card-desc">Творительный падеж направления. Указывает на направление движения.</div><div class="card-ex">학교로 가요. (Иду в школу.)</div></div>
+						<div class="card" data-grammar="V + 기로 하다"><div class="card-title">V + 기로 하다</div><div class="card-desc">Решить что-то сделать.</div><div class="card-ex">일찍 일어나기로 했어요. (Решил встать рано.)</div></div>
+						<div class="card" data-grammar="N + 입니까?"><div class="card-title">N + 입니까?</div><div class="card-desc">Вежливый вопрос.</div><div class="card-ex">이름이 뭡니까? (Как зовут?)</div></div>
+						<div class="card" data-grammar="N + 입니다"><div class="card-title">N + 입니다</div><div class="card-desc">Вежливо-официальная связка.</div><div class="card-ex">저는 학생입니다. (Я студент.)</div></div>
+						<div class="card" data-grammar="N + (이)라서"><div class="card-title">N + (이)라서</div><div class="card-desc">Причина, объяснение.</div><div class="card-ex">날씨가 좋아서 기분이 좋아요. (Погода хорошая, поэтому настроение хорошее.)</div></div>
+						<div class="card" data-grammar="N + 이/가 아니에요"><div class="card-title">N + 이/가 아니에요</div><div class="card-desc">Отрицательная форма именного сказуемого.</div><div class="card-ex">학생이 아니에요. (Не студент.)</div></div>
+						<div class="card" data-grammar="V + 이/가 있다"><div class="card-title">V + 이/가 있다</div><div class="card-desc">Есть, имеется.</div><div class="card-ex">고양이가 있어요. (Есть кошка.)</div></div>
+						<div class="card" data-grammar="V/A + 지 않다"><div class="card-title">V/A + 지 않다</div><div class="card-desc">Отрицание.</div><div class="card-ex">가지 않아요. (Не иду.)</div></div>
+						<div class="card" data-grammar="V + 아/어/여요"><div class="card-title">V + 아/어/여요</div><div class="card-desc">Разговорная форма настоящего времени вежливого стиля.</div><div class="card-ex">먹어요. (Ем.)</div></div>
+					</div>
+				</div>
+				<div class="tab-panel" id="tab-words" style="display:none;">
+					<div class="grammar-cards">
+						<div class="card"><div class="card-title">옛날 옛적</div><div class="card-desc">Давным-давно, в стародавние времена.</div><div class="card-ex">옛날 옛적에 — давным-давно</div></div>
+						<div class="card"><div class="card-title">토끼</div><div class="card-desc">Кролик.</div><div class="card-ex">작은 토끼 — маленький кролик</div></div>
+						<div class="card"><div class="card-title">살다</div><div class="card-desc">Жить.</div><div class="card-ex">살았어요 — жил</div></div>
+						<div class="card"><div class="card-title">이름</div><div class="card-desc">Имя, название.</div><div class="card-ex">이름이 뭐예요? — Как тебя зовут?</div></div>
+						<div class="card"><div class="card-title">모험</div><div class="card-desc">Приключение.</div><div class="card-ex">모험을 가다 — отправиться в приключение</div></div>
+						<div class="card"><div class="card-title">숲</div><div class="card-desc">Лес.</div><div class="card-ex">숲으로 — в лес</div></div>
+						<div class="card"><div class="card-title">별숲</div><div class="card-desc">Лес звёзд (фантазийное название).</div><div class="card-ex">여기는 별숲입니다. — Это Лес звёзд.</div></div>
+						<div class="card"><div class="card-title">무서운</div><div class="card-desc">Страшный.</div><div class="card-ex">무서운 동물 — страшное животное</div></div>
+						<div class="card"><div class="card-title">동물</div><div class="card-desc">Животное.</div><div class="card-ex">동물들이 있어요 — есть животные</div></div>
+						<div class="card"><div class="card-title">공기</div><div class="card-desc">Воздух.</div><div class="card-ex">공기가 맑아요 — воздух чистый</div></div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="grammar-section" id="quiz-section" style="margin-top: 2.5rem;">
+			<h2>Тесты</h2>
+			<div style="max-width: 600px; margin: 0 auto;">
+				<p><b>1. Fill in the gap:</b> Заполните пропуски в названии сказки:</p>
+				<div style="font-size: 1.15em; margin-bottom: 1.2em;">
+					<input type="text" id="gap1" maxlength="3" style="width: 3em; text-align: center; font-size: 1em;"> 토끼 <input type="text" id="gap2" maxlength="2" style="width: 2.5em; text-align: center; font-size: 1em;">의 모험
+				</div>
+				<button id="check-gap" style="background: #a67c52; color: white; border: none; padding: 0.7em 1.5em; border-radius: 8px; font-weight: 600; cursor: pointer;">Проверить</button>
+				<div id="gap-result" style="margin-top: 1em; font-weight: 600;"></div>
+
+				<p style="margin-top:2em;"><b>2. Выберите правильную грамматику:</b></p>
+				<div style="margin-bottom:1em;">
+					<span>Какой падеж используется для обозначения направления движения?</span><br>
+					<select id="mc-grammar">
+						<option value="">Выберите...</option>
+						<option value="N + 에">N + 에</option>
+						<option value="N + 으로">N + 으로</option>
+						<option value="N + 이/가">N + 이/가</option>
+					</select>
+					<button id="check-mc-grammar" style="margin-left:1em; background: #a67c52; color: white; border: none; padding: 0.4em 1em; border-radius: 8px; font-weight: 600; cursor: pointer; font-size:0.98em;">Проверить</button>
+					<div id="mc-grammar-result" style="margin-top:0.5em; font-weight:600;"></div>
+				</div>
+
+				<p style="margin-top:2em;"><b>3. Переведите слово:</b></p>
+				<div style="margin-bottom:1em;">
+					<span>Как переводится "모험"?</span><br>
+					<input type="text" id="word-translate" style="width: 8em; text-align: center; font-size: 1em;">
+					<button id="check-word-translate" style="margin-left:1em; background: #a67c52; color: white; border: none; padding: 0.4em 1em; border-radius: 8px; font-weight: 600; cursor: pointer; font-size:0.98em;">Проверить</button>
+					<div id="word-translate-result" style="margin-top:0.5em; font-weight:600;"></div>
+				</div>
+			</div>
+		</section>
+	</main>
+	<script>
+		(function() {
+			const rabbit = document.getElementById('rabbit-anim');
+			if (!rabbit) return;
+			const eyeL = rabbit.getElementById('eye-left');
+			const eyeR = rabbit.getElementById('eye-right');
+			let blinkTimeout;
+			function blink() {
+				eyeL.setAttribute('ry', '0.5');
+				eyeR.setAttribute('ry', '0.5');
+				setTimeout(() => {
+					eyeL.setAttribute('ry', '3');
+					eyeR.setAttribute('ry', '3');
+					blinkTimeout = setTimeout(blink, 1800 + Math.random() * 1200);
+				}, 120);
+			}
+			blinkTimeout = setTimeout(blink, 1200);
+			rabbit.style.transition = 'transform 0.5s cubic-bezier(.5,-0.5,.5,1.5)';
+			let up = false;
+			setInterval(() => {
+				rabbit.style.transform = up ? 'translateY(0)' : 'translateY(-10px)';
+				up = !up;
+			}, 1800);
+		})();
+
+		document.querySelectorAll('.grammar-highlight').forEach(function(el) {
+			const popup = el.querySelector('.kor-tooltip-popup');
+			el.addEventListener('mouseenter', function() {
+				popup.textContent = el.getAttribute('data-tooltip');
+				popup.style.display = 'block';
+			});
+			el.addEventListener('mouseleave', function() {
+				popup.style.display = 'none';
+			});
+			el.addEventListener('focus', function() {
+				popup.textContent = el.getAttribute('data-tooltip');
+				popup.style.display = 'block';
+			});
+			el.addEventListener('blur', function() {
+				popup.style.display = 'none';
+			});
+		});
+
+		document.querySelectorAll('.story-block').forEach(function(block) {
+			const rusText = block.querySelector('.rus-sentence');
+			const toggleBtn = block.querySelector('.toggle-rus');
+			toggleBtn.addEventListener('click', function () {
+				rusText.classList.toggle('visible');
+				if (rusText.classList.contains('visible')) {
+					toggleBtn.textContent = '▲';
+				} else {
+					toggleBtn.textContent = '...';
+				}
+			});
+		});
+
+		document.querySelectorAll('.card').forEach(card => {
+			card.addEventListener('click', function () {
+				const grammar = card.querySelector('.card-title').textContent.trim();
+				const el = Array.from(document.querySelectorAll('.grammar-highlight')).find(e =>
+					(e.getAttribute('data-tooltip') || '').startsWith(grammar)
+				);
+				if (el) {
+					el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+					el.style.backgroundColor = 'rgba(139, 90, 43, 0.25)';
+					setTimeout(() => {
+						el.style.backgroundColor = '';
+					}, 1500);
+				}
+			});
+		});
+
+		let lastScrollTop = 0;
+		const header = document.querySelector('header');
+		const scrollThreshold = 100;
+		window.addEventListener('scroll', () => {
+			const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+			if (scrollTop > lastScrollTop && scrollTop > scrollThreshold) {
+				header.classList.add('hidden');
+			} else {
+				header.classList.remove('hidden');
+			}
+			lastScrollTop = scrollTop;
+		});
+
+		document.querySelectorAll('.tab').forEach(function (tab) {
+			tab.addEventListener('click', function () {
+				document.querySelectorAll('.tab').forEach(t => {
+					t.classList.remove('active');
+					t.style.background = 'white';
+					t.style.color = '#8b5a2b';
+					t.style.border = '2px solid #c8b6a6';
+					t.style.boxShadow = 'none';
+				});
+				tab.classList.add('active');
+				tab.style.background = 'linear-gradient(135deg, #a67c52 0%, #c8b6a6 100%)';
+				tab.style.color = 'white';
+				tab.style.border = 'none';
+				tab.style.boxShadow = '0 4px 15px rgba(139, 90, 43, 0.10)';
+				document.querySelectorAll('.tab-panel').forEach(panel => {
+					panel.style.display = 'none';
+				});
+				document.getElementById('tab-' + tab.dataset.tab).style.display = 'block';
+			});
+		});
+
+		const checkBtn = document.getElementById('check-gap');
+		if (checkBtn) {
+			checkBtn.addEventListener('click', function() {
+				const gap1 = document.getElementById('gap1').value.trim();
+				const gap2 = document.getElementById('gap2').value.trim();
+				const result = document.getElementById('gap-result');
+				if (gap1 === '용감한' && gap2 === '토토') {
+					result.textContent = 'Верно!';
+					result.style.color = '#388e3c';
+				} else {
+					result.textContent = 'Попробуйте ещё раз!';
+					result.style.color = '#b71c1c';
+				}
+			});
+		}
+
+		const checkMC = document.getElementById('check-mc-grammar');
+		if (checkMC) {
+			checkMC.addEventListener('click', function() {
+				const val = document.getElementById('mc-grammar').value;
+				const result = document.getElementById('mc-grammar-result');
+				if (val === 'N + 으로') {
+					result.textContent = 'Верно!';
+					result.style.color = '#388e3c';
+				} else {
+					result.textContent = 'Неправильно. Подумайте ещё!';
+					result.style.color = '#b71c1c';
+				}
+			});
+		}
+
+		const checkWord = document.getElementById('check-word-translate');
+		if (checkWord) {
+			checkWord.addEventListener('click', function() {
+				const val = document.getElementById('word-translate').value.trim();
+				const result = document.getElementById('word-translate-result');
+				if (val === 'приключение' || val === 'Приключение') {
+					result.textContent = 'Верно!';
+					result.style.color = '#388e3c';
+				} else {
+					result.textContent = 'Неправильно. Попробуйте ещё раз!';
+					result.style.color = '#b71c1c';
+				}
+			});
+		}
+	</script>
+</body>
+
+</html>
